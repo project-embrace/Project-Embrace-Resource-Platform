@@ -1,0 +1,18 @@
+{% extends 'device_app/base.html' %}
+{% block body_block %}
+<div class="jumbotron">
+  <h1>Campaigns</h1>
+  <br>
+  <ol>
+    {% for campaign in campaigns %}
+    <h5>
+      <li>
+        <a class='annoying' href="{{campaign.id}}">{{campaign.title}}</a>
+      </li>
+    </h5>
+    {% endfor %}
+  </ol>
+
+</div>
+
+{% endblock %}

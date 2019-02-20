@@ -1,0 +1,17 @@
+{% extends 'device_app/base.html' %}
+{% block body_block %}
+<div class="jumbotron">
+  <h1>Device Details</h1>
+  <br>
+    <p>Device ID: {{device_detail.pk}}</p>
+    <p>Type: {{device_detail.type}}</p>
+    <p>Condition: {{device_detail.condition}}</p>
+    <p>Donor: <a class='annoying'href="{% url 'device_app:donor_detail' pk=device_detail.donor.pk %}">{{device_detail.donor}}</a></p>
+    <p>Campaign: <a class='annoying'href="{% url 'device_app:campaign_detail' pk=device_detail.campaign.pk %}">{{device_detail.campaign}}</a></p>
+    <p>Storage Area: <a class='annoying'href="{% url 'device_app:storage_detail' pk=device_detail.storage_area.pk %}">{{device_detail.storage_area}}</a> </p>
+    <p>Device has been cleaned?: {{device_detail.cleaned}}</p>
+    <p>Donated?: {{device_detail.donated_to_recipient}}</p>
+    <p>Date Donated to Recipient: {{device_detail.date_donated_to_recipient}}</p>
+    <p><a class='button' href="{% url 'device_app:device_update' pk=device_detail.pk %}">Update Device</a></p>
+</div>
+{% endblock %}

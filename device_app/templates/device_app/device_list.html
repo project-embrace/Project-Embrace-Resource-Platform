@@ -1,0 +1,37 @@
+{% extends 'device_app/base.html' %}
+{% block body_block %}
+<div class="jumbotron">
+  <h1>Devices</h1>
+    <p><a class='button' href="{% url 'device_app:device_create'%}">Create Device</a></p>
+    <form method="POST" action=".">
+            {% csrf_token %}
+      <input id="search_box" type="text" name="device_search"  placeholder="Search Devices..." >
+      <button id='button' class="button" type="submit" >Submit</button>
+    </form>
+  <br>
+  <h4 style="color:#BE1E2D;">We have recieved a total of {{ devices.count }} devices!</h4>
+  <br>
+
+    <h3>List of Devices</h3>
+  <ul>
+    {% for device in devices %}
+    <h6 class='annoying'>
+      <li class='annoying'>
+        <a class='annoying' href="{{device.id}}">Type: {{device.type}} || Device ID: {{device.id}}</a>
+      </li>
+    </h6>
+    <br>
+    {% endfor %}
+  </ul>
+  <ul>
+    {% for searchDevice in searchDevices %}
+    <h6 class='annoying'>
+      <li class='annoying'>
+        <a class='annoying' href="{{searchDevice.id}}">Type: {{searchDevice.type}} || Campaign: {{searchDevice.campaign}} || Device ID: {{searchDevice.id}}</a>
+      </li>
+    </h6>
+    <br>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

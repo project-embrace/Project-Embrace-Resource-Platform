@@ -1,0 +1,24 @@
+{% extends 'device_app/base.html' %}
+{% block body_block %}
+{% if user.is_authenticated %}
+  <div class="jumbotron">
+    <h1>Device Data Tracking</h1>
+    <p>Hi all!
+      <br>
+      <br>
+       This is the hompage for our device data. It is still under development
+       so let me know what you would like to see impoved.
+    </p>
+    <!-- <p>The way we use this app is pretty easy! Click on <a id="pe_format" href="#">here</a> if you are unsure of anything.</p> -->
+    <p>
+      Reach out to me with any questions.
+      <br><br>
+      - Kinkade
+    </p>
+  </div>
+{% else %}
+  <div class="jumbotron">
+      <p>Project Embrace</p>
+  </div>
+{% endif %}
+{% endblock %}

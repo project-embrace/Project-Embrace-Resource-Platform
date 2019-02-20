@@ -1,0 +1,24 @@
+{% extends 'device_app/base.html' %}
+{% block body_block %}
+<div class="jumbotron">
+  <h1>Donation House</h1>
+  <h5>Title: {{donationhouse_detail.title}}</h5>
+  <p>Address: {{donationhouse_detail.street}}, {{donationhouse_detail.city}},
+      {{donationhouse_detail.state}} {{donationhouse_detail.zip}}
+  </p>
+  <br>
+  <h4 style="color:#BE1E2D;">Lassonde has recieved donations from {{donationhouse_detail.dono_house.count}} people!</h4>
+  <br>
+    <ul>
+      <h4>People who donated here</h4>
+        {% for dono_house in donationhouse_detail.dono_house.all|dictsort:"name" %}
+          <h5>
+            <li>
+              <a class='annoying'href="{% url 'device_app:donor_detail' pk=dono_house.pk %}">{{dono_house.name}}</a>
+            </li>
+          </h5>
+        {% endfor %}
+
+    </ul>
+</div>
+{% endblock %}

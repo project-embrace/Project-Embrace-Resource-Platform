@@ -1,0 +1,16 @@
+{% extends 'device_app/base.html' %}
+{% block body_block %}
+<div class="jumbotron">
+  <h1>Donation Houses</h1>
+  <br>
+  <ol>
+    {% for donationhouse in donationhouses %}
+      <h4>
+        <li>
+          <a class='annoying' href="{{donationhouse.id}}">{{donationhouse.title}}</a>
+        </li>
+      </h5>
+    {% endfor %}
+  </ol>
+</div>
+{% endblock %}

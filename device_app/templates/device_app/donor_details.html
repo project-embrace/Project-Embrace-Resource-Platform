@@ -1,0 +1,23 @@
+{% extends 'device_app/base.html' %}
+{% block body_block %}
+<div class="jumbotron">
+  <h1>Donor Details</h1>
+  <p>Name: {{donor_detail.name}}</p>
+  <p>email: {{donor_detail.email}}</p>
+  <p>Date of Donation: {{donor_detail.donation_date}}</p>
+  <p>Donation House:<a class='annoying'href="{% url 'device_app:donation_house_detail' pk=donor_detail.pk %}"> {{donor_detail.donation_house}}</p>
+  <p><a class='button' href="{% url 'device_app:donor_update' pk=donor_detail.pk %}">Update Donor</a>
+  </p>
+  <br>
+  <h4 style="color:#BE1E2D;">{{ donor_detail.name }} donated {{ donor_detail.devices.count}} devices!</h4>
+
+  <h2>Devices:</h2>
+  {% for device in donor_detail.devices.all %}
+    <p>Device ID: <a class='annoying'href="{% url 'device_app:device_detail' pk=device.pk %}">{{device.id}}</a>
+      <br>Device Type: {{device.type}}
+      <br>Associated Campaign:<a class='annoying'href="{% url 'device_app:campaign_detail' pk=device.pk %}"> {{device.campaign}}</a>
+      <br>Device has been distributed through a campaign?: {{device.donated_to_recipient}}
+    </p>
+  {% endfor %}
+</div>
+{% endblock %}

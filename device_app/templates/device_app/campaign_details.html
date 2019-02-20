@@ -1,0 +1,20 @@
+{% extends 'device_app/base.html' %}
+{% block body_block %}
+<div class="jumbotron">
+            <h1>Campaign Details</h1>
+            <p>Campaign: {{campaign_details.title}}</p>
+            <p>Partnership: {{campaign_details.partnership}}</p>
+            <p>Organizational Recipient: {{campaign_details.organization_recipient}}</p>
+            <p>Start Date: {{campaign_details.start_date}}</p>
+            <p>End Date: {{campaign_details.end_date}}</p>
+            <h4 style="color:#BE1E2D;">{{campaign_details.device_campaign.count}} devices have been donated through the {{campaign_details.title}} campaign</h4>
+            <h2>Devices:</h2>
+            {% for device in campaign_details.device_campaign.all %}
+            <ul>
+              <li>
+                <a class='annoying'href="{% url 'device_app:device_detail' pk=device.pk %}">Type: {{device.type}} || ID: {{device.id}}</a>
+              </li>
+            </ul>
+            {% endfor %}
+</div>
+{% endblock %}

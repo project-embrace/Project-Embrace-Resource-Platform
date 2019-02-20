@@ -1,0 +1,16 @@
+{% extends 'device_app/base.html' %}
+{% block body_block %}
+<div class="jumbotron">
+  <h1>Storage Areas</h1>
+  <br>
+  <ol>
+    {% for storage in storages %}
+      <h4>
+        <li>
+          <a class='annoying' href="{{storage.id}}">{{storage.title}}</a>
+        </li>
+      </h4>
+    {% endfor %}
+  </ol>
+</div>
+{% endblock %}
