@@ -9,43 +9,38 @@
   </head>
   <body>
     <div class="container">
-      <ul class="nav justify-content-left">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'index' %}"><img src="{% static "/pe_logo2.jpg"%}" alt="Aw Fuck"></a>
-        </li>
+              <a class="nav justify-content-center" href="{% url 'index' %}"><img src="{% static "/pe_logo2.jpg"%}" alt="Aw Fuck"></a>
+<br>
+      <ul class="nav justify-content-center">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:donor_list' %}">Donors</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:device_list' %}">Devices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:campaign_list'%}">Campaigns</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:donation_house_list'%}">Donation Houses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:storage_list'%}">Storage Areas</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href="{% url 'logout' %}">Logout</a>
+            </li>
+          {% else %}
+            <li>
+              <a class='nav-link'href="{% url 'device_app:user_login' %}">Login</a>
+            </li>
+          {% endif %}
       </ul>
-      <ul class="nav justify-content-end">
-        {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'device_app:donor_list' %}">Donors</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'device_app:device_list' %}">Devices</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'device_app:campaign_list'%}">Campaigns</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'device_app:donation_house_list'%}">Donation Houses</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'device_app:storage_list'%}">Storage Areas</a>
-          </li>
-          <li class="nav-item">
-            <a class='nav-link' href="{% url 'logout' %}">Logout</a>
-          </li>
-        {% else %}
-          <li>
-            <a class='nav-link'href="{% url 'device_app:user_login' %}">Login</a>
-          </li>
-        {% endif %}
-      </ul>
-    </div>
     <div class="container">
         {% block body_block %}
 
         {% endblock %}
-
     </div>
   </body>
 </html>

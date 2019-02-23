@@ -152,12 +152,12 @@ class DeviceDetail(DetailView):
    template_name='device_app/device_details.html'
 
 class DeviceCreateView(CreateView):
-    fields = ('type','condition','donor','campaign','storage_area','donated_to_recipient','unique_information')
+    fields = ('date_donated_to_project_embrace','type','condition','donor','campaign','storage_area','processed','unique_information')
     # fields are used to determine what you can alter in the model
     model=models.Device
 
 class DeviceUpdateView(UpdateView):
-    fields = ('type','condition','donor','campaign','storage_area','cleaned','donated_to_recipient','date_donated_to_recipient')
+    fields = ('type','condition','donor','campaign','storage_area','processed','donated_to_recipient','unique_information','date_donated_to_recipient')
     model = models.Device
 
 class DeviceDeleteView(DeleteView):

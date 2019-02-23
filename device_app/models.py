@@ -147,8 +147,9 @@ class Device(models.Model):
                               related_name='device_campaign',
                               on_delete=models.CASCADE)
     donated_to_recipient=models.BooleanField(default=False)
-    cleaned=models.BooleanField(default=False)
-    unique_information=models.TextField()
+    processed=models.BooleanField(default=False)
+    unique_information=models.TextField(default='None')
+    date_donated_to_project_embrace=models.DateField(("Date"), default=datetime.date.today)
     date_donated_to_recipient=models.DateField(("Date Donated to Recipient (YYYY-MM-DD)"),
                                                 blank=True,
                                                 null=True)
