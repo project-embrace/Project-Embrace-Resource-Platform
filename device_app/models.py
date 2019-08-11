@@ -93,19 +93,40 @@ class Recipient(models.Model):
 
 class Device(models.Model):
     import datetime
-    ez_crutch='ez-crutch'
-    crutch='crutch'
-    walker='walker'
-    wheelchair='wheelchair'
-    medicalboot='medical boot'
-    orthoticshoe='orthotic shoe'
+    cane = 'cane'
+    quad_cane = 'quad cane'
+    ez_crutch = 'EZ_crutch'
+    adult_crutch='adult crutch'
+    adult_forearm_crutch='adult forearm crutch'
+    pediatric_crutch = 'pediatric crutch'
+    pediatric_forearm_crutch='pediatric forearm crutch'
+
+    nonwheeled_walker='nonwheeled walker'
+    two_wheeled_walker = 'two wheeled walker'
+    three_wheeled_walker = 'three wheeled walker'
+    four_wheeled_walker = 'four wheeled walker'
+    knee_injury_scooter = 'knee injury scooter'
+
+    standard_wheelchair='standard wheelchair'
+    active_manual_wheelchair = 'active manual wheelchair'
+    pediatric_wheelchair = 'pediatric wheelchair'
+
+    adult_medical_boot='adult medical boot'
+    pediatric_medical_boot = 'pediatric medical boot'
+
+    orthotic_brace = 'orthotic brace'
+    orthotic_shoe='orthotic shoe'
+    compression_brace='compression brace'
+
+    commode = 'commode'
     sling='sling'
     glasses='glasses'
-    compressionbrace='compression brace'
-    orthoticbrace='orthotic brace'
+
     splint='splint'
+
     wrap='wrap'
     bed='bed'
+
     miscellaneous='miscellaneous'
     A='A'
     B='B'
@@ -119,16 +140,29 @@ class Device(models.Model):
     )
 
     DEVICE_OPTIONS = (
-        (crutch,'crutch'),
+        (cane,'cane'),
+        (quad_cane,'quad cane'),
+        (adult_crutch,'adult crutch'),
+        (adult_forearm_crutch,'adult forearm crutch'),
+        (pediatric_crutch,'pediatric crutch'),
+        (pediatric_forearm_crutch,'pediatric forarm crutch'),
         (ez_crutch,'EZ-crutch'),
-        (walker,'walker'),
-        (wheelchair,'wheelchair'),
-        (medicalboot,'medical boot'),
-        (orthoticshoe,'orthotic shoe'),
+        (nonwheeled_walker,'nonwheeled walker'),
+        (two_wheeled_walker,'two wheeled walker'),
+        (three_wheeled_walker,'three wheeled walker'),
+        (four_wheeled_walker,'four wheeled walker'),
+        (knee_injury_scooter,'knee injury scooter'),
+        (standard_wheelchair,'standard wheelchair'),
+        (active_manual_wheelchair,'active manual wheelchair'),
+        (pediatric_wheelchair,'pediatric wheelchair'),
+        (adult_medical_boot,'adult medical boot'),
+        (pediatric_medical_boot,'pediatric medical boot'),
+        (orthotic_brace,'orthotic brace'),
+        (orthotic_shoe,'orthotic shoe'),
+        (compression_brace,'compression brace'),
         (sling,'sling'),
+        (commode,'commode'),
         (glasses,'glasses'),
-        (compressionbrace,'compression brace'),
-        (orthoticbrace,'orthotic brace'),
         (splint,'splint'),
         (wrap,'wrap'),
         (bed,'bed'),

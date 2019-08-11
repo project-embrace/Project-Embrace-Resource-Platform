@@ -1,1 +1,1 @@
-# ProjE
+# Project Embrace Heroku Files
