@@ -12,7 +12,7 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 SECRET_KEY = '&5=4*=-bdbv%m!942+)pz2_t#$*zh%58rbdhe4=5tbtu-n!g0n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['projemb-device-app.herokuapp.com']
 
