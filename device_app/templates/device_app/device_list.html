@@ -12,7 +12,13 @@
   <br>
   <h4 style="color:#BE1E2D;">We have recieved a total of {{ devices.count }} devices!</h4>
   <br>
-
+  <h3>
+    {% regroup devices by donated_to_recipient as device_summary %}
+    {% if device_summary %}
+      yum
+      {{ device_summary.typeN }}
+    {% endif %}
+  </h3>
     <h3>List of Devices</h3>
   <ul>
     {% for device in devices %}
