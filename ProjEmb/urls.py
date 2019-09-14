@@ -18,7 +18,7 @@ from django.urls import path,include
 from device_app import views
 
 urlpatterns = [
-    path('',views.index,name='index'),
+    path('',views.landing_index,name='landing_index'),
     path('admin/', admin.site.urls),
     path('device/',include('device_app.urls',namespace='device_app')),
     path('logout/',views.user_logout,name='logout'),

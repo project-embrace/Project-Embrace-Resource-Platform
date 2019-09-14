@@ -1,4 +1,4 @@
-{% extends 'device_app/base.html' %}
+{% extends 'device_app/operations.html' %}
 {% block body_block %}
 <div class="jumbotron">
   <div class="">
@@ -15,8 +15,7 @@
   <h3>
     {% regroup devices by donated_to_recipient as device_summary %}
     {% if device_summary %}
-      yum
-      {{ device_summary.typeN }}
+      {{ device_summary.type }}
     {% endif %}
   </h3>
     <h3>List of Devices</h3>

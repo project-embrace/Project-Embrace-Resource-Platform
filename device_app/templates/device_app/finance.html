@@ -10,24 +10,21 @@
   </head>
   <body>
     <div class="container">
-              <a class="nav justify-content-center" href="{% url 'index' %}"><img src="{% static "/pe_logo2.jpg"%}" alt="Aw Fuck"></a>
+              <a class="nav justify-content-center" href="{% url 'landing_index' %}"><img src="{% static "/pe_logo2.jpg"%}" alt="Aw Fuck"></a>
 <br>
       <ul class="nav justify-content-center">
           {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:donor_list' %}">Donors</a>
+              <a class="nav-link" href="{% url 'device_app:donor_list' %}">Receipts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:device_list' %}">Devices</a>
+              <a class="nav-link" href="{% url 'device_app:device_list' %}">Accounting</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:campaign_list'%}">Campaigns</a>
+              <a class="nav-link" href="{% url 'device_app:campaign_list'%}">Reports</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:donation_house_list'%}">Donation Houses</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:storage_list'%}">Storage Areas</a>
+              <a class="nav-link" href="{% url 'device_app:donation_house_list'%}">Impact</a>
             </li>
             <li class="nav-item">
               <a class='nav-link' href="{% url 'logout' %}">Logout</a>

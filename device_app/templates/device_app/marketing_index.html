@@ -1,0 +1,25 @@
+{% extends 'device_app/marketing.html' %}
+{% block body_block %}
+{% if user.is_authenticated %}
+  <div class="jumbotron">
+    <h1>Markeging Department</h1>
+    <p>
+       This is the hompage for the Marketing department. All tabs are related to the mission of delivering the message who we help
+       and why we help them.
+    </p>
+    <!-- <p>The way we use this app is pretty easy! Click on <a id="pe_format" href="#">here</a> if you are unsure of anything.</p> -->
+    <p>
+      Reach out to me with any questions.
+      <br>
+      <br>
+      C. Kinkade Darling - Director of Software Engineering
+    </p>
+  </div>
+{% else %}
+  <div class="jumbotron">
+      <center><p>If you do not have access to this page, contact the administator at <b id='pe_format'>hello@projectembrace.org</b> </p>
+      <p><a id='pe_format' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+
+
+{% endif %}
+{% endblock %}

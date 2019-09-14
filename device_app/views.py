@@ -13,10 +13,28 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
 from . import models
+import plotly.offline as opy
+from controlcenter import Dashboard, widgets
+import plotly.graph_objs as go
 
 # Create your views here.
-def index(request):
-    return render(request,'device_app/index.html')
+def operations_index(request):
+    return render(request,'device_app/operations_index.html')
+
+def landing_index(request):
+    return render(request,'device_app/landing_index.html')
+
+def finance_index(request):
+    return render(request,'device_app/finance_index.html')
+
+def marketing_index(request):
+    return render(request,'device_app/marketing_index.html')
+
+def relationship_index(request):
+    return render(request,'device_app/relationship_index.html')
+
+def knowledge_index(request):
+    return render(request,'device_app/knowledge_index.html')
 
 def tutorial(request):
     return render(request,'device_app/tutorial.html')
@@ -25,7 +43,7 @@ def tutorial(request):
 @login_required
 def user_logout(request):
     logout(request)
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect(reverse('landing_index'))
 
 
 def user_login(request):
@@ -38,7 +56,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('landing_index'))
             else:
                 return HttpResponse('ACCOUNT NOT ACTIVE')
         else:
@@ -50,7 +68,6 @@ def user_login(request):
 
 # CRUD items
 # Donor Section
-
 # gathers total row count if needed
 # def get_context_data(self,**kwargs):
 #     context = super().get_context_data(**kwargs)
@@ -91,7 +108,7 @@ class DonorList(ListView):
             else: # no data submitted
 
                 context = {}
-                return render(request, 'device_app/index.html', context)
+                return render(request, 'device_app/ops_index.html', context)
 
 class DonorDetail(DetailView):
    context_object_name = 'donor_detail'

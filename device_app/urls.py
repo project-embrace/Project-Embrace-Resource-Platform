@@ -1,11 +1,16 @@
 from django.contrib import admin
 from django.urls import path,include
 from device_app import views
-
 app_name = 'device_app'
 
 urlpatterns = [
     path('user_login/',views.user_login,name='user_login'),
+    path('operations/',views.operations_index,name='operations_index'),
+    path('finance/',views.finance_index,name='finance_index'),
+    path('relationship_mgmt/',views.relationship_index,name='relationship_index'),
+    path('marketing/',views.marketing_index,name='marketing_index'),
+    path('knowledge_base/',views.knowledge_index,name='knowledge_index'),
+
     path('donor_list/',views.DonorList.as_view(),name='donor_list'),
     path('donor_list/<int:pk>/',views.DonorDetail.as_view(),name='donor_detail'),
     path('donor_create/',views.DonorCreateView.as_view(),name='donor_create'),

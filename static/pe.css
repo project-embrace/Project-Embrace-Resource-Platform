@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "sofia-pro-soft", sans-serif;
+  font-family: 'sofia-pro-soft', sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -11,28 +11,28 @@ button {
 }
 .nav .nav-link{
   color:#BE1E2D;
-  font-family: "Sofia Pro Soft";
+  font-family: 'sofia-pro-soft';
 }
 .nav .nav-link:hover{
    opacity: .1;
 }
 #pe_format{
-  font-family: "Sofia Pro Soft";
+  font-family: 'sofia-pro-soft';
   color:#BE1E2D;
 }
 h1{
-  font-family: "Sofia Pro Soft";
+  font-family:'sofia-pro-soft';
   font-weight: bold;
 }
 
 div{
-  font-family: "Sofia Pro Soft";
+  font-family:'sofia-pro-soft';
   margin: 25px;
   padding:5px;
 }
 
 p{
-  font-family: "Sofia Pro Soft";
+  font-family:'sofia-pro-soft';
 }
 
 #button{
@@ -53,10 +53,10 @@ p{
 
 .button:hover {opacity: .8}
 form{
-  font-family: "Sofia Pro Soft";
+  font-family:'sofia-pro-soft';
 }
 .annoying{
-  font-family: "Sofia Pro Soft";
+  font-family:'sofia-pro-soft';
   color:black;
 }
 

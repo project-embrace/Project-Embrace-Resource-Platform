@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PERP</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet"  href="{% static "pe.css"%}"/>
+    <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
+  </head>
+  <body>
+    <div class="container">
+              <a class="nav justify-content-center" href="{% url 'landing_index' %}"><img src="{% static "/pe_logo2.jpg"%}" alt="Aw Fuck"></a>
+<br>
+      <ul class="nav justify-content-center">
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:operations_index' %}">Operations</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:finance_index' %}">Finance</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:marketing_index'%}">Marketing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:relationship_index'%}">Relationship Management</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:knowledge_index'%}">Knowledge Base</a>
+            </li>
+            <li class="nav-item">
+              <a class='nav-link' href="{% url 'logout' %}">Logout</a>
+            </li>
+            {% else %}
+              <li>
+                <a class='nav-link'href="{% url 'device_app:user_login' %}">Login</a>
+              </li>
+            {% endif %}
+      </ul>
+    <div class="container">
+        {% block body_block %}
+
+        {% endblock %}
+    </div>
+  </body>
+</html>

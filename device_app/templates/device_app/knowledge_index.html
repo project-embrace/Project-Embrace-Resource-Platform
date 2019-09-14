@@ -1,0 +1,24 @@
+{% extends 'device_app/knowledge.html' %}
+{% block body_block %}
+{% if user.is_authenticated %}
+  <div class="jumbotron">
+    <h1>Knowledge Base</h1>
+    <p>
+       This is the knowledge base of Project Embrace. We have a lot of documents here related to our operations and management of the firm.
+    </p>
+    <!-- <p>The way we use this app is pretty easy! Click on <a id="pe_format" href="#">here</a> if you are unsure of anything.</p> -->
+    <p>
+      Reach out to me with any questions.
+      <br>
+      <br>
+      C. Kinkade Darling - Director of Software Engineering
+    </p>
+  </div>
+{% else %}
+  <div class="jumbotron">
+      <center><p>If you do not have access to this page, contact the administator at <b id='pe_format'>hello@projectembrace.org</b> </p>
+      <p><a id='pe_format' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+
+
+{% endif %}
+{% endblock %}
