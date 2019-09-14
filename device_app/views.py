@@ -13,9 +13,6 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
 from . import models
-import plotly.offline as opy
-from controlcenter import Dashboard, widgets
-import plotly.graph_objs as go
 
 # Create your views here.
 def operations_index(request):
