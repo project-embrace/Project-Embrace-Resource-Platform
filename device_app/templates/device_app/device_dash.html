@@ -4,7 +4,10 @@
   <div>
     <h2>Devices Ready to Donate</h2>
     <div class="jumbotron">
-    {{ cht_readytodistribute|safe }}
+    {{ ready_to_donate|safe }}
+    </div>
+    <div class="jumbotron">
+    {{ donated|safe }}
     </div>
 </div>
 {% endblock %}

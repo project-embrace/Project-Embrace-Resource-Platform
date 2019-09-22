@@ -9,10 +9,10 @@ from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
-from .charts import ReadyToDonatePieChart
+from .charts import ReadyToDonatePieChart,DonatedPieChart
 from . import models
 import pygal
-from pygal.style import DarkStyle
+from pygal.style import Style
 
 # Create your views here.
 def operations_index(request):
@@ -178,18 +178,33 @@ class DeviceDeleteView(DeleteView):
     model = models.Device
     success_url = reverse_lazy("device_app:device_list")
 
-class DeviceDashView(TemplateView):
+class ReadyToDonateView(TemplateView):
     template_name = 'device_app/device_dash.html'
     def get_context_data(self, **kwargs):
-        context = super(DeviceDashView, self).get_context_data(**kwargs)
+        context = super(ReadyToDonateView, self).get_context_data(**kwargs)
+        custom_style = Style(colors=('#BE1E2D',))
         cht_readytodonate = ReadyToDonatePieChart(
-                            height=1000,
+                            height=600,
                             width=800,
                             explicit_size=True,
-                            style=DarkStyle
+                            style=custom_style,
+                            opacity='.6',
+                            opacity_hover='.9',
                             )
-        context['cht_readytodonate'] = cht_readytodonate.generate()
+        context['ready_to_donate'] = cht_readytodonate.generate()
+
+        cht_donated = DonatedPieChart(
+                            height=600,
+                            width=800,
+                            explicit_size=True,
+                            style=custom_style,
+                            opacity='.6',
+                            opacity_hover='.9',
+                            title = 'Donated Inventory'
+                            )
+        context['donated'] = cht_readytodonate.generate()
         return context
+
 # Donation House Section
 class DonationHouseList(ListView):
     context_object_name = 'donationhouses'
