@@ -3,7 +3,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Operations</title>
+    <script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
     <link rel="stylesheet"  href="{% static "pe.css"%}"/>
@@ -11,7 +12,7 @@
   <body>
     <div class="container">
               <a class="nav justify-content-center" href="{% url 'landing_index' %}"><img src="{% static "/pe_logo2.jpg"%}" alt="Aw Fuck"></a>
-<br>
+      <br>
       <ul class="nav justify-content-center">
           {% if user.is_authenticated %}
             <li class="nav-item">
@@ -19,6 +20,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'device_app:device_list' %}">Medical Devices</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:device_dash' %}">Inventory Dashboard</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'device_app:campaign_list'%}">Outreach Campaigns</a>

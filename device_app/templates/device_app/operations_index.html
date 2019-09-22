@@ -1,4 +1,5 @@
 {% extends 'device_app/operations.html' %}
+{% load staticfiles %}
 {% block body_block %}
 {% if user.is_authenticated %}
   <div class="jumbotron">
@@ -14,13 +15,6 @@
       <br>
       C. Kinkade Darling - Director of Software Engineering
     </p>
-  </div>
-  <div class="jumbotron">
-    {% if MyDashboard %}
-    <div style="width:600;height:500">
-    {{ mydash|safe }}
-    </div>
-    {% endif %}
   </div>
 {% else %}
   <div class="jumbotron">

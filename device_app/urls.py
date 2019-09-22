@@ -18,6 +18,7 @@ urlpatterns = [
     path('donor_delete/<int:pk>/',views.DonorDeleteView.as_view(),name='donor_delete'),
 
     path('device_list/',views.DeviceList.as_view(),name='device_list'),
+    path('device_dash/',views.DeviceDashView.as_view(),name='device_dash'),
     path('device_list/<int:pk>/',views.DeviceDetail.as_view(),name='device_detail'),
     path('device_create/',views.DeviceCreateView.as_view(),name='device_create'),
     path('device_update/<int:pk>/',views.DeviceUpdateView.as_view(),name='device_update'),

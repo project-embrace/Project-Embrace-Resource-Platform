@@ -4,15 +4,15 @@ from django.utils.decorators import method_decorator
 from django.db.models import Q
 from device_app.models import Donor,Device,DonationHouse,Campaign,StorageArea
 from django.urls import reverse_lazy
-from django.views.generic import (View,TemplateView,
-                                    ListView,DetailView,
-                                    CreateView,UpdateView,
-                                    DeleteView)
+from django.views.generic import View,TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
+from .charts import ReadyToDonatePieChart
 from . import models
+import pygal
+from pygal.style import DarkStyle
 
 # Create your views here.
 def operations_index(request):
@@ -178,6 +178,18 @@ class DeviceDeleteView(DeleteView):
     model = models.Device
     success_url = reverse_lazy("device_app:device_list")
 
+class DeviceDashView(TemplateView):
+    template_name = 'device_app/device_dash.html'
+    def get_context_data(self, **kwargs):
+        context = super(DeviceDashView, self).get_context_data(**kwargs)
+        cht_readytodonate = ReadyToDonatePieChart(
+                            height=1000,
+                            width=800,
+                            explicit_size=True,
+                            style=DarkStyle
+                            )
+        context['cht_readytodonate'] = cht_readytodonate.generate()
+        return context
 # Donation House Section
 class DonationHouseList(ListView):
     context_object_name = 'donationhouses'

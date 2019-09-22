@@ -121,9 +121,7 @@ class Device(models.Model):
     commode = 'commode'
     sling='sling'
     glasses='glasses'
-
     splint='splint'
-
     wrap='wrap'
     bed='bed'
 

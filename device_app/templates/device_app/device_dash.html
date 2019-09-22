@@ -1,0 +1,10 @@
+{% extends 'device_app/operations.html' %}
+{% block body_block %}
+<div class="jumbotron">
+  <div>
+    <h2>Devices Ready to Donate</h2>
+    <div class="jumbotron">
+    {{ cht_readytodistribute|safe }}
+    </div>
+</div>
+{% endblock %}
