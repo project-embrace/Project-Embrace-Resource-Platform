@@ -16,13 +16,13 @@
       <ul class="nav justify-content-center">
           {% if user.is_authenticated %}
             <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:device_dash' %}">Inventory Dashboard</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="{% url 'device_app:donor_list' %}">Equpiment Donors</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'device_app:device_list' %}">Medical Devices</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:device_dash' %}">Inventory Dashboard</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'device_app:campaign_list'%}">Outreach Campaigns</a>

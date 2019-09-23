@@ -9,8 +9,7 @@ from pathlib import Path
 class ReadyToDonatePieChart():
 
     def __init__(self, **kwargs):
-        self.chart = pygal.Pie(**kwargs)
-        self.chart.title = 'Current Inventory'
+        self.chart = pygal.Treemap(**kwargs)
 
     def get_data(self):
         '''
@@ -40,7 +39,7 @@ class ReadyToDonatePieChart():
 class DonatedPieChart():
 
     def __init__(self, **kwargs):
-        self.chart = pygal.Pie(**kwargs)
+        self.chart = pygal.Treemap(**kwargs)
         #self.chart.title = 'Donated Inventory'
 
     def get_data(self):
@@ -64,6 +63,63 @@ class DonatedPieChart():
 
         for key, value in chart_data.items():
             self.chart.add(key, value)
+
+        # Return the rendered SVG
+        return self.chart.render(is_unicode=True)
+
+class InputFrequency():
+
+    def __init__(self, **kwargs):
+        self.chart = pygal.Line(**kwargs)
+
+    def get_data(self):
+        '''
+        Query the db for chart data, pack them into a dict and return it.
+        '''
+        qs = Device.objects.all()
+
+        pei= read_frame(qs)
+
+        pei = pd.DataFrame(pei.groupby('date_donated_to_project_embrace').size())
+        pei = pei.rename(columns={0:'Count'})
+        pei = pei.reset_index()
+        pei_list = pei.set_index('date_donated_to_project_embrace')['Count'].to_list()
+        labels = pei['date_donated_to_project_embrace']
+        return pei_list, labels
+
+    def generate(self):
+        # Get chart data
+        pei_list, labels = self.get_data()
+        self.chart.x_labels = map(str,labels)
+        self.chart.add('Inventory',pei_list)
+
+        # Return the rendered SVG
+        return self.chart.render(is_unicode=True)
+class OutputFrequency():
+
+    def __init__(self, **kwargs):
+        self.chart = pygal.Line(**kwargs)
+
+    def get_data(self):
+        '''
+        Query the db for chart data, pack them into a dict and return it.
+        '''
+        qs = Device.objects.filter(donated_to_recipient=True)
+
+        pei= read_frame(qs)
+
+        pei = pd.DataFrame(pei.groupby('date_donated_to_project_embrace').size())
+        pei = pei.rename(columns={0:'Count'})
+        pei = pei.reset_index()
+        pei_list = pei.set_index('date_donated_to_project_embrace')['Count'].to_list()
+        labels = pei['date_donated_to_project_embrace']
+        return pei_list, labels
+
+    def generate(self):
+        # Get chart data
+        pei_list, labels = self.get_data()
+        self.chart.x_labels = map(str,labels)
+        self.chart.add('Inventory',pei_list)
 
         # Return the rendered SVG
         return self.chart.render(is_unicode=True)

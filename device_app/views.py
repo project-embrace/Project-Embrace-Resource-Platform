@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
-from .charts import ReadyToDonatePieChart,DonatedPieChart
+from .charts import ReadyToDonatePieChart,DonatedPieChart,InputFrequency,OutputFrequency
 from . import models
 import pygal
 from pygal.style import Style
@@ -178,10 +178,11 @@ class DeviceDeleteView(DeleteView):
     model = models.Device
     success_url = reverse_lazy("device_app:device_list")
 
-class ReadyToDonateView(TemplateView):
+class DeviceVisualsView(TemplateView):
     template_name = 'device_app/device_dash.html'
+    model = models.Device
     def get_context_data(self, **kwargs):
-        context = super(ReadyToDonateView, self).get_context_data(**kwargs)
+        context = super(DeviceVisualsView, self).get_context_data(**kwargs)
         custom_style = Style(colors=('#BE1E2D',))
         cht_readytodonate = ReadyToDonatePieChart(
                             height=300,
@@ -190,6 +191,7 @@ class ReadyToDonateView(TemplateView):
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
+                            title='Inventory Ready to Donate'
                             )
         context['ready_to_donate'] = cht_readytodonate.generate()
 
@@ -200,9 +202,31 @@ class ReadyToDonateView(TemplateView):
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            title = 'Donated Inventory'
+                            title = 'Donated Inventory',
                             )
         context['donated'] = cht_donated.generate()
+
+        cht_input_dist = InputFrequency(
+                            height=400,
+                            width=900,
+                            explicit_size=True,
+                            style=custom_style,
+                            opacity='.6',
+                            opacity_hover='.9',
+                            title = 'Inventory Input Distribution',
+                            )
+        context['IIF'] = cht_input_dist.generate()
+
+        cht_input_dist = OutputFrequency(
+                            height=400,
+                            width=900,
+                            explicit_size=True,
+                            style=custom_style,
+                            opacity='.6',
+                            opacity_hover='.9',
+                            title = 'Inventory Output Distribution',
+                            )
+        context['IOF'] = cht_input_dist.generate()
 
         return context
 
