@@ -184,8 +184,8 @@ class ReadyToDonateView(TemplateView):
         context = super(ReadyToDonateView, self).get_context_data(**kwargs)
         custom_style = Style(colors=('#BE1E2D',))
         cht_readytodonate = ReadyToDonatePieChart(
-                            height=600,
-                            width=800,
+                            height=300,
+                            width=450,
                             explicit_size=True,
                             style=custom_style,
                             opacity='.6',
@@ -194,15 +194,16 @@ class ReadyToDonateView(TemplateView):
         context['ready_to_donate'] = cht_readytodonate.generate()
 
         cht_donated = DonatedPieChart(
-                            height=600,
-                            width=800,
+                            height=300,
+                            width=450,
                             explicit_size=True,
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
                             title = 'Donated Inventory'
                             )
-        context['donated'] = cht_readytodonate.generate()
+        context['donated'] = cht_donated.generate()
+
         return context
 
 # Donation House Section

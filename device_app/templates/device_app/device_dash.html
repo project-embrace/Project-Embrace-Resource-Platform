@@ -3,11 +3,13 @@
 <div class="jumbotron">
   <div>
     <h2>Devices Ready to Donate</h2>
-    <div class="jumbotron">
-    {{ ready_to_donate|safe }}
-    </div>
-    <div class="jumbotron">
-    {{ donated|safe }}
-    </div>
+
+  <table>
+    <tr>
+      <td>{{ ready_to_donate|safe }}</td>
+      <td>{{ donated|safe }}</td>
+    </tr>
+  </table>
+    
 </div>
 {% endblock %}
