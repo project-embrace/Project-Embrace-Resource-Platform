@@ -9,12 +9,18 @@ button {
 #search_box{
   width: 200px;
 }
+.pe_body {
+  background-color:rgb(34, 31, 32.35);
+}
+.jumbotron .pe_jumbo{
+  background-color:rgb(34, 31, 32,.35);
+}
 .nav .nav-link{
   color:#BE1E2D;
   font-family: 'sofia-pro-soft';
 }
 .nav .nav-link:hover{
-   opacity: .1;
+   opacity: .3;
 }
 #pe_format{
   font-family: 'sofia-pro-soft';

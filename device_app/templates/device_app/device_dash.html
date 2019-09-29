@@ -1,28 +1,31 @@
 {% extends 'device_app/operations.html' %}
 {% block body_block %}
-<div class="jumbotron">
-  <div>
-<h1>Inventory Visualizations</h1>
-<br>
-<!-- <h4 style="color:#BE1E2D;">We have recieved a total of {{ devices.count }} devices!</h4> -->
+<h1 id='pe_format'>Inventory Visualizations</h1>
+<div class="jumbotron" align='center'>
+  <!-- <h4 style="color:#BE1E2D;">We have recieved a total of {{ devices.count }} devices!</h4> -->
+
   <table>
     <tr>
-      <td>{{ ready_to_donate|safe }}</td>
-      <td>{{ donated|safe }}</td>
+      <td>{{ PI|safe }}</td>
     </tr>
-</table>
-<br>
-<table>
-<tr>
-  <td>{{IIF|safe}}</td>
-</tr>
-</table>
-<br>
-<table>
-<tr>
-  <td>{{IOF|safe}}</td>
-</tr>
-</table>
-
+    <tr>
+      <td>{{ NPI|safe }}</td>
+    </tr>
+    <tr>
+      <td>{{CID|safe}}</td>
+    </tr>
+  </table>
+  <br>
+  <table>
+    <tr>
+      <td>{{IIF|safe}}</td>
+    </tr>
+  </table>
+  <br>
+  <table>
+    <tr>
+      <td>{{IOF|safe}}</td>
+    </tr>
+  </table>
 </div>
 {% endblock %}

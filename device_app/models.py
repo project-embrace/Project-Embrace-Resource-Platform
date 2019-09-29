@@ -118,6 +118,8 @@ class Device(models.Model):
     orthotic_shoe='orthotic shoe'
     compression_brace='compression brace'
 
+    showerchair = 'showerchair'
+    btshowerchair = 'btshowerchair'
     commode = 'commode'
     sling='sling'
     glasses='glasses'
@@ -159,6 +161,8 @@ class Device(models.Model):
         (orthotic_shoe,'orthotic shoe'),
         (compression_brace,'compression brace'),
         (sling,'sling'),
+        (showerchair,'shower chair'),
+        (btshowerchair,'Tub Attachable shower chair'),
         (commode,'commode'),
         (glasses,'glasses'),
         (splint,'splint'),

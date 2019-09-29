@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
     <link rel="stylesheet"  href="{% static "pe.css"%}"/>
   </head>
-  <body>
+  <body class='pe_body'>
     <div class="container">
-              <a class="nav justify-content-center" href="{% url 'landing_index' %}"><img src="{% static "/pe_logo2.jpg"%}" alt="Aw Fuck"></a>
+              <a class="nav justify-content-center" href="{% url 'landing_index' %}"><img src="{% static "/pe_logo3.jpg"%}" alt="Aw Fuck"></a>
+
+    </div>
       <br>
       <ul class="nav justify-content-center">
           {% if user.is_authenticated %}

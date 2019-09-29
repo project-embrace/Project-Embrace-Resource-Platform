@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block body_block %}
 {% if user.is_authenticated %}
-  <div class="jumbotron">
+  <div class="jumbotron pe_jumbo">
     <h1>Operations Department</h1>
     <p>
        This is the hompage for the Operations department. All the tabs here are related to Operations and their
@@ -17,10 +17,7 @@
     </p>
   </div>
 {% else %}
-  <div class="jumbotron">
       <center><p>If you do not have access to this page, contact the administator at <b id='pe_format'>hello@projectembrace.org</b> </p>
       <p><a id='pe_format' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
-
-
 {% endif %}
 {% endblock %}

@@ -9,7 +9,11 @@ from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect,HttpResponse
-from .charts import ReadyToDonatePieChart,DonatedPieChart,InputFrequency,OutputFrequency
+from .charts import (ReadyToDonatePieChart,
+                     DonatedPieChart,
+                     InputFrequency,
+                     OutputFrequency,
+                     DirtyInventory)
 from . import models
 import pygal
 from pygal.style import Style
@@ -186,29 +190,43 @@ class DeviceVisualsView(TemplateView):
         custom_style = Style(colors=('#BE1E2D',))
         cht_readytodonate = ReadyToDonatePieChart(
                             height=300,
-                            width=450,
+                            width=800,
                             explicit_size=True,
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            title='Inventory Ready to Donate'
+                            legend_at_bottom = True,
+                            title='Processed Inventory'
                             )
-        context['ready_to_donate'] = cht_readytodonate.generate()
+        context['PI'] = cht_readytodonate.generate()
 
         cht_donated = DonatedPieChart(
                             height=300,
-                            width=450,
+                            width=800,
                             explicit_size=True,
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            title = 'Donated Inventory',
+                            legend_at_bottom = True,
+                            title = 'Campaign Inventory Donated',
                             )
-        context['donated'] = cht_donated.generate()
+        context['CID'] = cht_donated.generate()
+
+        cht_input_dist = DirtyInventory(
+                            height=300,
+                            width=800,
+                            explicit_size=True,
+                            style=custom_style,
+                            opacity='.6',
+                            opacity_hover='.9',
+                            legend_at_bottom = True,
+                            title = 'Non-Processed Inventory',
+                            )
+        context['NPI'] = cht_input_dist.generate()
 
         cht_input_dist = InputFrequency(
-                            height=400,
-                            width=900,
+                            height=250,
+                            width=800,
                             explicit_size=True,
                             style=custom_style,
                             opacity='.6',
@@ -218,8 +236,8 @@ class DeviceVisualsView(TemplateView):
         context['IIF'] = cht_input_dist.generate()
 
         cht_input_dist = OutputFrequency(
-                            height=400,
-                            width=900,
+                            height=250,
+                            width=800,
                             explicit_size=True,
                             style=custom_style,
                             opacity='.6',
