@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
   </head>
   <body class='pe_body'>
-    <div class="container">
         <a class="nav justify-content-center" href="{% url 'landing_index' %}"><img src="{% static "/pe_logo3.jpg"%}" alt="Aw Fuck"></a>
       <br>
-      <ul class="nav justify-content-center">
+      <ul class="nav justify-content-center" id='pe_header'>
           {% if user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'device_app:operations_index' %}">Operations</a>

@@ -11,6 +11,9 @@ urlpatterns = [
     path('marketing/',views.marketing_index,name='marketing_index'),
     path('knowledge_base/',views.knowledge_index,name='knowledge_index'),
 
+    path('public_dash/',views.public_dash,name='public_dash'),
+    path('public_dash_inventory/',views.PublicDashView.as_view(),name='public_dash_inventory'),
+
     path('donor_list/',views.DonorList.as_view(),name='donor_list'),
     path('donor_list/<int:pk>/',views.DonorDetail.as_view(),name='donor_detail'),
     path('donor_create/',views.DonorCreateView.as_view(),name='donor_create'),

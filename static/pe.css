@@ -10,13 +10,13 @@ button {
   width: 200px;
 }
 .pe_body {
-  background-color:rgb(34, 31, 32.35);
+  background-color:rgb(34, 31, 32);
 }
-.jumbotron .pe_jumbo{
-  background-color:rgb(34, 31, 32,.35);
+#pe_header {
+  background-color:rgb(179, 181, 184,.5);
 }
 .nav .nav-link{
-  color:#BE1E2D;
+  color:rgb(255, 255, 255);
   font-family: 'sofia-pro-soft';
 }
 .nav .nav-link:hover{
@@ -24,7 +24,7 @@ button {
 }
 #pe_format{
   font-family: 'sofia-pro-soft';
-  color:#BE1E2D;
+  color:rgb(255, 255,255);
 }
 h1{
   font-family:'sofia-pro-soft';
@@ -73,12 +73,6 @@ input .text{
 a:hover {
   color: white;
 }
-/* .container{
-    display: flex
-} */
-/* .table,th,td{
-  border:20px;
-} */
 .vertical-center {
   min-height: 100%;
   min-height: 100vh;

@@ -6,7 +6,7 @@ import pygal
 import sys,os
 from pathlib import Path
 from pygal import Config
-
+# Inventory Visualizations
 class ReadyToDonatePieChart():
 
     def __init__(self, **kwargs):
@@ -18,8 +18,8 @@ class ReadyToDonatePieChart():
         '''
         qs = Device.objects.filter(donated_to_recipient=False,processed=True,condition='A')
         pei = read_frame(qs)
-        ready_to_distribute=pd.DataFrame(pei.groupby('type')['condition'].count())
-        ready_to_distribute=ready_to_distribute.reset_index()
+        ready_to_distribute = pd.DataFrame(pei.groupby('type')['condition'].count())
+        ready_to_distribute = ready_to_distribute.reset_index()
         ready_to_distribute = ready_to_distribute.rename(columns = {'condition':'count'})
         ready_to_distribute = ready_to_distribute.set_index('type')['count'].to_dict()
 
@@ -148,3 +148,6 @@ class OutputFrequency():
 
         # Return the rendered SVG
         return self.chart.render(is_unicode=True)
+
+
+# Finance Visualizations

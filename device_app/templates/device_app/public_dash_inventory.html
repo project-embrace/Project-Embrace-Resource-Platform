@@ -1,0 +1,15 @@
+{% extends 'device_app/public_dash.html' %}
+{% block body_block %}
+<h1 id='pe_format'>Inventory Visualizations</h1>
+<div class="jumbotron" align='center'>
+  <table>
+    <tr>
+      <td>{{CI2|safe}}</td>
+    </tr>
+    <tr>
+      <td>{{CDI2|safe}}</td>
+    </tr>
+  </table>
+  <br>
+</div>
+{% endblock %}

@@ -4,7 +4,13 @@ from django.utils.decorators import method_decorator
 from django.db.models import Q
 from device_app.models import Donor,Device,DonationHouse,Campaign,StorageArea
 from django.urls import reverse_lazy
-from django.views.generic import View,TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView
+from django.views.generic import (View,
+                                  TemplateView,
+                                  ListView,
+                                  DetailView,
+                                  CreateView,
+                                  UpdateView,
+                                  DeleteView)
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
@@ -18,7 +24,7 @@ from . import models
 import pygal
 from pygal.style import Style
 
-# Create your views here.
+# Create your views heree
 def operations_index(request):
     return render(request,'device_app/operations_index.html')
 
@@ -39,6 +45,9 @@ def knowledge_index(request):
 
 def tutorial(request):
     return render(request,'device_app/tutorial.html')
+
+def public_dash(request):
+    return render(request,'device_app/public_dash_index.html')
 
 # User authentication
 @login_required
@@ -170,12 +179,19 @@ class DeviceDetail(DetailView):
    template_name='device_app/device_details.html'
 
 class DeviceCreateView(CreateView):
-    fields = ('date_donated_to_project_embrace','type','condition','donor','campaign','storage_area','processed','unique_information')
+    fields = ('date_donated_to_project_embrace','type',
+              'condition','donor','campaign','storage_area',
+              'storage_unit','storage_unit_quadrant',
+              'processed','unique_information')
     # fields are used to determine what you can alter in the model
     model=models.Device
 
 class DeviceUpdateView(UpdateView):
-    fields = ('type','condition','donor','campaign','storage_area','processed','donated_to_recipient','unique_information','date_donated_to_recipient')
+    fields = ('type','condition','donor',
+              'campaign','storage_area','processed',
+              'storage_unit','storage_unit_quadrant',
+              'donated_to_recipient','unique_information',
+              'date_donated_to_recipient')
     model = models.Device
 
 class DeviceDeleteView(DeleteView):
@@ -231,7 +247,7 @@ class DeviceVisualsView(TemplateView):
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            title = 'Inventory Input Distribution',
+                            title = 'Inventory Input Frequency',
                             )
         context['IIF'] = cht_input_dist.generate()
 
@@ -242,7 +258,7 @@ class DeviceVisualsView(TemplateView):
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            title = 'Inventory Output Distribution',
+                            title = 'Inventory Output Frequency',
                             )
         context['IOF'] = cht_input_dist.generate()
 
@@ -308,3 +324,38 @@ class StorageDetail(DetailView):
 
                 context = {}
                 return render(request, 'device_app/storage_details.html', context)
+
+class PublicDashView(TemplateView):
+    template_name = 'device_app/public_dash_inventory.html'
+    def get_context_data(self, **kwargs):
+        context = super(PublicDashView, self).get_context_data(**kwargs)
+        custom_style = Style(colors=('#BE1E2D',))
+        cht_readytodonate = ReadyToDonatePieChart(
+                            height=300,
+                            width=800,
+                            explicit_size=True,
+                            style=custom_style,
+                            opacity='.6',
+                            opacity_hover='.9',
+                            legend_at_bottom = True,
+                            title='Inventory Ready for Donation'
+                            )
+        context['CI2'] = cht_readytodonate.generate()
+
+        cht_donated = DonatedPieChart(
+                            height=300,
+                            width=800,
+                            explicit_size=True,
+                            style=custom_style,
+                            opacity='.6',
+                            opacity_hover='.9',
+                            legend_at_bottom = True,
+                            title = 'Campaign Inventory Donated',
+                            )
+        context['CDI2'] = cht_donated.generate()
+
+        return context
+
+# class EquipmentValue(CreateView):
+#     model = models.EquipmentValue
+#     fields = ('source','device_type','value')

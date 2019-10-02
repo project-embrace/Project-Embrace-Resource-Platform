@@ -5,18 +5,21 @@
     <meta charset="utf-8">
     <title>Operations</title>
     <script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
     <link rel="stylesheet"  href="{% static "pe.css"%}"/>
   </head>
   <body class='pe_body'>
-    <div class="container">
               <a class="nav justify-content-center" href="{% url 'landing_index' %}"><img src="{% static "/pe_logo3.jpg"%}" alt="Aw Fuck"></a>
-
-    </div>
       <br>
-      <ul class="nav justify-content-center">
+      <ul class="nav justify-content-center" id='pe_header'>
           {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'landing_index' %}">Home</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'device_app:device_dash' %}">Inventory Dashboard</a>
             </li>

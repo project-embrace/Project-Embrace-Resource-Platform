@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Inventory Dashboard</title>
+    <script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
+    <link rel="stylesheet"  href="{% static "pe.css"%}"/>
+  </head>
+  <body class='pe_body'>
+  <div class="container">
+        <a class="nav justify-content-center" href="https://www.projectembrace.org"><img src="{% static "/pe_logo3.jpg"%}" alt="Aw Fuck"></a>
+  </div>
+      <br>
+      <ul class="nav justify-content-center" id='pe_header'>
+            <li class="nav-item">
+              <a class="nav-link" href="https://www.projectembrace.org">Back to Homepage</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:public_dash_inventory' %}">Inventory Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:operations_index' %}">Donate Medical Equipment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'device_app:operations_index' %}">Request a Campaign</a>
+            </li>
+      </ul>
+    <div class="container">
+        {% block body_block %}
+
+        {% endblock %}
+    </div>
+  </body>
+</html>
