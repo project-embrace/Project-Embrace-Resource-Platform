@@ -354,6 +354,17 @@ class PublicDashView(TemplateView):
                             )
         context['CDI2'] = cht_donated.generate()
 
+        cht_input_dist = OutputFrequency(
+                            height=250,
+                            width=800,
+                            explicit_size=True,
+                            style=custom_style,
+                            opacity='.6',
+                            opacity_hover='.9',
+                            title = 'Inventory Output Frequency',
+                            )
+        context['IOF'] = cht_input_dist.generate()
+
         return context
 
 # class EquipmentValue(CreateView):

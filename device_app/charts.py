@@ -10,7 +10,7 @@ from pygal import Config
 class ReadyToDonatePieChart():
 
     def __init__(self, **kwargs):
-        self.chart = pygal.Pie(**kwargs)
+        self.chart = pygal.Treemap(**kwargs)
 
     def get_data(self):
         '''
@@ -37,7 +37,7 @@ class ReadyToDonatePieChart():
 class DonatedPieChart():
 
     def __init__(self, **kwargs):
-        self.chart = pygal.Pie(**kwargs)
+        self.chart = pygal.Treemap(**kwargs)
         #self.chart.title = 'Donated Inventory'
 
     def get_data(self):
@@ -67,7 +67,7 @@ class DonatedPieChart():
 class DirtyInventory():
 
     def __init__(self, **kwargs):
-        self.chart = pygal.Pie(**kwargs)
+        self.chart = pygal.Treemap(**kwargs)
 
     def get_data(self):
         '''
@@ -133,11 +133,11 @@ class OutputFrequency():
 
         pei= read_frame(qs)
 
-        pei = pd.DataFrame(pei.groupby('date_donated_to_project_embrace').size())
+        pei = pd.DataFrame(pei.groupby('date_donated_to_recipient').size())
         pei = pei.rename(columns={0:'Count'})
         pei = pei.reset_index()
-        pei_list = pei.set_index('date_donated_to_project_embrace')['Count'].to_list()
-        labels = pei['date_donated_to_project_embrace']
+        pei_list = pei.set_index('date_donated_to_recipient')['Count'].to_list()
+        labels = pei['date_donated_to_recipient']
         return pei_list, labels
 
     def generate(self):
