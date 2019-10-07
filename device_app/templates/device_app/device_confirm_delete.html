@@ -1,13 +1,9 @@
 {% extends 'device_app/operations.html'%}
 {% block body_block %}
-<div class="jumbotron">
   <h1>Delete {{device.type}} {{device.pk}}?</h1>
   <form method="post">
     {% csrf_token%}
     <input type="submit" class="button" value="Delete">
     <a class='button'href="{% url 'device_app:device_detail' pk=device.pk %}">Cancel</a>
-
   </form>
-
-</div>
 {% endblock %}

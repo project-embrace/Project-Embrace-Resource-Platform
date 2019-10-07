@@ -1,19 +1,16 @@
 {% extends 'device_app/operations.html'%}
 {% block body_block %}
-<div class="jumbotron">
-  <h1>
+<h1>
   {% if not form.instance.pk %}
   Create Device
   {% else %}
   Update Device
   {% endif %}
-  </h1>
-    <form method="post">
+</h1>
+  <form method="post">
       {% csrf_token %}
       {{ form.as_p }}
       <input type="submit" id="button" value="Submit">
-
-    </form>
-</div>
+  </form>
 
 {% endblock %}

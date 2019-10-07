@@ -19,7 +19,8 @@ from .charts import (ReadyToDonatePieChart,
                      DonatedPieChart,
                      InputFrequency,
                      OutputFrequency,
-                     DirtyInventory)
+                     DirtyInventory,
+                     InventoryTable)
 from . import models
 import pygal
 from pygal.style import Style
@@ -212,6 +213,7 @@ class DeviceVisualsView(TemplateView):
                             opacity='.6',
                             opacity_hover='.9',
                             legend_at_bottom = True,
+                            legend_at_bottom_columns=3,
                             title='Processed Inventory'
                             )
         context['PI'] = cht_readytodonate.generate()
@@ -224,6 +226,7 @@ class DeviceVisualsView(TemplateView):
                             opacity='.6',
                             opacity_hover='.9',
                             legend_at_bottom = True,
+                            legend_at_bottom_columns=3,
                             title = 'Campaign Inventory Donated',
                             )
         context['CID'] = cht_donated.generate()
@@ -236,6 +239,7 @@ class DeviceVisualsView(TemplateView):
                             opacity='.6',
                             opacity_hover='.9',
                             legend_at_bottom = True,
+                            legend_at_bottom_columns=3,
                             title = 'Non-Processed Inventory',
                             )
         context['NPI'] = cht_input_dist.generate()
@@ -258,9 +262,22 @@ class DeviceVisualsView(TemplateView):
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            title = 'Inventory Output Frequency',
+                            title = 'Campaign Output Frequency',
                             )
         context['IOF'] = cht_input_dist.generate()
+
+        cht_inventory_table = InventoryTable(
+                            height=300,
+                            width=800,
+                            explicit_size=True,
+                            opacity='.6',
+                            opacity_hover='.9',
+                            style=custom_style,
+                            legend_at_bottom = True,
+                            legend_at_bottom_columns=3,
+                            title='Processed Inventory'
+                            )
+        context['IT'] = cht_inventory_table.generate()
 
         return context
 
@@ -338,6 +355,7 @@ class PublicDashView(TemplateView):
                             opacity='.6',
                             opacity_hover='.9',
                             legend_at_bottom = True,
+                            legend_at_bottom_columns=3,
                             title='Inventory Ready for Donation'
                             )
         context['CI2'] = cht_readytodonate.generate()
@@ -350,6 +368,7 @@ class PublicDashView(TemplateView):
                             opacity='.6',
                             opacity_hover='.9',
                             legend_at_bottom = True,
+                            legend_at_bottom_columns=3,
                             title = 'Campaign Inventory Donated',
                             )
         context['CDI2'] = cht_donated.generate()
@@ -361,7 +380,7 @@ class PublicDashView(TemplateView):
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            title = 'Inventory Output Frequency',
+                            title = 'Campaign Output Frequency',
                             )
         context['IOF'] = cht_input_dist.generate()
 

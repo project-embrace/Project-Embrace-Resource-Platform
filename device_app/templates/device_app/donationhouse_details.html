@@ -1,6 +1,5 @@
 {% extends 'device_app/operations.html' %}
 {% block body_block %}
-<div class="jumbotron">
   <h1>Donation House</h1>
   <h5>Title: {{donationhouse_detail.title}}</h5>
   <p>Address: {{donationhouse_detail.street}}, {{donationhouse_detail.city}},
@@ -9,8 +8,8 @@
   <br>
   <h4 style="color:#BE1E2D;">Lassonde has recieved donations from {{donationhouse_detail.dono_house.count}} people!</h4>
   <br>
+  <h4>People who donated here</h4>
     <ul>
-      <h4>People who donated here</h4>
         {% for dono_house in donationhouse_detail.dono_house.all|dictsort:"name" %}
           <h5>
             <li>
@@ -18,7 +17,5 @@
             </li>
           </h5>
         {% endfor %}
-
     </ul>
-</div>
 {% endblock %}

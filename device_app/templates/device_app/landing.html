@@ -1,47 +1,44 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>PERP</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet"  href="{% static "pe.css"%}"/>
-    <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
-  </head>
-  <body class='pe_body'>
-        <a class="nav justify-content-center" href="{% url 'landing_index' %}"><img src="{% static "/pe_logo3.jpg"%}" alt="Aw Fuck"></a>
-      <br>
-      <ul class="nav justify-content-center" id='pe_header'>
+<head>
+  <meta charset="utf-8">
+  <title>Operations</title>
+  <script type="text/javascript" src="{% static "pygal-tooltips.js"%}"></script>
+  <script type="text/javascript" src="{% static "pygal-tooltips.min.js"%}"></script>
+  <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+          integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+          crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
+  <link rel="stylesheet"  href="{% static "pe.css"%}"/>
+</head>
+<body class='pe_body'>
+    <a class='row justify-content-center'href="{% url 'landing_index' %}"><img src="{% static "/pe_logo3.jpg"%}" alt="Aw Fuck"></a>
+      <div class="row justify-content-center">
+        <div class="col-">
+          <div class="jumbotron">
+            <h1>Departments</h1>
           {% if user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:operations_index' %}">Operations</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:finance_index' %}">Finance</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:marketing_index'%}">Marketing</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:relationship_index'%}">Relationship Management</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'device_app:knowledge_index'%}">Knowledge Base</a>
-            </li>
-            <li class="nav-item">
-              <a class='nav-link' href="{% url 'logout' %}">Logout</a>
-            </li>
+            <p><a class='button' href="{% url 'landing_index' %}">Home</a></p>
+            <p><a class='button' href="{% url 'device_app:operations_index' %}">Operations</a></p>
+            <p><a class='button' href="{% url 'device_app:finance_index' %}">Finance</a></p>
+            <p><a class='button' href="{% url 'device_app:marketing_index'%}">Marketing</a></p>
+            <p><a class='button' href="{% url 'device_app:relationship_index'%}">Relationship Management</a></p>
+            <p><a class='button' href="{% url 'device_app:knowledge_index'%}">Knowledge Base</a></p>
+            <p><a class='button' href="{% url 'logout' %}">Logout</a></p>
             {% else %}
-              <li>
-                <a class='nav-link'href="{% url 'device_app:user_login' %}">Login</a>
-              </li>
+            <p><a class='button' href="{% url 'device_app:user_login' %}">Login</a></p>
             {% endif %}
-      </ul>
-    <div class="container">
-        {% block body_block %}
+          </div>
+        </div>
+        <div class='col-md-8'>
+          <div class="jumbotron">
+          {% block body_block %}
 
-        {% endblock %}
-    </div>
+          {% endblock %}
+          </div>
+        </div>
+      </div>
   </body>
 </html>

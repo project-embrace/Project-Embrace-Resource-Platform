@@ -1,7 +1,5 @@
 {% extends 'device_app/operations.html' %}
 {% block body_block %}
-<div class="jumbotron">
-  <div class="">
   <h1>Devices</h1>
     <p><a class='button' href="{% url 'device_app:device_create'%}">Create Device</a></p>
     <form method="POST" action=".">
@@ -38,7 +36,4 @@
     </h6>
     <br>
     {% endfor %}
-  </ul>
-
-</div>
 {% endblock %}

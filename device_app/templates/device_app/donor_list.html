@@ -1,36 +1,28 @@
 {% extends 'device_app/operations.html' %}
 {% block body_block %}
-  <div class="jumbotron">
-        <h1>Donors</h1>
-          <p>
-            <a class="button" href="{% url 'device_app:donor_create'%}">Create Donor</a>
-          </p>
-        <form method="POST" action=".">
-                {% csrf_token %}
-          <input id="search_box" type="text" name="ds"  placeholder="Search Donors..." >
-          <button id='button'class="button" type="submit" >Submit</button>
-        </form>
-        <br>
-          <h4 style="color:#BE1E2D;">We have recieved donations from {{ donors.count }} people!</h4>
-        <br>
-        <h3>List of Donors</h3>
-          <ul>
-            {% for donor in donors %}
-            <h6>
-              <li>
-                <a class="annoying" href="{{donor.id}}">{{donor.name}}</a>
-              </li>
-            </h6>
-            {% endfor %}
-          </ul>
-          <ul>
-            {% for search in searchD|dictsort:"name" %}
-              <h6>
-                <li>
-                  <a class="annoying" href="{{search.id}}">{{search.name}}</a></td>
-                </li>
-              </h6>
-            {% endfor %}
-          </ul>
-</div>
-  {% endblock %}
+<h1>Donors</h1>
+  <p><a class="button" href="{% url 'device_app:donor_create'%}">Create Donor</a></p>
+  <form method="POST" action=".">
+    {% csrf_token %}
+      <input id="search_box" type="text" name="ds"  placeholder="Search Donors..." >
+      <button id='button'class="button" type="submit" >Submit</button>
+  </form>
+  <br>
+  <h4 style="color:#BE1E2D;">We have recieved donations from {{ donors.count }} people!</h4>
+  <br>
+    <h3>List of Donors</h3>
+      <ul>
+        {% for donor in donors %}
+          <h6>
+            <li><a class="annoying" href="{{donor.id}}">{{donor.name}}</a></li>
+          </h6>
+        {% endfor %}
+      </ul>
+      <ul>
+        {% for search in searchD|dictsort:"name" %}
+          <h6>
+            <li><a class="annoying" href="{{search.id}}">{{search.name}}</a></li>
+          </h6>
+        {% endfor %}
+      </ul>
+{% endblock %}
