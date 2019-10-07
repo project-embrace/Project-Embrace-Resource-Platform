@@ -26,6 +26,10 @@ button {
   font-family: 'sofia-pro-soft';
   color:rgb(255, 255,255);
 }
+#pe_red{
+  font-family: 'sofia-pro-soft';
+  color:rgb(190, 30, 45);
+}
 h1{
   font-family:'sofia-pro-soft';
   font-weight: bold;
