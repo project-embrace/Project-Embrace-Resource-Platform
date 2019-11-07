@@ -3,6 +3,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Operations</title>
   <script type="text/javascript" src="{% static "pygal-tooltips.js"%}"></script>
   <script type="text/javascript" src="{% static "pygal-tooltips.min.js"%}"></script>
@@ -10,6 +11,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
           crossorigin="anonymous">
+  <link rel='icon' href="{% static "/pe_invert.png"%}" type='image/png'>
   <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
   <link rel="stylesheet"  href="{% static "pe.css"%}"/>
 </head>
@@ -18,17 +20,18 @@
       <div class="row justify-content-center">
         <div class="col-">
           <div class="jumbotron">
-            <h1>Departments</h1>
+            <h1>Resources</h1>
+            <hr>
           {% if user.is_authenticated %}
-            <p><a class='button' href="{% url 'landing_index' %}">Home</a></p>
-            <p><a class='button' href="{% url 'device_app:operations_index' %}">Operations</a></p>
-            <p><a class='button' href="{% url 'device_app:finance_index' %}">Finance</a></p>
-            <p><a class='button' href="{% url 'device_app:marketing_index'%}">Marketing</a></p>
-            <p><a class='button' href="{% url 'device_app:relationship_index'%}">Relationship Management</a></p>
-            <p><a class='button' href="{% url 'device_app:knowledge_index'%}">Knowledge Base</a></p>
-            <p><a class='button' href="{% url 'logout' %}">Logout</a></p>
+            <p><a class='sideBarButton' href="{% url 'landing_index' %}">Home</a></p>
+            <p><a class='sideBarButton' href="{% url 'device_app:operations_index' %}">Operations</a></p>
+            <p><a class='sideBarButton' href="{% url 'device_app:finance_index' %}">Finance</a></p>
+            <p><a class='sideBarButton' href="{% url 'device_app:marketing_index'%}">Marketing</a></p>
+            <p><a class='sideBarButton' href="{% url 'rm:relationship_index'%}">Relationship Management</a></p>
+            <p><a class='sideBarButton' href="{% url 'device_app:knowledge_index'%}">Knowledge Base</a></p>
+            <p><a class='sideBarButton' href="{% url 'logout' %}">Logout</a></p>
             {% else %}
-            <p><a class='button' href="{% url 'device_app:user_login' %}">Login</a></p>
+            <p><a class='sideBarButton' href="{% url 'device_app:user_login' %}">Login</a></p>
             {% endif %}
           </div>
         </div>

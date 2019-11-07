@@ -1,0 +1,42 @@
+{% extends 'device_app/finance.html' %}
+{% block body_block %}
+{% if user.is_authenticated %}
+<table>
+  <tr>
+      <td><h1>Receipt Page</h1></td>
+      <td> </td>
+    <td><form method="POST" action=".">
+          {% csrf_token %}
+        <button id='button' class="button" type="submit" >Send Receipts to Donors</button>
+      </form>
+    </td>
+    </tr>
+  </table>
+    <hr>
+
+    <h4> Here are the people who have not been provided a receipt and their dates of donation.</h4>
+    <br>
+      <table class='annoying'>
+          <tr>
+            <th>Donor Name</th>
+            <th>Donor Email</th>
+            <th>Donation Date</th>
+          </tr>
+        {% for donor in donors %}
+          {% if donor.sent_a_receipt == False %}
+            <tr>
+              <td><a class='annoying' href="{{donor.id}}">{{donor.name}}</a></td>
+              <td><a class='annoying' href="{{donor.id}}">{{donor.email}}</a></td>
+              <td><a class='annoying' href="{{donor.id}}">{{donor.donation_date}}</a></td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </table>
+      <br>
+      <h3>{{output}}</h3>
+      <h3>{{alternative_output}}</h3>
+{% else %}
+      <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b></p>
+      <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+{% endif %}
+{% endblock %}

@@ -1,7 +1,15 @@
 {% extends 'device_app/operations.html' %}
 {% block body_block %}
   <h1>Device Details</h1>
-  <br>
+  <hr>
+  <table>
+    <tr>
+      <td><a class='button' href="{% url 'device_app:device_update' pk=device_detail.pk %}">Update This Device</a></td>
+      <td><a class='button' href="{% url 'device_app:device_create'%}">Create Another Device</a></td>
+      <td><a class='button' href="{% url 'device_app:device_list'%}">Back To List</a></td>
+    </tr>
+  </table>
+<br>
     <p>Device ID: {{device_detail.pk}}</p>
     <p>Type: {{device_detail.type}}</p>
     <p>Condition: {{device_detail.condition}}</p>
@@ -14,5 +22,4 @@
     <p>Donated?: {{device_detail.donated_to_recipient}}</p>
     <p>Date Donated to Recipient: {{device_detail.date_donated_to_recipient}}</p>
     <p>Additional device information: {{device_detail.unique_information}}</p>
-    <p><a class='button' href="{% url 'device_app:device_update' pk=device_detail.pk %}">Update Device</a></p>
 {% endblock %}

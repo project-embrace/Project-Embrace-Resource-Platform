@@ -1,39 +1,27 @@
-{% extends 'device_app/operations.html' %}
+{% extends 'device_app/operations.html'%}
+{% load staticfiles %}
+{% load django_tables2 %}
+{% load bootstrap3 %}
 {% block body_block %}
-  <h1>Devices</h1>
-    <p><a class='button' href="{% url 'device_app:device_create'%}">Create Device</a></p>
-    <form method="POST" action=".">
-            {% csrf_token %}
-      <input id="search_box" type="text" name="device_search"  placeholder="Search Devices..." >
-      <button id='button' class="button" type="submit" >Submit</button>
-    </form>
-  <br>
-  <h4 style="color:#BE1E2D;">We have recieved a total of {{ devices.count }} devices!</h4>
-  <br>
-  <h3>
-    {% regroup devices by donated_to_recipient as device_summary %}
-    {% if device_summary %}
-      {{ device_summary.type }}
+<h1>Devices</h1>
+  <hr>
+  <table>
+      <tr>
+        <td> <a class='button' href="{% url 'device_app:device_create'%}">Create Device</a></td>
+        <td>{% if view.export_formats %}
+            {% for format in view.export_formats %}
+            <a href="{% export_url format %}" class="button"> Download Table as .{{ format }} </a>
+            {% endfor %}
+        {% endif %}
+      </td>
+      </tr>
+  </table>
+    {% if filter %}
+      <form action="" method="get" class = 'form form-row align-items-center' >
+        {% csrf_token %}
+        {% bootstrap_form filter.form %}
+        {% bootstrap_button "Filter" button_class='longBodyButton' %}
+      </form>
     {% endif %}
-  </h3>
-    <h3>List of Devices</h3>
-  <ul>
-    {% for device in devices %}
-    <h6 class='annoying'>
-      <li class='annoying'>
-        <a class='annoying' href="{{device.id}}">Type: {{device.type}} || Device ID: {{device.id}}</a>
-      </li>
-    </h6>
-    <br>
-    {% endfor %}
-  </ul>
-  <ul>
-    {% for searchDevice in searchDevices %}
-    <h6 class='annoying'>
-      <li class='annoying'>
-        <a class='annoying' href="{{searchDevice.id}}">Type: {{searchDevice.type}} || Campaign: {{searchDevice.campaign}} || Device ID: {{searchDevice.id}}</a>
-      </li>
-    </h6>
-    <br>
-    {% endfor %}
+  {% render_table table 'device_app/table.html' %}
 {% endblock %}

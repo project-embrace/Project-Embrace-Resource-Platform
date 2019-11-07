@@ -1,4 +1,5 @@
 {% extends 'device_app/operations.html'%}
+{% load bootstrap4 %}
 {% block body_block %}
 <h1>
   {% if not form.instance.pk %}
@@ -7,10 +8,15 @@
   Update Device
   {% endif %}
 </h1>
-  <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" id="button" value="Submit">
+<hr>
+<p><a class='button' href="{% url 'device_app:device_list'%}">Back To List</a></p>
+<div class='formClass'>
+  <form action="" method="POST" class = 'form form-row align-items-center' >
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button "Create" button_class='formButton' %}
   </form>
+  <br>
+</div>
 
 {% endblock %}

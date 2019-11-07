@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
+{% load render_table from django_tables2 %}
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
@@ -10,26 +11,29 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
           crossorigin="anonymous">
+  <link rel='icon' href="{% static "/pe_invert.png"%}" type='image/png'>
   <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
   <link rel="stylesheet"  href="{% static "pe.css"%}"/>
 </head>
 <body class='pe_body'>
+  <br>
     <a class='row justify-content-center'href="{% url 'landing_index' %}"><img src="{% static "/pe_logo3.jpg"%}" alt="Aw Fuck"></a>
       <div class="row justify-content-center">
         <div class="col-">
           <div class="jumbotron">
             <h1>Resources</h1>
+            <hr>
             {% if user.is_authenticated %}
-                <p><a class='button' href="{% url 'landing_index' %}">Home</a></p>
-                <p><a class='button' href="{% url 'device_app:device_dash' %}">Inventory Dashboard</a></p>
-                <p><a class='button' href="{% url 'device_app:donor_list' %}">Device Donors</a></p>
-                <p><a class='button' href="{% url 'device_app:device_list' %}">Medical Devices</a></p>
-                <p><a class='button' href="{% url 'device_app:campaign_list'%}">Outreach Campaigns</a></p>
-                <p><a class='button' href="{% url 'device_app:donation_house_list'%}">Donation Houses</a></p>
-                <p><a class='button' href="{% url 'device_app:storage_list'%}">Storage Areas</a></p>
-                <p><a class='button' href="{% url 'logout' %}">Logout</a></p>
+                <p><a class='sideBarButton' href="{% url 'landing_index' %}">Home</a></p>
+                <p><a class='sideBarButton' href="{% url 'device_app:device_dash' %}">Inventory Dashboard</a></p>
+                <p><a class='sideBarButton' href="{% url 'device_app:donor_list' %}">Device Donors</a></p>
+                <p><a class='sideBarButton' href="{% url 'device_app:device_list' %}">Medical Devices</a></p>
+                <p><a class='sideBarButton' href="{% url 'device_app:campaign_list'%}">Outreach Campaigns</a></p>
+                <p><a class='sideBarButton' href="{% url 'device_app:donation_house_list'%}">Donation Houses</a></p>
+                <p><a class='sideBarButton' href="{% url 'device_app:storage_list'%}">Storage Areas</a></p>
+                <p><a class='sideBarButton' href="{% url 'logout' %}">Logout</a></p>
             {% else %}
-                <p><a class='button' href="{% url 'device_app:user_login' %}">Login</a>
+                <p><a class='sideBarButton' href="{% url 'device_app:user_login' %}">Login</a>
             {% endif %}
           </div>
         </div>

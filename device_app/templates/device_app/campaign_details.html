@@ -1,18 +1,20 @@
 {% extends 'device_app/operations.html' %}
 {% block body_block %}
 <h1>Campaign Details</h1>
-  <h6>Campaign: {{campaign_details.title}}</h6>
-  <p>Partnership: {{campaign_details.partnership}}</p>
-  <p>Organizational Recipient: {{campaign_details.organization_recipient}}</p>
-  <p>Start Date: {{campaign_details.start_date}}</p>
-  <p>End Date: {{campaign_details.end_date}}</p>
-<h4 style="color:#BE1E2D;">{{campaign_details.device_campaign.count}} devices have been donated through the {{campaign_details.title}} campaign</h4>
-    <h2>Devices:</h2>
-    {% for device in campaign_details.device_campaign.all %}
-      <p>Device ID: <a class='annoying'href="{% url 'device_app:device_detail' pk=device.pk %}">{{device.id}}</a>
-        <br>Device Type: {{device.type}}
-        <br>Associated Donor:<a class='annoying'href="{% url 'device_app:donor_detail' pk=device.donor.pk %}"> {{device.donor}}</a>
-        <br>Date of Donation: {{device.date_donated_to_recipient}}
-      </p>
-    {% endfor %}
+<hr>
+<table>
+  <tr>
+    <td><a class='button' href="{% url 'device_app:campaign_update' pk=campaign_detail.pk %}">Update This Campaign</a></td>
+    <td><a class='button' href="{% url 'device_app:campaign_create'%}">Create Another Campaign</a></td>
+    <td><a class='button' href="{% url 'device_app:campaign_list'%}">Back To List</a></td>
+  </tr>
+</table>
+<br>
+  <h6>Campaign: {{campaign_detail.title}}</h6>
+  <p>Region: {{campaign_detail.region}}</p>
+  <p>Country: {{campaign_detail.country}}</p>
+  <p>Start Date: {{campaign_detail.start_date}}</p>
+  <p>End Date: {{campaign_detail.end_date}}</p>
+<h4>{{campaign_detail.device_campaign.count}} devices have been donated through the {{campaign_detail.title}} campaign</h4>
+<hr>
 {% endblock %}

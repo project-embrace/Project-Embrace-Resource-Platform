@@ -10,6 +10,7 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
           crossorigin="anonymous">
+  <link rel='icon' href="{% static "/pe_invert.png"%}" type='image/png'>
   <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
   <link rel="stylesheet"  href="{% static "pe.css"%}"/>
 </head>
@@ -19,15 +20,16 @@
         <div class="col-">
           <div class="jumbotron">
             <h1>Resources</h1>
+            <hr>
           {% if user.is_authenticated %}
-              <p><a class='button' href="{% url 'landing_index' %}">Home</a></p>
-              <p><a class='button' href="{% url 'device_app:donor_list' %}">Company Legal Information</a></p>
-              <p><a class='button' href="{% url 'device_app:device_list' %}">Employee Contracts</a></p>
-              <p><a class='button' href="{% url 'device_app:campaign_list'%}">Outreach Contracts</a></p>
-              <p><a class='button' href="{% url 'device_app:donation_house_list'%}">Platform tutorials</a></p>
-              <p><a class='button' href="{% url 'logout' %}">Logout</a></p>
+              <p><a class='sideBarButton' href="{% url 'landing_index' %}">Home</a></p>
+              <p><a class='sideBarButton' href="{% url 'device_app:donor_list' %}">Company Legal Information</a></p>
+              <p><a class='sideBarButton' href="{% url 'device_app:device_list' %}">Employee Contracts</a></p>
+              <p><a class='sideBarButton' href="{% url 'device_app:campaign_list'%}">Outreach Contracts</a></p>
+              <p><a class='sideBarButton' href="{% url 'device_app:donation_house_list'%}">Platform tutorials</a></p>
+              <p><a class='sideBarButton' href="{% url 'logout' %}">Logout</a></p>
           {% else %}
-              <p><a class='button' href="{% url 'device_app:user_login' %}">Login</a></p>
+              <p><a class='sideBarButton' href="{% url 'device_app:user_login' %}">Login</a></p>
           {% endif %}
         </div>
       </div>

@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from device_app import views
+from rm import rm_views
 
 urlpatterns = [
     path('',views.landing_index,name='landing_index'),
     path('admin/', admin.site.urls),
     path('device/',include('device_app.urls',namespace='device_app')),
+    path('rm/',include('rm.urls',namespace='rm')),
     path('logout/',views.user_logout,name='logout'),
 
 ]

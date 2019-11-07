@@ -1,12 +1,17 @@
 {% extends 'device_app/operations.html' %}
+{% load staticfiles %}
+{% load django_tables2 %}
+{% load bootstrap3 %}
 {% block body_block %}
 <h1>Campaigns</h1>
-<br>
-  <ol>
-    {% for campaign in campaigns %}
-    <h5>
-      <li><a class='annoying' href="{{campaign.id}}">{{campaign.title}}</a></li>
-    </h5>
-    {% endfor %}
-  </ol>
+<hr>
+<a class="button" href="{% url 'device_app:campaign_create'%}">Create Campaign</a>
+    {% if filter %}
+      <form action="" method="get" class = 'form form-group row' >
+        {% csrf_token %}
+        {% bootstrap_form filter.form %}
+        {% bootstrap_button "Filter" button_class='longBodyButton' %}
+      </form>
+    {% endif %}
+  {% render_table table 'device_app/table.html' %}
 {% endblock %}

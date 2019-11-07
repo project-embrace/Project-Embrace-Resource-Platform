@@ -1,28 +1,22 @@
 {% extends 'device_app/operations.html' %}
+{% load staticfiles %}
+{% load django_tables2 %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
 {% block body_block %}
 <h1>Donors</h1>
-  <p><a class="button" href="{% url 'device_app:donor_create'%}">Create Donor</a></p>
-  <form method="POST" action=".">
-    {% csrf_token %}
-      <input id="search_box" type="text" name="ds"  placeholder="Search Donors..." >
-      <button id='button'class="button" type="submit" >Submit</button>
-  </form>
-  <br>
-  <h4 style="color:#BE1E2D;">We have recieved donations from {{ donors.count }} people!</h4>
-  <br>
-    <h3>List of Donors</h3>
-      <ul>
-        {% for donor in donors %}
-          <h6>
-            <li><a class="annoying" href="{{donor.id}}">{{donor.name}}</a></li>
-          </h6>
-        {% endfor %}
-      </ul>
-      <ul>
-        {% for search in searchD|dictsort:"name" %}
-          <h6>
-            <li><a class="annoying" href="{{search.id}}">{{search.name}}</a></li>
-          </h6>
-        {% endfor %}
-      </ul>
+<hr>
+<table>
+  <tr>
+    <td><a class="button" href="{% url 'device_app:donor_create'%}">Create Donor</a></td>
+  </tr>
+</table>
+    {% if filter %}
+      <form action="" method="get" class = 'form form-group row' >
+        {% csrf_token %}
+        {% bootstrap_form filter.form %}
+        {% bootstrap_button "Filter" button_class='longBodyButton' %}
+      </form>
+    {% endif %}
+    {% render_table table 'device_app/table.html' %}
 {% endblock %}

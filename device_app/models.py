@@ -16,21 +16,31 @@ class DonationHouse(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('device_app:donation_house_detail',
+                        kwargs={'pk':self.pk})
+
 class Donor(models.Model):
     import datetime
     name=models.CharField(max_length=265,blank=False)
     email=models.EmailField(max_length=265,blank=False)
+    region=models.CharField(max_length=265,blank=False)
+    country=models.CharField(max_length=265,blank=False)
     donation_date=models.DateField(("Date"), default=datetime.date.today)
     donation_house=models.ForeignKey(DonationHouse,
                                      default='1',
                                      related_name='dono_house',
                                      on_delete=models.CASCADE)
+    sent_a_receipt=models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('device_app:donor_detail',kwargs={'pk':self.pk})
+        return reverse('device_app:donor_detail',
+                        kwargs={'pk':self.pk})
+    class Meta:
+       ordering = ('donation_date',)
 
 class StorageArea(models.Model):
     title=models.CharField(max_length=265,blank=False)
@@ -50,16 +60,20 @@ class StorageArea(models.Model):
                         kwargs={'pk':self.pk})
 
 class Campaign(models.Model):
-    title=models.CharField(max_length=265,
-                           default='No Campaign',
-                           blank=False)
+    title=models.CharField(max_length=265,default='No Campaign',blank=False)
     partnership=models.CharField(max_length=265,null=True,blank=True)
     organization_recipient=models.CharField(max_length=265,null=True,blank=True)
+    region=models.CharField(max_length=265,blank=False)
+    country=models.CharField(max_length=265,blank=False)
     start_date=models.DateField(blank=False)
     end_date=models.DateField(null=True,blank=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('device_app:campaign_detail',
+                        kwargs={'pk':self.pk})
 
 class Recipient(models.Model):
     man='MAN'
@@ -93,32 +107,34 @@ class Recipient(models.Model):
 class Device(models.Model):
     import datetime
     cane = 'cane'
-    quad_cane = 'quad cane'
-    ez_crutch = 'EZ_crutch'
-    adult_crutch='adult crutch'
-    adult_forearm_crutch='adult forearm crutch'
-    pediatric_crutch = 'pediatric crutch'
-    pediatric_forearm_crutch='pediatric forearm crutch'
+    quad_cane = 'cane, quad'
+    crutch_adult = 'crutch, adult'
+    forearm_crutch_adult = 'forearm crutch, adult'
+    crutch_pediatric = 'crutch, pediatric'
+    forearm_crutch_pediatric = 'forearm crutch, pediatric'
 
-    nonwheeled_walker='nonwheeled walker'
-    two_wheeled_walker = 'two wheeled walker'
-    three_wheeled_walker = 'three wheeled walker'
-    four_wheeled_walker = 'four wheeled walker'
+    walker_nonwheeled = 'walker, non-wheeled'
+    walker_two_wheeled = 'walker, two-wheeled'
+    walker_three_wheeled = 'walker, three-wheeled'
+    walker_four_wheeled = 'walker, four-wheeled'
+
     knee_injury_scooter = 'knee injury scooter'
+    wheelchair_standard = 'wheelchair, standard'
+    wheelchair_active_manual ='wheelchair, active-manual'
+    wheelchair_pediatric = 'wheelchair, pediatric'
+    wheelchair_seat = 'wheelchair, seat cushion'
 
-    standard_wheelchair='standard wheelchair'
-    active_manual_wheelchair = 'active manual wheelchair'
-    pediatric_wheelchair = 'pediatric wheelchair'
+    medical_boot_adult = 'medical boot, adult'
+    medical_boot_pediatric = 'medical boot, pediatric'
 
-    adult_medical_boot='adult medical boot'
-    pediatric_medical_boot = 'pediatric medical boot'
-
-    orthotic_brace = 'orthotic brace'
-    orthotic_shoe='orthotic shoe'
+    orthotic_brace_adult = 'orthotic brace, adult'
+    orthotic_brace_pediatric = 'orthotic brace, pediatric'
+    orthotic_shoe_adult = 'orthotic shoe, adult'
+    orthotic_shoe_pediatric = 'orthotic shoe, pediatric'
     compression_brace='compression brace'
 
     showerchair = 'showerchair'
-    btshowerchair = 'btshowerchair'
+    showerchair_ta = 'shower chair, tub-attachable'
     commode = 'commode'
     sling='sling'
     glasses='glasses'
@@ -141,39 +157,36 @@ class Device(models.Model):
 
     DEVICE_OPTIONS = (
         (cane,'cane'),
-        (quad_cane,'quad cane'),
-        (adult_crutch,'adult crutch'),
-        (adult_forearm_crutch,'adult forearm crutch'),
-        (pediatric_crutch,'pediatric crutch'),
-        (pediatric_forearm_crutch,'pediatric forarm crutch'),
-        (ez_crutch,'EZ-crutch'),
-        (nonwheeled_walker,'nonwheeled walker'),
-        (two_wheeled_walker,'two wheeled walker'),
-        (three_wheeled_walker,'three wheeled walker'),
-        (four_wheeled_walker,'four wheeled walker'),
+        (quad_cane,'cane, quad'),
+        (crutch_adult,'crutch, adult'),
+        (crutch_pediatric,'crutch, pediatric'),
+        (forearm_crutch_adult,'forearm crutch, adult'),
+        (forearm_crutch_pediatric,'forearm crutch, pediatric'),
+        (walker_nonwheeled,'walker, non-wheeled'),
+        (walker_two_wheeled,'walker, two-wheeled'),
+        (walker_three_wheeled,'walker, three-wheeled'),
+        (walker_four_wheeled,'walker, four-wheeled'),
         (knee_injury_scooter,'knee injury scooter'),
-        (standard_wheelchair,'standard wheelchair'),
-        (active_manual_wheelchair,'active manual wheelchair'),
-        (pediatric_wheelchair,'pediatric wheelchair'),
-        (adult_medical_boot,'adult medical boot'),
-        (pediatric_medical_boot,'pediatric medical boot'),
-        (orthotic_brace,'orthotic brace'),
-        (orthotic_shoe,'orthotic shoe'),
+        (wheelchair_standard,'wheelchair, standard'),
+        (wheelchair_active_manual,'wheelchair, active-manual'),
+        (wheelchair_pediatric,'wheelchair, pediatric'),
+        (medical_boot_adult,'medical boot adult'),
+        (medical_boot_pediatric,'medical boot, pediatric'),
+        (wheelchair_seat, 'wheelchair, seat cushion'),
+        (orthotic_brace_adult,'orthotic brace adult'),
+        (orthotic_brace_pediatric,'orthotic brace, pediatric'),
+        (orthotic_shoe_adult,'orthotic shoe, adult'),
+        (orthotic_shoe_pediatric,'orthotic shoe, pediatric'),
         (compression_brace,'compression brace'),
         (sling,'sling'),
         (showerchair,'shower chair'),
-        (btshowerchair,'tub attachable shower chair'),
+        (showerchair_ta,'shower chair, tub-attachable'),
         (commode,'commode'),
-        (glasses,'glasses'),
         (splint,'splint'),
         (wrist_splint,'wrist splint'),
-        (wrap,'wrap'),
-        (bed,'bed'),
         (miscellaneous,'miscellaneous'),
-
-    )
-
-    type=models.CharField(max_length=25,choices=DEVICE_OPTIONS,blank=False)
+        )
+    type=models.CharField(max_length=47,choices=sorted(DEVICE_OPTIONS),blank=False)
     condition=models.CharField(max_length=10,choices=DEVICE_CONDITIONS,blank=False)
     donor=models.ForeignKey(Donor,
                             related_name='devices',
@@ -203,34 +216,39 @@ class Device(models.Model):
     def get_absolute_url(self):
         return reverse('device_app:device_detail',
                         kwargs={'pk':self.pk})
+    class Meta:
+       ordering = ('id',)
+
 class EquipmentValue(models.Model):
     cane = 'cane'
-    quad_cane = 'quad cane'
-    ez_crutch = 'EZ_crutch'
-    adult_crutch='adult crutch'
-    adult_forearm_crutch='adult forearm crutch'
-    pediatric_crutch = 'pediatric crutch'
-    pediatric_forearm_crutch='pediatric forearm crutch'
+    quad_cane = 'cane, quad'
+    crutch_adult = 'crutch, adult'
+    forearm_crutch_adult = 'forearm crutch, adult'
+    crutch_pediatric = 'crutch, pediatric'
+    forearm_crutch_pediatric = 'forearm crutch, pediatric'
 
-    nonwheeled_walker='nonwheeled walker'
-    two_wheeled_walker = 'two wheeled walker'
-    three_wheeled_walker = 'three wheeled walker'
-    four_wheeled_walker = 'four wheeled walker'
+    walker_nonwheeled = 'walker, non-wheeled'
+    walker_two_wheeled = 'walker, two-wheeled'
+    walker_three_wheeled = 'walker, three-wheeled'
+    walker_four_wheeled = 'walker, four-wheeled'
+
     knee_injury_scooter = 'knee injury scooter'
+    wheelchair_standard = 'wheelchair, standard'
+    wheelchair_active_manual ='wheelchair, active-manual'
+    wheelchair_pediatric = 'wheelchair, pediatric'
+    wheelchair_seat = 'wheelchair, seat cushion'
 
-    standard_wheelchair='standard wheelchair'
-    active_manual_wheelchair = 'active manual wheelchair'
-    pediatric_wheelchair = 'pediatric wheelchair'
+    medical_boot_adult = 'medical boot, adult'
+    medical_boot_pediatric = 'medical boot, pediatric'
 
-    adult_medical_boot='adult medical boot'
-    pediatric_medical_boot = 'pediatric medical boot'
-
-    orthotic_brace = 'orthotic brace'
-    orthotic_shoe='orthotic shoe'
+    orthotic_brace_adult = 'orthotic brace, adult'
+    orthotic_brace_pediatric = 'orthotic brace, pediatric'
+    orthotic_shoe_adult = 'orthotic shoe, adult'
+    orthotic_shoe_pediatric = 'orthotic shoe, pediatric'
     compression_brace='compression brace'
 
     showerchair = 'showerchair'
-    btshowerchair = 'btshowerchair'
+    showerchair_ta = 'shower chair, tub-attachable'
     commode = 'commode'
     sling='sling'
     glasses='glasses'
@@ -243,168 +261,37 @@ class EquipmentValue(models.Model):
 
     DEVICE_OPTIONS = (
         (cane,'cane'),
-        (quad_cane,'quad cane'),
-        (adult_crutch,'adult crutch'),
-        (adult_forearm_crutch,'adult forearm crutch'),
-        (pediatric_crutch,'pediatric crutch'),
-        (pediatric_forearm_crutch,'pediatric forarm crutch'),
-        (ez_crutch,'EZ-crutch'),
-        (nonwheeled_walker,'nonwheeled walker'),
-        (two_wheeled_walker,'two wheeled walker'),
-        (three_wheeled_walker,'three wheeled walker'),
-        (four_wheeled_walker,'four wheeled walker'),
+        (quad_cane,'cane, quad'),
+        (crutch_adult,'crutch, adult'),
+        (crutch_pediatric,'crutch, pediatric'),
+        (forearm_crutch_adult,'forearm crutch, adult'),
+        (forearm_crutch_pediatric,'forearm crutch, pediatric'),
+        (walker_nonwheeled,'walker, non-wheeled'),
+        (walker_two_wheeled,'walker, two-wheeled'),
+        (walker_three_wheeled,'walker, three-wheeled'),
+        (walker_four_wheeled,'walker, four-wheeled'),
         (knee_injury_scooter,'knee injury scooter'),
-        (standard_wheelchair,'standard wheelchair'),
-        (active_manual_wheelchair,'active manual wheelchair'),
-        (pediatric_wheelchair,'pediatric wheelchair'),
-        (adult_medical_boot,'adult medical boot'),
-        (pediatric_medical_boot,'pediatric medical boot'),
-        (orthotic_brace,'orthotic brace'),
-        (orthotic_shoe,'orthotic shoe'),
+        (wheelchair_standard,'wheelchair, standard'),
+        (wheelchair_active_manual,'wheelchair, active-manual'),
+        (wheelchair_pediatric,'wheelchair, pediatric'),
+        (wheelchair_seat, 'wheelchair, seat cushion'),
+        (medical_boot_adult,'medical boot adult'),
+        (medical_boot_pediatric,'medical boot, pediatric'),
+        (orthotic_brace_adult,'orthotic brace adult'),
+        (orthotic_brace_pediatric,'orthotic brace, pediatric'),
+        (orthotic_shoe_adult,'orthotic shoe, adult'),
+        (orthotic_shoe_pediatric,'orthotic shoe, pediatric'),
         (compression_brace,'compression brace'),
         (sling,'sling'),
         (showerchair,'shower chair'),
-        (btshowerchair,'tub attachable shower chair'),
+        (showerchair_ta,'shower chair, tub-attachable'),
         (commode,'commode'),
-        (glasses,'glasses'),
         (splint,'splint'),
         (wrist_splint,'wrist splint'),
-        (wrap,'wrap'),
-        (bed,'bed'),
         (miscellaneous,'miscellaneous'),
         )
     source=models.URLField(max_length=300,blank=False)
     device_type=models.CharField(max_length=25,
-                                 choices=DEVICE_OPTIONS,
+                                 choices=sorted(DEVICE_OPTIONS),
                                  blank=False)
     source_value=models.CharField(max_length=5,blank=False)
-
-
-# class Contact(models.Model):
-#
-#     campaign_partnership ='campaign partnership'
-#     equipment_donation = 'equipment donation'
-#     community_partnership='community partnership'
-#
-#     CONTACT_REASONS=(
-#     (campaign_partnership,'campaign partnership'),
-#     (equipment_donation,'equipment donation'),
-#     (community_partnership,'community partnership'),
-#     )
-#
-#     first_name = models.CharField(max_length=265,blank=False)
-#     last_name = models.CharField(max_length=265,blank=False)
-#     email=models.EmailField(max_length=265,blank=False)
-#     phone=models.CharField(max_length=265,blank=False)
-#     state_province=models.CharField(max_length=265,blank=False)
-#     country=models.CharField(max_length=265,blank=False)
-#     reason_for_contact=models.CharField(max_length=265,
-#                                         choices=CONTACT_REASONS,
-#                                         blank=False)
-#     organization=models.CharField(max_length=265,blank=False)
-#     position=models.CharField(max_length=265,blank=True)
-#
-#     def __str__(self):
-#         return self.type
-#
-#     # def get_absolute_url(self):
-#     #     return reverse('device_app:device_detail',
-#     #                     kwargs={'pk':self.pk})
-#
-# class ProjectEmbraceEmployee(models.Model):
-#     first_name = models.CharField(max_length=265,blank=False)
-#     last_name = models.CharField(max_length=265,blank=False)
-#     position=models.CharField(max_length=265,blank=True)
-#
-#     def __str__(self):
-#         return self.type
-#
-# class Engagement(models.Model):
-#     import datetime
-#     introductory = 'introductory'
-#
-#     finance='finance'
-#     community_organization='community organization'
-#     operations='operations'
-#     marketing='marketing'
-#     campaign_outreach='campaign outreach'
-#
-#     ENGAGEMENT_TYPES=(
-#     (finance,'finance'),
-#     (community_organization,'community organization'),
-#     (operations,'operations'),
-#     (marketing,'marketing'),
-#     (campaign_outreach,'campaign outreach'),
-#     )
-#
-#     STATUS_TYPES=(
-#     (introductory,'introductory'),
-#     )
-#
-#     date_of_first_contact=models.DateField(("Date"), default=datetime.date.today)
-#     date_of_recent_contact=models.DateField(("Date of Recent Communication (YYYY-MM-DD)"),
-#                                             blank=True,
-#                                             null=True)
-#     engagement_type=models.CharField(max_length=265,
-#                                      choices=ENGAGEMENT_TYPES,
-#                                      blank=False)
-#     status=models.CharField(max_length=265,
-#                             choices=STATUS_TYPES,
-#                             blank=False)
-#     contact=models.ForeignKey(Contact,
-#                             related_name='contact',
-#                             on_delete=models.CASCADE)
-#     project_embrace_employee=models.ForeignKey(ProjectEmbraceEmployee,
-#                                     related_name='project_embrace_employee',
-#                                     on_delete=models.CASCADE)
-#     def __str__(self):
-#         return self.type
-#
-# class NeedsAssessment(models.Model):
-#     # Need quantity groupings
-#     zero_ten = '0 - 10'
-#     eleven_twenty = '11 - 20'
-#     twenty1_thirty = '21 - 30'
-#     thirty1_fourty = '31 - 40'
-#     greater_than_fifty = 'Greater than 50'
-#
-#     DEVICE_QUANTITIES=(
-#     (zero_ten,'0 - 10'),
-#     (eleven_twenty,'11 - 20'),
-#     (twenty1_thirty,'21 - 30'),
-#     (thirty1_fourty,'31 - 40'),
-#     (greater_than_fifty,'Greater than 50')
-#     )
-#
-#     patients_served_weekly=models.CharField(max_length=265,blank=False)
-#     need_for_crutches=models.CharField(max_length=265,
-#                                        choices=DEVICE_QUANTITIES,
-#                                        blank=False)
-#     need_for_wheelchairs=models.CharField(max_length=265,
-#                                        choices=DEVICE_QUANTITIES,
-#                                        blank=False)
-#     need_for_walkers=models.CharField(max_length=265,
-#                                        choices=DEVICE_QUANTITIES,
-#                                        blank=False)
-#     need_for_kneebraces=models.CharField(max_length=265,
-#                                        choices=DEVICE_QUANTITIES,
-#                                        blank=False)
-#     items_notes=models.TextField(default='None')
-#     engagement=models.ForeignKey(Engagement,
-#                             related_name='engagement',
-#                             on_delete=models.CASCADE)
-#
-#     def __str__(self):
-#         return self.type
-#
-# class EngagementNotes(models.Model):
-#     engagement=models.ForeignKey(Engagement,
-#                             related_name='engagement_notes',
-#                             on_delete=models.CASCADE)
-#     project_embrace_employee=models.ForeignKey(ProjectEmbraceEmployee,
-#                                     related_name='project_embrace_employee_notes',
-#                                     on_delete=models.CASCADE)
-#     notes=models.TextField(default='None')
-#
-#     def __str__(self):
-#         return self.type

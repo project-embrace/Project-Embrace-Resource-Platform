@@ -14,7 +14,7 @@ SECRET_KEY = '&5=4*=-bdbv%m!942+)pz2_t#$*zh%58rbdhe4=5tbtu-n!g0n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['projemb-device-app.herokuapp.com']
+ALLOWED_HOSTS = ['pe-resource-platform.herokuapp.com']
 
 
 # Application definition
@@ -28,8 +28,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'device_app',
+    'rm',
+    'bootstrap3',
+    'bootstrap4',
+    'crispy_forms',
+    "django_filters",
+    "django_tables2",
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -110,5 +117,5 @@ django_heroku.settings(locals())
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-SESSION_EXPIRE_SECONDS = 600  # 600 seconds = 10 minutes
-SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+# SESSION_EXPIRE_SECONDS = 600  # 600 seconds = 10 minutes
+# SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True

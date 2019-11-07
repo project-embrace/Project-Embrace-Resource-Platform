@@ -38,7 +38,7 @@ class InventoryTable():
 
     def generate(self):
 
-        pei_donated, pei_not_donated, pei_unprocessed, pei_processed= self.get_data()
+        pei_donated, pei_not_donated, pei_unprocessed, pei_processed = self.get_data()
         self.chart.add('Total Current Inventory',pei_not_donated)
         self.chart.add('Total Unprocessed Inventory',pei_unprocessed)
         self.chart.add('Total Processed Inventory',pei_processed)
@@ -46,7 +46,6 @@ class InventoryTable():
 
         # Return the rendered SVG
         return self.chart.render_table(style=True)
-
 class ReadyToDonatePieChart():
 
     def __init__(self, **kwargs):
@@ -188,7 +187,4 @@ class OutputFrequency():
 
         # Return the rendered SVG
         return self.chart.render(is_unicode=True)
-
-
-
 # Finance Visualizations
