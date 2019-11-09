@@ -21,13 +21,6 @@ from .models import Device,Donor,Campaign,StorageArea,DonationHouse
 #         return class_name
 #     return inner
 
-class DeviceListTable(tables.Table):
-    class Meta:
-        model = Device
-        template_name = "device_app/table.html"
-        fields = ('id', 'type','donor','processed','donated_to_recipient','campaign')
-        linkify = ('id','donor','campaign')
-
 class DeviceTable(tables.Table):
     id = tables.Column(linkify=True)
     donor = tables.Column(linkify=True)
@@ -35,26 +28,17 @@ class DeviceTable(tables.Table):
     class Meta:
         model = Device
         template_name = "device_app/table.html"
+        fields = ('id','type','donor','processed','donated_to_recipient','campaign')
+        linkify = ('id','donor','campaign')
 
-class CampaignListTable(tables.Table):
-     class Meta:
-         model = Campaign
-         template_name = "device_app/table.html"
-         fields = ('title','start_date','end_date')
-         linkify = ('title',)
 
 class CampaignTable(tables.Table):
     title = tables.Column(linkify=True)
     class Meta:
         model = Campaign
         template_name = "device_app/table.html"
-
-class DonorListTable(tables.Table):
-    class Meta:
-        model = Device
-        template_name = "device_app/table.html"
-        fields = ('name','email','donation_date','sent_a_receipt','donation_house')
-        linkify = ('name','donation_house')
+        fields = ('title','start_date','end_date')
+        linkify = ('title',)
 
 class DonorTable(tables.Table):
     id = tables.Column(linkify=True)
@@ -63,30 +47,22 @@ class DonorTable(tables.Table):
     class Meta:
         model = Donor
         template_name = "device_app/table.html"
-
-
-class DonoHouseListTable(tables.Table):
-     class Meta:
-         model = DonationHouse
-         template_name = "device_app/table.html"
-         fields = ('title',)
-         linkify = ('title',)
+        exclude = ('id',)
+        fields = ('name','email','donation_date','sent_a_receipt','donation_house')
+        linkify = ('name','donation_house')
 
 class DonoHouseTable(tables.Table):
     title = tables.Column(linkify=True)
     class Meta:
         model = DonationHouse
         template_name = "device_app/table.html"
-
-class StorageListTable(tables.Table):
-     class Meta:
-         model = StorageArea
-         template_name = "device_app/table.html"
-         fields = ('title',)
-         linkify = ('title',)
+        fields = ('title',)
+        linkify = ('title',)
 
 class StorageTable(tables.Table):
     title = tables.Column(linkify=True)
     class Meta:
         model = StorageArea
         template_name = "device_app/table.html"
+        fields = ('title',)
+        linkify = ('title',)

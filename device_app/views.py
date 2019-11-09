@@ -13,11 +13,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import HttpResponseRedirect,HttpResponse,FileResponse
-from .tables import (DeviceTable,DeviceListTable,
-                     DonorListTable,DonorTable,
-                     CampaignListTable,CampaignTable,
-                     DonoHouseListTable,DonoHouseTable,
-                     StorageListTable, StorageTable)
+from .tables import (DeviceTable,DonorTable,CampaignTable,
+                     DonoHouseTable,StorageTable)
 from .filters import (DeviceFilter,DonorFilter,
                       CampaignFilter,DonationHouseFilter,
                       StorageAreaFilter)
@@ -100,7 +97,7 @@ def user_login(request):
 ## Donor Section ----------------------------------------------------------------------------------------------------------------
 class FilteredDonorList(SingleTableMixin, FilterView):
     model = Donor
-    table_class = DonorListTable
+    table_class = DonorTable
     template_name = 'device_app/donor_list.html'
     filterset_class = DonorFilter
 
@@ -160,7 +157,7 @@ class DonorDeleteView(DeleteView):
 ## Device Section ----------------------------------------------------------------------------------------------------------------
 class FilteredDeviceList(ExportMixin,SingleTableMixin, FilterView,):
     model = Device
-    table_class = DeviceListTable
+    table_class = DeviceTable
     template_name = 'device_app/device_list.html'
     filterset_class = DeviceFilter
     export_formats = ("csv",)
@@ -275,7 +272,7 @@ class DeviceVisualsView(TemplateView):
 
 class FilteredDonationHouseList(SingleTableMixin, FilterView):
     model = DonationHouse
-    table_class = DonoHouseListTable
+    table_class = DonoHouseTable
     template_name = 'device_app/donationhouse_list.html'
     filterset_class = DonationHouseFilter
 
@@ -300,7 +297,7 @@ class DonationHouseDetail(DetailView):
 ## Campaign Section ----------------------------------------------------------------------------------------------------------------
 class FilteredCampaignList(SingleTableMixin, FilterView):
     model = Campaign
-    table_class = CampaignListTable
+    table_class = CampaignTable
     template_name = 'device_app/campaign_list.html'
     filterset_class = CampaignFilter
 
@@ -333,7 +330,7 @@ class CampaignUpdateView(UpdateView):
 
 class FilteredStorageList(SingleTableMixin, FilterView):
     model = StorageArea
-    table_class = StorageListTable
+    table_class = StorageTable
     template_name = 'device_app/storagearea_list.html'
     filterset_class = StorageAreaFilter
 
