@@ -3,6 +3,7 @@
 {% load django_tables2 %}
 {% load bootstrap4 %}
 {% block body_block %}
+{% if user.is_authenticated %}
 <h1>Storage Areas</h1>
 <hr>
 <table>
@@ -18,4 +19,8 @@
       </form>
     {% endif %}
   {% render_table table 'device_app/table.html' %}
+  {% else %}
+        <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b> </p>
+        <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+  {% endif %}
 {% endblock %}
