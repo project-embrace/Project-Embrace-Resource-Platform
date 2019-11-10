@@ -92,6 +92,34 @@ def user_login(request):
     else:
         return render(request,"device_app/login.html")
 
+# class user_login(FormView):
+#     template_name = 'device_app/login.html'
+#     form_class = LoginForm
+#     #if this is a POST request we need to process the form data
+#     def post(self, request):
+#         if request.method == 'POST':
+#                 # create a form instance and populate it with data from the request:
+#             form = LoginForm(request.POST)
+#             # check whether it's valid:
+#             form.is_valid()
+#             username = form.cleaned_data['user']
+#             password = form.cleaned_data['pw']
+#
+#             user = authenticate(username=username,password=password)
+#
+#             if user:
+#                 if user.is_active:
+#                     login(request,user)
+#                     return HttpResponseRedirect(reverse('landing_index'))
+#                 else:
+#                     return HttpResponse('ACCOUNT NOT ACTIVE')
+#             else:
+#                 print('Someone tried to login and failed')
+#                 print("username: {} password {}".format(username,password))
+#                 return HttpResponse("invalid login details supplied")
+#         else:
+#             return render(request,"device_app/login.html")
+
 # CRUD items ----------------------------------------------------------------------------------------------------------------
 # Operations Section ----------------------------------------------------------------------------------------------------------------
 ## Donor Section ----------------------------------------------------------------------------------------------------------------
@@ -101,40 +129,40 @@ class FilteredDonorList(SingleTableMixin, FilterView):
     template_name = 'device_app/donor_list.html'
     filterset_class = DonorFilter
 
-class DonorList(ListView):
-    context_object_name = 'donors'
-    model=models.Donor
-
-    # Search Code
-    def post(self, request):
-            keywords=''
-
-            if request.method=='POST': # form was submitted
-
-                keywords = request.POST.get("ds", "") # <input type="text" name="keywords">
-                all_queries = None
-                search_fields = ('donation_house__title','name','donation_date') # change accordingly
-                for keyword in keywords.split(' '): # keywords are splitted into words (eg: john science library)
-                    keyword_query = None
-                    for field in search_fields:
-                        each_query = Q(**{field + '__icontains': keyword})
-                        if not keyword_query:
-                            keyword_query = each_query
-                        else:
-                            keyword_query = keyword_query | each_query
-                            if not all_queries:
-                                all_queries = keyword_query
-                            else:
-                                all_queries = all_queries & keyword_query
-
-                searchD= Donor.objects.filter(all_queries).distinct()
-                context = {'searchD':searchD}
-                return render(request, 'device_app/donor_list.html', context)
-
-            else: # no data submitted
-
-                context = {}
-                return render(request, 'device_app/ops_index.html', context)
+# class DonorList(ListView):
+#     context_object_name = 'donors'
+#     model=models.Donor
+#
+#     # Search Code
+#     def post(self, request):
+#             keywords=''
+#
+#             if request.method=='POST': # form was submitted
+#
+#                 keywords = request.POST.get("ds", "") # <input type="text" name="keywords">
+#                 all_queries = None
+#                 search_fields = ('donation_house__title','name','donation_date') # change accordingly
+#                 for keyword in keywords.split(' '): # keywords are splitted into words (eg: john science library)
+#                     keyword_query = None
+#                     for field in search_fields:
+#                         each_query = Q(**{field + '__icontains': keyword})
+#                         if not keyword_query:
+#                             keyword_query = each_query
+#                         else:
+#                             keyword_query = keyword_query | each_query
+#                             if not all_queries:
+#                                 all_queries = keyword_query
+#                             else:
+#                                 all_queries = all_queries & keyword_query
+#
+#                 searchD= Donor.objects.filter(all_queries).distinct()
+#                 context = {'searchD':searchD}
+#                 return render(request, 'device_app/donor_list.html', context)
+#
+#             else: # no data submitted
+#
+#                 context = {}
+#                 return render(request, 'device_app/ops_index.html', context)
 
 class DonorDetail(DetailView):
    context_object_name = 'donor_detail'
