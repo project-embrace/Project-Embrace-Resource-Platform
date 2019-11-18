@@ -35,7 +35,7 @@ class DonationHouse(models.Model):
 
 class Donor(models.Model):
     import datetime
-    name=sorted(models.CharField(max_length=265,blank=False))
+    name=models.CharField(max_length=265,blank=False)
     email=models.EmailField(max_length=265,blank=False)
     region=models.CharField(max_length=265,blank=False)
     country=models.CharField(max_length=265,blank=False)

@@ -13,7 +13,7 @@ EMAIL_USE_TLS = True
 
 
 # Database Settings
-# postgresql-triangular-53659
+# postgresql-cylindrical-45992 'HEROKU_POSTGRESQL_BLACK'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
