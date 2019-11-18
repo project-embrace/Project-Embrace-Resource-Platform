@@ -1,0 +1,11 @@
+{% extends 'inventory/pe_root.html' %}
+
+{% block main_menu %}
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:finance_index' %}">Finance</a></li>
+    <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:knowledge_index'%}">Knowledge Base</a></li>
+    <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:operations_index' %}">Operations</a></li>
+    <li class="nav-item-pe"><a class='nav-link' href="/">Relationship Management</a></li>
+</ul>
+
+{% endblock %}

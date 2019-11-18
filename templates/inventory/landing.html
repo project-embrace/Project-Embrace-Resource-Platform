@@ -1,0 +1,43 @@
+{% extends 'inventory/pe_base.html' %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+{% load compress %}
+{% load thumbnail %}
+{% block extralinks %}
+  <style>
+    .card-body {
+      padding:0;
+      margin:0
+    }
+    .select2-container--default .select2-results__option[aria-disabled=true] {
+    display: none;
+}
+
+  </style>
+  {% endblock %}
+
+  {% block content %}
+  <div id="mainbody" class="main_container" style="margin-top:25px; background-color: #ddd9d9;">
+  {% block body_block %}
+
+  {% endblock %}
+  </div>
+{% endblock %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+{% block moment_js_block %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+{% endblock moment_js_block %}
+
+<script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+{% block extra_js_block %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
+{% endblock extra_js_block %}
+{% block js_block %}{% endblock js_block %}

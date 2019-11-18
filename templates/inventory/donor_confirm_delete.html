@@ -1,0 +1,10 @@
+{% extends 'inventory/operations.html'%}
+{% block body_block %}
+  <h1>Delete {{donor.name}}?</h1>
+  <hr>
+  <form method="post">
+    {% csrf_token%}
+    <input type="submit" class="button" value="Delete">
+    <a class='button'href="{% url 'inventory:donor_detail' pk=donor.pk %}">Cancel</a>
+  </form>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'inventory/public_dash.html' %}
+{% block body_block %}
+<h1>Inventory Visualizations</h1>
+<hr>
+<div class="row marl justify-content-center">
+  <table style='border-collapse:separate; border-spacing: 0 1em;'>
+    <tr>
+      <td>{{CI2|safe}}</td>
+    </tr>
+    <tr>
+      <td>{{CDI2|safe}}</td>
+    </tr>
+    <tr>
+      <td>{{IOF|safe}}</td>
+    </tr>
+  </table>
+</div>
+
+{% endblock %}

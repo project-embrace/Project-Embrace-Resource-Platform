@@ -1,0 +1,28 @@
+{% extends 'inventory/operations.html' %}
+{% block body_block %}
+<h1>Inventory Visualizations</h1>
+<hr>
+  <!-- <h4 style="color:#BE1E2D;">We have recieved a total of {{ devices.count }} devices!</h4> -->
+<div class="row marl justify-content-center">
+  <table>
+    <tr>
+      <td>{{IT|safe}}</td>
+    </tr>
+    <tr>
+      <td>{{PI|safe }}</td>
+    </tr>
+    <tr>
+      <td>{{NPI|safe }}</td>
+    </tr>
+    <tr>
+      <td>{{CID|safe}}</td>
+    </tr>
+    <tr>
+      <td>{{IIF|safe}}</td>
+    </tr>
+    <tr>
+      <td>{{IOF|safe}}</td>
+    </tr>
+  </table>
+</div>
+{% endblock %}

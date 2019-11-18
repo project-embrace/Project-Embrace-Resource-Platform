@@ -11,14 +11,12 @@ label{
     width: auto;
     text-align: right;
 }
-input {
-  display: inline-block;
-  float: left;
-}
 .formClass{
   border-radius: 5px;
   color:black;
   background-color:#bfbdbd;
+  margin: 25px;
+  padding:5px;
 }
 .formButton{
   background-color:#BE1E2D;
@@ -33,6 +31,7 @@ input {
     color:#FFFFFF;
     background-color:#BE1E2D;
 }
+
 .button {
   background-color:#BE1E2D;
   border-radius: 3px;
@@ -76,7 +75,7 @@ input {
   color: white;
 }
 .pe_body {
-  background-color:rgb(34, 31, 32);
+  background-color:#fff;
 }
 #pe_header {
   background-color:rgb(179, 181, 184,.5);
@@ -93,7 +92,7 @@ h1{
   font-family:'sofia-pro-soft';
   font-weight: bold;
 }
-div{
+.formDiv{
   font-family:'sofia-pro-soft';
   margin: 25px;
   padding:5px;
@@ -101,17 +100,6 @@ div{
 .annoying{
   font-family:'sofia-pro-soft';
   color:black;
-}
-
-input .text{
-  width:100%;
-}
-a {
-  color:black;
-}
-/* mouse over link */
-a:hover {
-  color: white;
 }
 
 .vertical-center {

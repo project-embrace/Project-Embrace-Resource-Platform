@@ -1,0 +1,136 @@
+@font-face {
+  font-family: 'sofia-pro-soft', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+label{
+    display: inline-block;
+    float: left;
+    clear: left;
+    width: auto;
+    text-align: right;
+}
+input {
+  display: inline-block;
+  float: left;
+}
+.formClass{
+  border-radius: 5px;
+  color:black;
+  background-color:#bfbdbd;
+}
+.formButton{
+  background-color:#BE1E2D;
+  border-radius: 3px;
+  color: white;
+  padding: 5px 20px;
+  margin:0px auto !important;
+  min-width: 50vh !important;
+}
+#button{
+    border-radius: 3px;
+    color:#FFFFFF;
+    background-color:#BE1E2D;
+}
+.button {
+  background-color:#BE1E2D;
+  border-radius: 3px;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.sideBarButton{
+  background-color:#BE1E2D;
+  border-radius: 3px;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex !important;
+  flex-direction: row;
+}
+
+.longBodyButton{
+  background-color:#BE1E2D;
+  border-radius: 3px;
+  color: white;
+  padding: 5px 20px;
+  min-width: 100vh !important;
+}
+
+.button:hover {opacity: .8}
+.sideBarButton:hover{
+  opacity: .8;
+}
+.longBodyButton:hover{
+  opacity: .8;
+  color: white;
+}
+.formButton:hover{
+  opacity: .8;
+  color: white;
+}
+.pe_body {
+  background-color:rgb(34, 31, 32);
+}
+#pe_header {
+  background-color:rgb(179, 181, 184,.5);
+}
+#pe_format{
+  font-family: 'sofia-pro-soft';
+  color:rgb(255, 255,255);
+}
+#pe_red{
+  font-family: 'sofia-pro-soft';
+  color:rgb(190, 30, 45);
+}
+h1{
+  font-family:'sofia-pro-soft';
+  font-weight: bold;
+}
+div{
+  font-family:'sofia-pro-soft';
+  margin: 25px;
+  padding:5px;
+}
+.annoying{
+  font-family:'sofia-pro-soft';
+  color:black;
+}
+
+input .text{
+  width:100%;
+}
+a {
+  color:black;
+}
+/* mouse over link */
+a:hover {
+  color: white;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.responsiveCal {
+position: relative; padding-bottom: 75%; height: 0; overflow: hidden;
+}
+
+.responsiveCal iframe {
+position: absolute; top:0; left: 0; width: 100%; height: 100%;
+}
+
+hr {
+margin-left: auto;
+margin-right: auto;
+background-color:rgb(190, 30, 45);
+}

@@ -1,0 +1,20 @@
+{% extends 'inventory/operations.html' %}
+{% block body_block %}
+
+<h1>Storage Area</h1>
+<hr>
+<table>
+  <tr>
+    <td><a class='button' href="{% url 'inventory:storage_update' pk=storage_detail.pk %}">Update This Storage Area</a></td>
+    <td><a class='button' href="{% url 'inventory:storage_create'%}">Create Another Storage Area</a></td>
+    <td><a class='button' href="{% url 'inventory:storage_list'%}">Back To List</a></td>
+  </tr>
+</table>
+<br>
+<p>Title: {{storage_detail.title}}</p>
+<p>Address: {{storage_detail.street}}, {{storage_detail.city}},
+    {{storage_detail.state}} {{storage_detail.zip}}
+<h4>{{storage_detail.device_storage_area.count}} devices have been stored at {{storage_detail.title}} during its time in use.</h4>
+<hr>
+
+{% endblock%}

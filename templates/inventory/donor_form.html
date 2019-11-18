@@ -1,0 +1,21 @@
+{% extends 'inventory/operations.html'%}
+{% load bootstrap4 %}
+{% block body_block %}
+<h1>
+  {% if not form.instance.pk %}
+  Create Donor
+  {% else %}
+  Update Donor
+  {% endif %}
+</h1>
+<hr>
+<p><a class='button' href="{% url 'inventory:donor_list'%}">Back To List</a></p>
+<div class="row marl justify-content-center">
+  <form action="" method="POST" class = 'form form-row align-items-center' >
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% bootstrap_button "Create" button_class='formButton' %}
+  </form>
+  <br>
+</div>
+{% endblock %}

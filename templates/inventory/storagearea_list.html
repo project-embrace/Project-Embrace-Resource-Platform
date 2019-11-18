@@ -1,0 +1,94 @@
+{% extends 'inventory/operations.html' %}
+{% load staticfiles %}
+{% load django_tables2 %}
+{% load bootstrap4 %}
+{% block body_block %}
+{% if user.is_authenticated %}
+<h1>Storage Areas</h1>
+<hr>
+<table>
+  <tr>
+    <td><a class="button" href="{% url 'inventory:storage_create'%}">Create Storage Area</a></td>
+  </tr>
+</table>
+{% if filter %}
+<div class="filter_row list_filter_row row marl">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <form id="opportunity_filter" method="GET" action="">
+          {% csrf_token %}
+          <div class="card-body">
+            <div class="card-title">Filters</div>
+            <div class="row marl justify-content-center" style='background-color: #ddd9d9;'>
+                  {% bootstrap_form filter.form %}
+                <div class="filter_col text-left col-2">
+                  <div class="form-group buttons_row">
+                    <button class="btn btn-primary save" type="submit">Filter</button>
+                    <a href="{% url 'inventory:storage_list' %}" class="btn btn-default clear">Clear</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<div class="table_container_row row marl ">
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-body">
+      <div class="panel-heading-list card-title text-right">
+        <span class="float-left">Storage Area Count - {{ storagearea_list|length }}</span>
+        <span class="filter_toggle">
+          <a href="#" class="primary_btn"><i class="fas fa-filter"></i></a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% render_table table 'inventory/table.html' %}
+{% endif %}
+{% endblock %}
+
+{% block js_block %}
+<script type="text/javascript">
+  $(document).ready(function () {
+    $(".filter_toggle").click(function () {
+      $(".list_filter_row").toggle();
+    });
+    $('#id_tag').select2();
+    $('#id_account').select2();
+  });
+
+  $(".tag_class_opp").click(function () {
+    // $(".tag_class_opp").css('cursor', 'pointer')
+    url = "{% url 'opportunity:list' %}"
+    url = url + "?tag=" + $(this).attr('data-link')
+    window.location.href = url;
+  });
+
+  search = "{{search}}"
+
+  if (search == 'True') {
+    $(".list_filter_row").show();
+  }
+
+  $('.delete').click(function (e) {
+    e.preventDefault()
+    url = $(this).attr('href')
+    if (!confirm('Are you sure you want to delete?'))
+      return;
+    window.location = $(this).attr('href')
+  });
+
+  $("a[rel='page']").click(function (e) {
+    e.preventDefault();
+    $('#opportunity_filter').attr("action", $(this).attr("href"));
+    $('#opportunity_filter').submit();
+  });
+</script>
+{% endblock js_block %}

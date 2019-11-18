@@ -1,0 +1,13 @@
+{% extends 'inventory/public_dash.html' %}
+{% load crispy_forms_tags %}
+{% load bootstrap4%}
+{% block body_block %}
+<h1>Campaign Outreach Request Form</h1>
+<hr>
+<p>Please fill out this form to the best of your ability. We request this information so that we may contact you adequately. <br> If you are an <span style='color:#BE1E2D!important;'>individual</span> and not part of an organization, please type <span style='color:#BE1E2D!important;'>"Individual Donor"</span> in the <span style='color:#BE1E2D!important;'>"Organization"</span> box.</p>
+<form method="post" class='table-container'>
+{% csrf_token %}
+{{ form|crispy }}
+{% bootstrap_button "Submit" button_type="submit" button_class="sideBarButton" %}
+</form>
+{% endblock %}

@@ -1,0 +1,11 @@
+{
+  "name": "pe-tests",
+  "description": "testing app for capstone project",
+  "version": "1.0.0",
+  "engines": {
+    "node": "12.13.0"
+  },
+  "dependencies":{
+    "less":"3.10.3"
+  }
+}

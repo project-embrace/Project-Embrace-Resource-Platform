@@ -1,0 +1,10 @@
+{% extends 'inventory/operations.html'%}
+{% block body_block %}
+  <h1>Delete {{device.type}} {{device.pk}}?</h1>
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    <input type="submit" class="button" value="Delete">
+    <a class='button'href="{% url 'inventory:device_detail' pk=device.pk %}">Cancel</a>
+  </form>
+{% endblock %}
