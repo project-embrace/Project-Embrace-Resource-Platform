@@ -26,10 +26,11 @@ class DeviceTable(tables.Table):
     id = tables.Column(linkify=True)
     donor = tables.Column(linkify=True)
     campaign = tables.Column(linkify=True)
+    condition = tables.Column(visible=False)
     class Meta:
         model = Device
         template_name = "inventory/table.html"
-        fields = ('id','type','donor','processed','donated_to_recipient','campaign')
+        fields = ('id','type','condition','processed','donated_to_recipient','campaign')
         linkify = ('id','donor','campaign')
 
 

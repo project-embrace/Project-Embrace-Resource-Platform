@@ -476,7 +476,8 @@ class Outreach(FormView):
                             Here is their contact email:
                             <br>
                             {}
-
+                            <br>
+                            <br>
                             <br>
 
                         Regards,
@@ -492,7 +493,7 @@ class Outreach(FormView):
             sender = 'proememails@gmail.com'
             password = 'meohvgatpjcdrnyt'
 
-            recipients = ['ckinkadedarling@gmail.com']
+            recipients = ['outreach@projectembrace.org']
             message = MIMEMultipart(_subtype='related')
             message["Subject"] = "Project Embrace Campaign Request"
             message["From"] = sender
@@ -561,6 +562,8 @@ class Input(FormView):
                             <br>
                             {}
                             <br>
+                            <br>
+                            <br>
 
                         Regards,
                         <br><br>
@@ -574,9 +577,9 @@ class Input(FormView):
             sender = 'proememails@gmail.com'
             password = 'meohvgatpjcdrnyt'
 
-            recipients = ['ckinkadedarling@gmail.com']
+            recipients = ['abigail@projectembrace.org']
             message = MIMEMultipart()
-            message["Subject"] = "Project Embrace Medical Equipment Donation EXAMPLE"
+            message["Subject"] = "Project Embrace Medical Equipment Donation Offering"
             message["From"] = sender
             message["To"] = ", ".join(recipients)
             message_guts = html_template
@@ -693,7 +696,7 @@ class ReceiptView(ListView):
                 context = {'output':updated_field}
                 return render(request, 'inventory/receipts.html', context)
             else: # no data submitted
-                no_donors = 'There are no donors related to your entered date.'
+                no_donors = 'There are no donors who have not been sent a receipt.'
                 context = {'alternate_output':no_donors}
                 return render(request, 'inventory/receipts.html', context)
 

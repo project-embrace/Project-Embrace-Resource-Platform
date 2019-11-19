@@ -55,7 +55,7 @@
               <button type="submit" class="btn btn-danger">Login</button>
               &nbsp;
               {% if ENABLE_GOOGLE_LOGIN and GP_CLIENT_SECRET and GP_CLIENT_ID %}
-              <a href="{% url 'common:google_login' %}" class="btn btn-primary">Google Login</a>
+              <a href="{% url 'common:google_login' %}" class="btn btn-danger">Google Login</a>
               {% endif %}
             </form>
 

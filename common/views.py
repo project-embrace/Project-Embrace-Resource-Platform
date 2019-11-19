@@ -152,7 +152,7 @@ class LoginView(TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('inventory:landing_index'))
         return super(LoginView, self).dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -168,11 +168,11 @@ class LoginView(TemplateView):
                     if user is not None:
                         login(request, user)
                         if user.has_sales_access:
-                            return HttpResponseRedirect('/')
+                            return HttpResponseRedirect(reverse('inventory:landing_index')) # Main Landing
                         elif user.has_marketing_access:
-                            return redirect('marketing:dashboard')
+                            return redirect('inventory:landing_index') # Main Landing
                         else:
-                            return HttpResponseRedirect('/')
+                            return HttpResponseRedirect(reverse('inventory:landing_index'))
                     return render(request, "login.html", {
                         "ENABLE_GOOGLE_LOGIN": settings.ENABLE_GOOGLE_LOGIN,
                         "GP_CLIENT_SECRET": settings.GP_CLIENT_SECRET,

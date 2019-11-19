@@ -83,14 +83,14 @@
 
           <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
             {% if user.is_superuser or user.role == 'ADMIN' %}
-            <a class="dropdown-item" href="/">Sales</a>
+            <a class="dropdown-item" href="/">Outreach</a>
             <a class="dropdown-item" href="{% url 'marketing:dashboard' %}">Marketing</a>
             {% else %}
             {% if user.has_sales_access and user.has_marketing_access %}
-            <a class="dropdown-item" href="/">Sales</a>
+            <a class="dropdown-item" href="/">Outreach</a>
             <a class="dropdown-item" href="{% url 'marketing:dashboard' %}">Marketing</a>
             {% elif user.has_sales_access and not user.has_marketing_access %}
-            <a class="dropdown-item" href="/">Sales</a>
+            <a class="dropdown-item" href="/">Outreach</a>
             {% elif not user.has_sales_access and user.has_marketing_access %}
             <a class="dropdown-item" href="{% url 'marketing:dashboard' %}">Marketing</a>
             {% else %}

@@ -3,8 +3,8 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h1>Receipt Page</h1>
-      <div class="row marl">
-        <div class="col-lg-12 text-right">
+  <div class="row marl">
+    <div class="col-lg-12 text-right">
       <form method="POST" action=".">
           {% csrf_token %}
           <span class="d-inline">
@@ -19,17 +19,28 @@
       <table class='annoying'>
           <tr>
             <th>Donor Name</th>
+            <td></td>
+            <td></td>
+            <td></td>
             <th>Donor Email</th>
+            <td></td>
+            <td></td>
+            <td></td>
             <th>Donation Date</th>
           </tr>
         {% for donor in donors %}
           {% if donor.sent_a_receipt == False %}
             <tr>
               <td><a class='annoying' href="{{donor.id}}">{{donor.name}}</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td><a class='annoying' href="{{donor.id}}">{{donor.email}}</a></td>
+              <td></td>
+              <td></td>
+              <td></td>
               <td><a class='annoying' href="{{donor.id}}">{{donor.donation_date}}</a></td>
             </tr>
-
           {% endif %}
         {% endfor %}
       </table>
