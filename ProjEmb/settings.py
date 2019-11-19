@@ -7,9 +7,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['https://pe-test.herokuapp.com']
+ALLOWED_HOSTS = ['https://pe-resource-platform.herokuapp.com']
 # Application definition
 LOGIN_URL = '/login/'
 
