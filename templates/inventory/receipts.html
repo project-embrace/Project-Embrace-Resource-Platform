@@ -1,22 +1,19 @@
 {% extends 'inventory/finance.html' %}
 {% load bootstrap4 %}
-{% block body_block %}
+{% block content %}
 {% if user.is_authenticated %}
-<table>
-  <tr>
-      <td><h1>Receipt Page</h1></td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    <td><form method="POST" action=".">
+<h1>Receipt Page</h1>
+      <div class="row marl">
+        <div class="col-lg-12 text-right">
+      <form method="POST" action=".">
           {% csrf_token %}
-          {% bootstrap_button "Send Receipts to Donors" button_class='button' %}
+          <span class="d-inline">
+              {% bootstrap_button "Send Receipts to Donors" button_class='button' %}
+          </span>
       </form>
-    </td>
-    </tr>
-  </table>
+    </div>
+  </div>
     <hr>
-
     <h4> Here are the people who have not been provided a receipt and their dates of donation.</h4>
     <br>
       <table class='annoying'>
@@ -32,12 +29,15 @@
               <td><a class='annoying' href="{{donor.id}}">{{donor.email}}</a></td>
               <td><a class='annoying' href="{{donor.id}}">{{donor.donation_date}}</a></td>
             </tr>
+
           {% endif %}
         {% endfor %}
       </table>
       <br>
       <h3>{{output}}</h3>
       <h3>{{alternative_output}}</h3>
+      <hr>
+      <br>
 {% else %}
       <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b></p>
       <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>

@@ -1,9 +1,10 @@
+from django_tables2.utils import A
 import django_tables2 as tables
 from django.core.paginator import Paginator
 import pandas as pd
 from django_pandas.io import read_frame
 
-from .models import Device,Donor,Campaign,StorageArea,DonationHouse
+from .models import Device,Donor,Campaign,StorageArea,DonationHouse,EquipmentValue
 # def group_by_campgain_heading():
 #     qs = Campaign.objects.all()
 #     donors = read_frame(qs)
@@ -66,3 +67,14 @@ class StorageTable(tables.Table):
         template_name = "inventory/table.html"
         fields = ('title',)
         linkify = ('title',)
+
+class EquipmentValueTable(tables.Table):
+    id = tables.Column(linkify=True)
+    # average_value = tables.Column(accessor=A('average_value'))
+
+    class Meta:
+        model = EquipmentValue
+        template_name = "inventory/table.html"
+        fields = ('id','source','device_type','source_value')
+        # sequence = ('id','source','device_type','source_value','average_value')
+        linkify = ('id',)

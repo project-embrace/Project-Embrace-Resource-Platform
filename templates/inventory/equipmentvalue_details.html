@@ -1,0 +1,25 @@
+{% extends 'inventory/finance.html' %}
+{% block content %}
+
+  <h1>Equipment Value Details</h1>
+  <hr>
+  <div class="row marl">
+    <div class="col-lg-12 text-right">
+      <span class="d-inline">
+        <a class='button' href="{% url 'inventory:equipment_update' pk=equipment_detail.pk %}">Update This Value</a>
+      </span>
+      <span class="d-inline">
+        <a class='button' href="{% url 'inventory:equipment_create'%}">Create Another Value</a>
+      </span>
+      <span class="d-inline">
+        <a class='button' href="{% url 'inventory:equipment_list'%}">Back To List</a>
+      </span>
+    </div>
+  </div>
+  <br>
+  <p>Source: {{equipment_detail.source}}</p>
+  <p>Device Type: {{equipment_detail.device_type}}</p>
+  <p>Value: {{equipment_detail.source_value}}</p>
+  <hr>
+  <br>
+{% endblock %}

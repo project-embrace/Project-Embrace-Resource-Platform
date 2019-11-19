@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.db.models import Avg
 from django.forms.fields import DateField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
@@ -307,8 +308,20 @@ class EquipmentValue(models.Model):
     device_type=models.CharField(max_length=25,
                                  choices=sorted(DEVICE_OPTIONS),
                                  blank=False)
-    source_value=models.CharField(max_length=5,blank=False)
+    source_value=models.DecimalField(blank=False, max_digits=6, decimal_places=2)
 
+    # Nice to have but fucking annoying
+    # def average_value(self):
+    #     return Avg(self.source_value)
+
+    def __str__(self):
+        return self.device_type
+
+    def get_absolute_url(self):
+        return reverse('inventory:equipment_detail',
+                        kwargs={'pk':self.pk})
+    class Meta:
+       ordering = ('id',)
 
 
 # Documents

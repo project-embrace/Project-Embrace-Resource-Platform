@@ -31,7 +31,6 @@ urlpatterns = [
     path('device_list/<int:pk>/',views.DeviceDetail.as_view(),name='device_detail'),
     path('device_create/',views.DeviceCreateView.as_view(),name='device_create'),
     path('device_update/<int:pk>/',views.DeviceUpdateView.as_view(),name='device_update'),
-    path('device_delete/<int:pk>/',views.DeviceDeleteView.as_view(),name='device_delete'),
 
     path('donation_house_list/',views.FilteredDonationHouseList.as_view(),name='donation_house_list'),
     path('donation_house_list/<int:pk>/',views.DonationHouseDetail.as_view(),name='donation_house_detail'),
@@ -47,6 +46,14 @@ urlpatterns = [
     path('storage_list/<int:pk>/',views.StorageDetail.as_view(),name='storage_detail'),
     path('storage_create/',views.StorageCreateView.as_view(),name='storage_create'),
     path('storage_update/<int:pk>/',views.StorageUpdateView.as_view(),name='storage_update'),
+
+    # Equipment Value
+    path('equipment_value/',views.FilteredEquipmentList.as_view(),name='equipment_list'),
+    path('equipment_value/<int:pk>/',views.EquipmentValueDetail.as_view(),name='equipment_detail'),
+    path('equipment_value_create/',views.EquipmentValueCreate.as_view(),name='equipment_create'),
+    path('equipment_value_update/<int:pk>/',views.EquipmentValueUpdate.as_view(),name='equipment_update'),
+    path('equipment_delete/<int:pk>/',views.EquipmentValueDeleteView.as_view(),name='equipment_delete'),
+
 
     # Knowledge Base
     path('documents/', views.DocumentListView.as_view(), name='knowledge_index'),

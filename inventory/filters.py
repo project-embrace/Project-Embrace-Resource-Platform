@@ -1,6 +1,6 @@
 from django_filters import FilterSet
 
-from .models import Device,Donor,Campaign,StorageArea,DonationHouse
+from .models import Device,Donor,Campaign,StorageArea,DonationHouse,EquipmentValue
 
 
 class DeviceFilter(FilterSet):
@@ -28,3 +28,8 @@ class StorageAreaFilter(FilterSet):
     class Meta:
         model = StorageArea
         fields = {"title": ["contains"]}
+
+class EquipmentValueFilter(FilterSet):
+    class Meta:
+        model = EquipmentValue
+        fields = {"device_type": ["exact"]}

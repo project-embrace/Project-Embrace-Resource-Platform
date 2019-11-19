@@ -18,10 +18,10 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import(Http404,HttpResponseRedirect,HttpResponse,
                         FileResponse,JsonResponse)
 from .tables import (DeviceTable,DonorTable,CampaignTable,
-                     DonoHouseTable,StorageTable)
+                     DonoHouseTable,StorageTable,EquipmentValueTable)
 from .filters import (DeviceFilter,DonorFilter,
                       CampaignFilter,DonationHouseFilter,
-                      StorageAreaFilter)
+                      StorageAreaFilter,EquipmentValueFilter)
 from .charts import (ReadyToDonatePieChart,
                      DonatedPieChart,
                      InputFrequency,
@@ -697,10 +697,32 @@ class ReceiptView(ListView):
                 context = {'alternate_output':no_donors}
                 return render(request, 'inventory/receipts.html', context)
 
-# class EquipmentValue(CreateView):
-#     model = models.EquipmentValue
-#     fields = ('source','device_type','value')
 
+
+# EquipmentValue Section --------------------------------------------------------------------------------------------------
+
+class FilteredEquipmentList(SingleTableMixin, FilterView):
+    model = EquipmentValue
+    table_class = EquipmentValueTable
+    template_name = 'inventory/equipmentvalue_list.html'
+    filterset_class = EquipmentValueFilter
+
+class EquipmentValueDetail(DetailView):
+   context_object_name = 'equipment_detail'
+   model=EquipmentValue
+   template_name='inventory/equipmentvalue_details.html'
+
+class EquipmentValueUpdate(UpdateView):
+     model = EquipmentValue
+     fields = ('source','device_type','source_value')
+
+class EquipmentValueCreate(CreateView):
+        model = EquipmentValue
+        fields = ('source','device_type','source_value')
+
+class EquipmentValueDeleteView(DeleteView):
+    model = EquipmentValue
+    success_url = reverse_lazy("inventory:equipment_list")
 
 
 # Knowledge Base Section -------------------------------------------
