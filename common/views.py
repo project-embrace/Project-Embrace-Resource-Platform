@@ -267,7 +267,6 @@ class CreateUserView(AdminRequiredMixin, CreateView):
     model = User
     form_class = UserForm
     template_name = "create.html"
-    # success_url = '/users/list/'
 
     def form_valid(self, form):
         user = form.save(commit=False)
