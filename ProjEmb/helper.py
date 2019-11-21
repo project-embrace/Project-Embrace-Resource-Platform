@@ -54,7 +54,22 @@ def send_mail(mto, mfrom, msubject, mbody, user_active):
             "to": [{'email': i, 'type': 'to'} for i in mto]
         }
         response = mandrill_client.messages.send(message=message)
-
+    elif mail_sender == 'GOOGLE':
+        port = 465
+        sender = 'proememails@gmail.com'
+        password = 'meohvgatpjcdrnyt'
+        message = MIMEMultipart()
+        message["Subject"] = msubject
+        message["From"] = mfrom
+        message["To"] = [{'email': i, 'type': 'to'} for i in mto]
+        message_guts = mbody
+        guts1 = MIMEText(message_guts, "html")
+        message.attach(guts1)
+        server = smtplib.SMTP_SSL("smtp.gmail.com", port)
+        server.ehlo()
+        server.login(sender,password)
+        server.send_message(message)
+        server.close()
     else:
         msg = EmailMultiAlternatives(msubject, mbody, mfrom, [mto])
         msg.attach_alternative(mbody, "text/html")

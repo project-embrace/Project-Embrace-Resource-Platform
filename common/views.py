@@ -115,14 +115,10 @@ class ChangePasswordView(LoginRequiredMixin, TemplateView):
         form = ChangePasswordForm(request.POST, user=request.user)
         if form.is_valid():
             user = request.user
-            # if not check_password(request.POST.get('CurrentPassword'),
-            #                       user.password):
-            #     error = "Invalid old password"
-            # else:
             user.set_password(request.POST.get('Newpassword'))
             user.is_active = True
             user.save()
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('inventory:landing_index')
         else:
             errors = form.errors
         return render(request, "change_password.html",
@@ -282,15 +278,7 @@ class CreateUserView(AdminRequiredMixin, CreateView):
         protocol = self.request.scheme
         send_email_to_new_user.delay(user.email, self.request.user.email,
                                      domain=current_site, protocol=protocol)
-        # mail_subject = 'Created account in CRM'
-        # message = render_to_string('new_user.html', {
-        #     'user': user,
-        #     'created_by': self.request.user
 
-        # })
-        # email = EmailMessage(mail_subject, message, to=[user.email])
-        # email.content_subtype = "html"
-        # email.send()
 
         if self.request.is_ajax():
             data = {'success_url': reverse_lazy(
@@ -939,7 +927,7 @@ def change_passsword_by_admin(request):
             user = get_object_or_404(User, id=request.POST.get("useer_id"))
             user.set_password(request.POST.get("new_passwoord"))
             user.save()
-            mail_subject = 'Crm Account Password Changed'
+            mail_subject = 'Resource Platform Account Password Changed'
             message = "<h3><b>hello</b> <i>" + user.username +\
                 "</i></h3><br><h2><p> <b>Your account password has been changed !\
                  </b></p></h2>" \

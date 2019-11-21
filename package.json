@@ -1,6 +1,6 @@
 {
-  "name": "pe-tests",
-  "description": "testing app for capstone project",
+  "name": "pe-resource-platform",
+  "description": "Project Embrace Resource Platform",
   "version": "1.0.0",
   "engines": {
     "node": "12.13.0"
