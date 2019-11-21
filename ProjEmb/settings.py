@@ -7,9 +7,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG_STATUS', False)
 
-ALLOWED_HOSTS = ['https://pe-resource-platform.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 # Application definition
 LOGIN_URL = '/login/'
 
@@ -117,7 +117,9 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 django_heroku.settings(locals())
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+COMPRESS_OFFLINE = True
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # SESSION_EXPIRE_SECONDS = 600  # 600 seconds = 10 minutes
 # SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
@@ -139,18 +141,12 @@ AUTH_USER_MODEL = 'common.User'
 
 STORAGE_TYPE = os.getenv('STORAGE_TYPE', 'normal')
 
-if STORAGE_TYPE == 'normal':
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
-    STATIC_URL = '/static/'
-    STATICFILES_DIRS = (BASE_DIR + '/static',)
-    COMPRESS_ROOT = BASE_DIR + '/static/'
-
-
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (BASE_DIR + '/static',)
 COMPRESS_ROOT = BASE_DIR + '/static/'
-
-COMPRESS_ENABLED = True
 
 COMPRESS_OFFLINE_CONTEXT = {
     'STATIC_URL': 'STATIC_URL',
@@ -312,4 +308,37 @@ CACHES = {
     }
 }
 
-PASSWORD_RESET_MAIL_FROM_USER = os.getenv('PASSWORD_RESET_MAIL_FROM_USER', 'no-reply@django-crm.com')
+PASSWORD_RESET_MAIL_FROM_USER = os.getenv('PASSWORD_RESET_MAIL_FROM_USER', 'proememails@gmail.com')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'debugging.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['file'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+        'MYAPP': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+    }
+}

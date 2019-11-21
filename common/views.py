@@ -1029,11 +1029,11 @@ def google_login(request): # pragma: no cover
         if request.GET.get('state') != '1235dfghjkf123':
             return HttpResponseRedirect(request.GET.get('state'))
         if user.has_sales_access:
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('inventory:landing_index'))
         elif user.has_marketing_access:
-            return redirect('marketing:dashboard')
+            return redirect('inventory:landing_index')
         else:
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('inventory:landing_index'))
     if request.GET.get('next'):
         next_url = request.GET.get('next')
     else:
