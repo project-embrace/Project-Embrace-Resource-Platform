@@ -49,7 +49,7 @@ class InventoryTable():
 class ReadyToDonatePieChart():
 
     def __init__(self, **kwargs):
-        self.chart = pygal.Treemap(**kwargs)
+        self.chart = pygal.Pie(**kwargs)
 
     def get_data(self):
         '''

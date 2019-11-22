@@ -231,48 +231,40 @@ class DeviceVisualsView(TemplateView):
         context = super(DeviceVisualsView, self).get_context_data(**kwargs)
         custom_style = Style(colors=('#BE1E2D',))
         cht_readytodonate = ReadyToDonatePieChart(
-                            height=300,
-                            width=800,
-                            explicit_size=True,
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            legend_at_bottom = True,
-                            legend_at_bottom_columns=3,
+                            show_legend=False,
+                            half_pie=True,
+                            # legend_at_bottom = True,
+                            # legend_at_bottom_columns=3,
                             title='Processed Inventory'
                             )
         context['PI'] = cht_readytodonate.generate()
 
         cht_donated = DonatedPieChart(
-                            height=300,
-                            width=800,
-                            explicit_size=True,
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            legend_at_bottom = True,
-                            legend_at_bottom_columns=3,
+                            show_legend=False,
+                            #legend_at_bottom = True,
+                            #legend_at_bottom_columns=3,
                             title = 'Campaign Inventory Donated',
                             )
         context['CID'] = cht_donated.generate()
 
         cht_input_dist = DirtyInventory(
-                            height=300,
-                            width=800,
-                            explicit_size=True,
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
-                            legend_at_bottom = True,
-                            legend_at_bottom_columns=3,
+                            show_legend=False,
+                            #legend_at_bottom = True,
+                            #legend_at_bottom_columns=3,
                             title = 'Non-Processed Inventory',
                             )
         context['NPI'] = cht_input_dist.generate()
 
         cht_input_dist = InputFrequency(
-                            height=250,
-                            width=800,
-                            explicit_size=True,
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
@@ -281,9 +273,6 @@ class DeviceVisualsView(TemplateView):
         context['IIF'] = cht_input_dist.generate()
 
         cht_input_dist = OutputFrequency(
-                            height=250,
-                            width=800,
-                            explicit_size=True,
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
@@ -292,14 +281,12 @@ class DeviceVisualsView(TemplateView):
         context['IOF'] = cht_input_dist.generate()
 
         cht_inventory_table = InventoryTable(
-                            height=300,
-                            width=800,
-                            explicit_size=True,
                             opacity='.6',
                             opacity_hover='.9',
                             style=custom_style,
-                            legend_at_bottom = True,
-                            legend_at_bottom_columns=3,
+                            show_legend=False,
+                            #legend_at_bottom = True,
+                            #legend_at_bottom_columns=3,
                             title='Processed Inventory'
                             )
         context['IT'] = cht_inventory_table.generate()

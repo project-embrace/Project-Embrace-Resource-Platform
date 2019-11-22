@@ -315,6 +315,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'proememails@gmail.com'
 EMAIL_HOST_PASSWORD = 'meohvgatpjcdrnyt'
+
 PASSWORD_RESET_MAIL_FROM_USER = os.getenv('PASSWORD_RESET_MAIL_FROM_USER', 'proememails@gmail.com')
 
 # Uncomment this to diagnose issues in a non-debug environment

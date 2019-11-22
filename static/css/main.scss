@@ -1753,3 +1753,15 @@ h1{
 .float-left{
   color:#fff !important;
 }
+
+pre{
+  &.float-left{
+  color:#000!important;
+  }
+}
+
+// a{
+//   &.remove_comment{
+//     color:#000!important;
+//   }
+// }

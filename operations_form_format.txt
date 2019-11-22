@@ -1,0 +1,31 @@
+<div class="row marl">
+  <div class="col-md-4">
+    <div class="filter_col col-md-12">
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="required">Type{% if form.type.field.required %}<span
+            class="error_marker" style="color:red">*</span>{% endif %}</label>
+        {{ form.type }}
+        <span class="error" id="id__name">{{ account_form.name.errors }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="filter_col col-md-12">
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="required">Condition{% if form.type.field.required %}<span
+            class="error_marker" style="color:red">*</span>{% endif %}</label>
+        {{ form.condition }}
+        <span class="error" id="id__name">{{ account_form.name.errors }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="filter_col col-md-12">
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="required">Condition{% if form.type.field.required %}<span
+            class="error_marker" style="color:red">*</span>{% endif %}</label>
+        {{ form.condition }}
+        <span class="error" id="id__name">{{ account_form.name.errors }}</span>
+      </div>
+    </div>
+  </div>
