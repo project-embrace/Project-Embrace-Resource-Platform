@@ -39,9 +39,9 @@ class InventoryTable():
     def generate(self):
 
         pei_donated, pei_not_donated, pei_unprocessed, pei_processed = self.get_data()
-        self.chart.add('Total Current Inventory',pei_not_donated)
+        self.chart.add('Total Processed Inventory',pei_not_donated)
         self.chart.add('Total Unprocessed Inventory',pei_unprocessed)
-        self.chart.add('Total Processed Inventory',pei_processed)
+        self.chart.add('Total Inventory',pei_processed)
         self.chart.add('Total Donated Inventory',pei_donated)
 
         # Return the rendered SVG
@@ -49,7 +49,7 @@ class InventoryTable():
 class ReadyToDonatePieChart():
 
     def __init__(self, **kwargs):
-        self.chart = pygal.Pie(**kwargs)
+        self.chart = pygal.Treemap(**kwargs)
 
     def get_data(self):
         '''

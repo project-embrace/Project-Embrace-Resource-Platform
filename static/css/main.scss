@@ -209,6 +209,9 @@ header{
       &:hover{
         color: $login_btn_bg;
       }
+      &.dropdown-toggle:hover{
+        color:#000!important;
+      }
     }
     .navbar-toggler{
       svg{
@@ -309,6 +312,8 @@ header{
               height: 25px;
             }
           }
+
+
           a{
             color: #fff;
             &.nav-link{
@@ -1694,12 +1699,12 @@ position: absolute; top:0; left: 0; width: 100%; height: 100%;
   font-size: 16px;
 }
 .button:hover {opacity: .8!important;}
-a {
-  color:black !important;
-}
+ a {
+   color:black !important;
+  }
 /* mouse over link */
 a:hover {
-  color: white !important;
+   color: white !important;
 }
 
 .true {
@@ -1735,13 +1740,6 @@ a:hover {
 
 
 
-// .pagination{
-//   &.page-item {
-//       &.active{background-color:#BE1E2D !important;
-//     }
-//   }
-// }
-
 #progress_bar{
   background-color:#BE1E2D !important;
 }
@@ -1765,3 +1763,43 @@ pre{
 //     color:#000!important;
 //   }
 // }
+
+footer{
+  height: auto 30px;
+  background-color: #BE1E2D;
+  color:#fff;
+  a{
+    color:#fff!important;
+  }
+  a:hover{
+    color:#000!important;
+  }
+}
+.dropdown-item:hover{
+  color:$nav_white!important;
+  background-color:#000!important;
+}
+
+.page-link{
+  background-color:#BE1E2D!important;
+  outline-color:#000!important;
+}
+.page-link:active{
+  background-color:#000!important;
+  outline-color:#000!important;
+}
+
+// .page-item:active{
+//   outline-color:#000!important;
+// }
+
+.dropdown-menu {
+  .dropdown-menu-right {
+    .show{
+      &.dropdown-item:active{
+        color:#fff!important;
+        background-color:#000!important;
+      }
+    }
+  }
+}
