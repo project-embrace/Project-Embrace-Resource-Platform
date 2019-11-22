@@ -1,0 +1,27 @@
+{% extends 'inventory/public_dash.html' %}
+{% load bootstrap4%}
+{% block body_block %}
+<h1>Project Embrace Data Policy</h1>
+
+<h5>What are you collecting?</h5>
+<li><p>We collect anonymous surveys from the recipients about the quality of life before and after they receive a donation. We don’t collect names, addresses, medical conditions, or any sort of information that could identify a specific person. </p></li>
+<br>
+<h5>Why are you collecting data?</h5>
+<li><p>At Project Embrace we collect surveys in order to track the impact we are making in the community. For example, we try to find out if we are improving the quality of life of those we donate too. </p></li>
+<br>
+<h5>How are you using the data?</h5>
+<li><p>We use this data for ourselves to track how much of an impact we are making in the areas we are visiting. </p></li>
+<br>
+<h5>What is the intended use of the data?</h5>
+<li><p>We are always trying to improve at Project Embrace and collecting these surveys helps us do that. We do this to gain attention so that more people will get involved with Project Embrace and see the good we are trying to accomplish.</p></li>
+<br>
+<h5>Are you sharing my data?</h5>
+<li><p>No, we will never share your data with anyone outside of Project Embrace. </p></li>
+
+<h4 style='color:#BE1E2D;'>Data Collection User Agreement</h4>
+<li><p>By completing the forms provided by Project Embrace, you are agreeing to Project Embrace’s User Agreement and Data Collection Policy.</p></li>
+
+{% bootstrap_button "Go Back" button_type="link" button_class="button" href="inventory:public_dash" %}
+<br>
+<br>
+{% endblock %}

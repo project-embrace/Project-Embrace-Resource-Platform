@@ -15,6 +15,7 @@ urlpatterns = [
     path('receipts/<int:pk>/',views.DonorDetail.as_view(),name='donor_detail'),
 
     path('public_dash/',views.public_dash,name='public_dash'),
+    path('public_data_policy/',views.PublicDataPolicy,name='public_data_policy'),
     path('public_outreach_request/',views.Outreach.as_view(),name='public_outreach_request'),
     path('public_input_request/',views.Input.as_view(),name='public_input_request'),
     path('public_thanks/',views.ThanksPublic,name='public_thanks'),

@@ -4,12 +4,17 @@
 {% block body_block %}
 <h1>Medical Equipment Donation Information Form</h1>
 <hr>
-<p>Please fill out this form to the best of your ability. We request this information so that we may contact you adequately. <br> If you are an <span style='color:#BE1E2D!important;'>individual</span> and not part of an organization, please type <span style='color:#BE1E2D!important;'>"Individual Donor"</span> in the <span style='color:#BE1E2D!important;'>"Organization"</span> box.</p>
-
+<p>Please fill out this form to the best of your ability. We request this information so that we may contact you adequately.
+  If you are an <span style='color:#BE1E2D!important;'>individual</span> and not part of an organization, please type
+   <span style='color:#BE1E2D!important;'>"Individual Donor"</span> in the <span style='color:#BE1E2D!important;'>"Organization"</span> box.<br>
+Curious about what we do with your data? <a href="{% url 'inventory:public_data_policy'%}">Click here!</a>
+</p>
+<br>
 <form method="post" class='table-container'>
 {% csrf_token %}
 {{ form |crispy }}
 {% bootstrap_button "Submit" button_type="submit" button_class="sideBarButton" %}
+
 </form>
 <br>
 {% endblock %}

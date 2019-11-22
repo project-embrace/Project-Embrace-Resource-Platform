@@ -390,8 +390,8 @@ class PublicDashView(TemplateView):
                             opacity='.6',
                             opacity_hover='.9',
                             show_legend=False,
-                            #legend_at_bottom = True,
-                            #legend_at_bottom_columns=3,
+                            # legend_at_bottom = True,
+                            # legend_at_bottom_columns=3,
                             title='Inventory Ready for Donation'
                             )
         context['CI2'] = cht_readytodonate.generate()
@@ -404,16 +404,15 @@ class PublicDashView(TemplateView):
                             opacity='.6',
                             opacity_hover='.9',
                             show_legend=False,
-                            #legend_at_bottom = True,
-                            #legend_at_bottom_columns=3,
+                            # legend_at_bottom = True,
+                            # legend_at_bottom_columns=3,
                             title = 'Campaign Inventory Donated',
                             )
         context['CDI2'] = cht_donated.generate()
 
         cht_input_dist = OutputFrequency(
-                            # height=250,
-                            # width=800,
-                            # explicit_size=True,
+
+                            explicit_size=True,
                             style=custom_style,
                             opacity='.6',
                             opacity_hover='.9',
@@ -425,6 +424,9 @@ class PublicDashView(TemplateView):
 
 def ThanksPublic(request):
     return render(request,'inventory/public_thanks.html')
+
+def PublicDataPolicy(request):
+    return render(request,'inventory/public_data_policy.html')
 
 class Outreach(FormView):
     template_name = 'inventory/public_outreach_request.html'

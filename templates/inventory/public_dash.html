@@ -17,7 +17,6 @@
   <script type="text/javascript" src="{% static "pygal-tooltips.js"%}"></script>
   <script type="text/javascript" src="{% static "pygal-tooltips.min.js"%}"></script>
   <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
-  <link rel="stylesheet"  href="{% static "pe.css"%}"/>
   {% block date_picker %}
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
@@ -41,6 +40,7 @@
     .select2-container--default .select2-results__option[aria-disabled=true] {
     display: none;
 }
+
   </style>
   {% block extralinks %} {% endblock %}
 </head>
@@ -60,9 +60,13 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                       <li class="nav-item-pe"><a class='nav-link' href="https://www.projectembrace.org">Back to Homepage</a></li>
+                      <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:public_data_policy' %}">Public Data Policy</a></li>
                       <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:public_dash_inventory' %}">Inventory Dashboard</a></li>
                       <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:public_input_request' %}">Donate Medical Equipment</a></li>
                       <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:public_outreach_request' %}">Request a Campaign</a></li>
+
+
+
                     </ul>
 
                   </div>
