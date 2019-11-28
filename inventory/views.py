@@ -589,7 +589,7 @@ class ReceiptView(ListView):
     context_object_name = 'donors'
     model=Donor
     def post(self, request):
-            if request.method=='POST': # form was submitted
+            if request.method == 'POST': # form was submitted
                 qs = Donor.objects.all()
                 donors = read_frame(qs)
                 donor_list = donors.id.unique().tolist()
@@ -648,7 +648,7 @@ class ReceiptView(ListView):
                         sender = 'proememails@gmail.com'
                         password = 'meohvgatpjcdrnyt'
 
-                        recipients = ['ckinkadedarling@gmail.com','connerkinkade@mac.com']
+                        recipients = ['ckinkadedarling@gmail.com']
                         message = MIMEMultipart()
                         message["Subject"] = "Project Embrace Donation Receipt EXAMPLE"
                         message["From"] = sender
@@ -663,7 +663,6 @@ class ReceiptView(ListView):
                             server.login(sender,password)
                             server.send_message(message)
                             server.close()
-
                             print('Email Sent!')
                         except:
                             print('Everything is all fucked!')

@@ -209,16 +209,18 @@ try:
     from .dev_settings import *
 except ImportError:
     pass
+
 # For Local host http://127.0.0.1:8000/
 # GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', '260552032070-vfh4keifnnnou3f5v9uj7jrk4a67t257.apps.googleusercontent.com')
 # GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'qYkKQy42MOWVuITtyO14Hnd2')
 # ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', True)
 
-GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', '811390074376-nofhojo6rvkugen6u4hotpobl2rlcsg6.apps.googleusercontent.com')
-GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', '00IWTU5F5tbaxYZPIeioDSAA')
-ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', True)
+# Was unable to make this work with Heroku, but these are the tokens required. Check googleAPI for credentials.
+GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', 'SECRETSECRET')
+GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'SECRETSECRET')
+ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', False)
 
-MARKETING_REPLY_EMAIL = 'hellow@projectembrace.com'
+MARKETING_REPLY_EMAIL = 'proememails@gmail.com'
 
 PASSWORD_RESET_TIMEOUT_DAYS = 2
 

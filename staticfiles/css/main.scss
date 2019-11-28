@@ -13,7 +13,7 @@ body {
   font-family: 'sofia-pro-soft', sans-serif;
   padding: 0;
   font-weight: 500;
-  margin: 0;
+  margin: auto 20px;
   font-size: 14px;
   background: #fff;
   @media(min-width:$large){
@@ -1796,10 +1796,18 @@ footer{
 .dropdown-menu {
   .dropdown-menu-right {
     .show{
-      &.dropdown-item:active{
-        color:#fff!important;
-        background-color:#000!important;
+        .dropdown-item:active{
+          color:$nav_white!important;
+          background-color:#BE1E2D!important;
+        }
       }
     }
+  }
+
+
+.pwd-reset{
+  color:#fff;
+  &.pwd-reset:hover{
+    color:#BE1E2D!important;
   }
 }

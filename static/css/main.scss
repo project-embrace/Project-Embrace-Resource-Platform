@@ -127,7 +127,7 @@ a{
     border: none;
     font-size: 1rem;
     font-weight: 600;
-    color: $white;
+    color: $white!important;
     width: 100%;
     outline:none;
     padding: 10px 20px;
@@ -268,6 +268,17 @@ header{
             border-bottom: 3px solid $nav_highlight;
           }
         }
+        .btn-group{
+          .show{
+            .dropdown-item{
+              color:#000!important;
+              &:hover{
+                color:$nav_white!important;
+                background-color: #000!important;
+              }
+            }
+          }
+        }
       }
 
       .open{
@@ -278,11 +289,21 @@ header{
       }
       li{
          .dropdown-toggle{
+           color:$nav_white!important;
             img{
               width: 25px;
               height: 25px;
             }
+            &:hover{
+              color:darken($text_color,5%) !important;
+              border-bottom: 3px solid $nav_highlight;
+            }
+            &.active{
+              color:darken($text_color,5%) !important;
+              border-bottom: 3px solid $nav_highlight;
+            }
           }
+
         .dropdown-menu{
             padding:0;
             a{
@@ -323,6 +344,10 @@ header{
             &:hover{
             color:darken($nav_highlight,5%) !important;
             border-bottom: 3px solid $nav_highlight;
+          }
+          &.dropdown-item:hover{
+            color:$nav_white!important;
+            background-color: #000!important;
           }
           }
         }
@@ -1796,10 +1821,27 @@ footer{
 .dropdown-menu {
   .dropdown-menu-right {
     .show{
-      &.dropdown-item:active{
-        color:#fff!important;
-        background-color:#000!important;
+        .dropdown-item:active{
+          color:$nav_white!important;
+          background-color:#BE1E2D!important;
+        }
       }
     }
   }
+
+
+.pwd-reset{
+  color:#fff;
+  &.pwd-reset:hover{
+    color:#BE1E2D!important;
+  }
 }
+
+.btn-group{
+  .btn &.dropdown-toggle{
+  color:$nav_white!important;
+  &:hover{
+    color:#000!important;
+   }
+  }
+ }
