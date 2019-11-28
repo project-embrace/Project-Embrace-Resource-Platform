@@ -209,12 +209,16 @@ try:
     from .dev_settings import *
 except ImportError:
     pass
+# For Local host http://127.0.0.1:8000/
+# GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', '260552032070-vfh4keifnnnou3f5v9uj7jrk4a67t257.apps.googleusercontent.com')
+# GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'qYkKQy42MOWVuITtyO14Hnd2')
+# ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', True)
 
-GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', '260552032070-vfh4keifnnnou3f5v9uj7jrk4a67t257.apps.googleusercontent.com')
-GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'qYkKQy42MOWVuITtyO14Hnd2')
+GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', '811390074376-nofhojo6rvkugen6u4hotpobl2rlcsg6.apps.googleusercontent.com')
+GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', '00IWTU5F5tbaxYZPIeioDSAA')
 ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', True)
 
-MARKETING_REPLY_EMAIL = 'djangocrm@micropyramid.com'
+MARKETING_REPLY_EMAIL = 'hellow@projectembrace.com'
 
 PASSWORD_RESET_TIMEOUT_DAYS = 2
 
@@ -319,6 +323,7 @@ EMAIL_HOST_PASSWORD = 'meohvgatpjcdrnyt'
 PASSWORD_RESET_MAIL_FROM_USER = os.getenv('PASSWORD_RESET_MAIL_FROM_USER', 'proememails@gmail.com')
 
 # Uncomment this to diagnose issues in a non-debug environment
+# Be prepared, this system has a fuckload of logging.
 # LOGGING = {
 #     'version': 1,
 #     'disable_existing_loggers': False,

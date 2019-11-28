@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
   <script type="text/javascript" src="{% static "pygal-tooltips.js"%}"></script>
   <script type="text/javascript" src="{% static "pygal-tooltips.min.js"%}"></script>
-  <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
+  <link rel="stylesheet"  href="{% static "pe.css"%}"/>
   {% block date_picker %}
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
@@ -32,16 +32,6 @@
   <link href="{% static 'css/main.scss' %}" type="text/x-scss" rel="stylesheet">
   <link href="{% static 'css/mention.scss' %}" type="text/x-scss" rel="stylesheet">
   {% endcompress %}
-  <style>
-    .card-body {
-      padding:0;
-      margin:0
-    }
-    .select2-container--default .select2-results__option[aria-disabled=true] {
-    display: none;
-}
-
-  </style>
   {% block extralinks %} {% endblock %}
 </head>
 <body class='main_body_bg_color'>
@@ -64,11 +54,7 @@
                       <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:public_dash_inventory' %}">Inventory Dashboard</a></li>
                       <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:public_input_request' %}">Donate Medical Equipment</a></li>
                       <li class="nav-item-pe"><a class='nav-link' href="{% url 'inventory:public_outreach_request' %}">Request a Campaign</a></li>
-
-
-
                     </ul>
-
                   </div>
                 </nav>
               </header>
