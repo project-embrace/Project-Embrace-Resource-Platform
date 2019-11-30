@@ -62,3 +62,5 @@ redis==3.3.8
 django-redis==4.10.0
 django-smtp-ssl==1.0
 django-redis-cache==2.1.0
+
+django-celery-results==1.1.2
