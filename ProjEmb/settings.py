@@ -1,5 +1,6 @@
 import os
 import django_heroku
+import redis
 from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -170,8 +171,9 @@ COMPRESS_OFFLINE_CONTEXT = {
 DEFAULT_FROM_EMAIL = 'proememails@gmail.com'
 
 # celery Tasks
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+redis_url = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
+CELERY_BROKER_URL = redis_url
+CELERY_RESULT_BACKEND = redis_url
 
 # os.environ.get('REDIS_URL')
 
