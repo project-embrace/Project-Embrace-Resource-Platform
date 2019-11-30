@@ -100,7 +100,7 @@ def invoices_list(request):
         context['invoices'] = invoices.distinct().order_by('id')
         today = datetime.today().date()
         context['today'] = today
-        return render(request, 'invoices_list.html', context)
+        return render(request, 'invoices:invoices_list.html', context)
 
 
 @login_required

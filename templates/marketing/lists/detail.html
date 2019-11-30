@@ -17,7 +17,7 @@
   <div class="row marl">
     <div class="col-lg-12 text-right">
       <span class="d-inline">
-        <a href="{% url 'marketing:contact_list_new' %}" class="primary_btn">Add New Contact List</a>
+        <a href="{% url 'marketing:contact_list_new' %}" class="button">Add New Contact List</a>
       </span>
     </div>
   </div>
@@ -101,11 +101,11 @@
                     <span class="total_count float-left">Contacts - {% if show_pageitems %}
                       {% show_pageitems %}{% else %}{{contacts_list|length}}{% endif %}</span>
                     <span class="filter_toggle ">
-                      <a href="#" class="primary_btn"><i class="fas fa-filter"></i></a>
+                      <a href="#" class="button"><i class="fas fa-filter"></i></a>
                     </span>
-                    <button href="#" class="primary_btn" id="delete_all" style="background:black; color: white;">Delete
+                    <button href="#" class="button" id="delete_all" style="background:black; color: white;">Delete
                       Selected</button>
-                    <button href="#" class="primary_btn" id="delete_all_complete"
+                    <button href="#" class="button" id="delete_all_complete"
                       style="background:black; color: white;">Delete All</button>
                   </div>
                   <div class="table-responsive table-bordered ">
@@ -177,11 +177,11 @@
                   <div class="panel-heading-list card-title text-right">
                     <span class="total_count float-left">Bounced Contacts - {{bounced_contacts_list_count}}</span>
                     <span class="filter_toggle ">
-                      <a href="#" class="primary_btn"><i class="fas fa-filter"></i></a>
+                      <a href="#" class="button"><i class="fas fa-filter"></i></a>
                     </span>
-                    <button href="#" class="primary_btn" id="delete_all_bounced"
+                    <button href="#" class="button" id="delete_all_bounced"
                       style="background:black; color: white;">Delete Selected</button>
-                    <button href="#" class="primary_btn" id="delete_all_bounced_complete"
+                    <button href="#" class="button" id="delete_all_bounced_complete"
                       style="background:black; color: white;">Delete All</button>
                   </div>
                   <div class="table-responsive table-bordered ">
@@ -258,7 +258,7 @@
                   <div class="panel-heading-list card-title text-right">
                     <span class="total_count float-left">Failed Contact List</span>
                     <span class="filter_toggle ">
-                      <a href="#" class="primary_btn"><i class="fas fa-filter"></i></a>
+                      <a href="#" class="button"><i class="fas fa-filter"></i></a>
                     </span>
                   </div>
                   <div class="table-responsive table-bordered ">
@@ -278,11 +278,11 @@
                     <span class="total_count float-left">Contacts - {% if show_pageitems %}
                       {% show_pageitems %}{% else %}{{duplicate_contacts|length}}{% endif %}</span>
                     <span class="filter_toggle ">
-                      <a href="#" class="primary_btn"><i class="fas fa-filter"></i></a>
+                      <a href="#" class="button"><i class="fas fa-filter"></i></a>
                     </span>
-                    <button href="#" class="primary_btn" id="delete_all_duplicate" style="background:black; color: white;">Delete
+                    <button href="#" class="button" id="delete_all_duplicate" style="background:black; color: white;">Delete
                       Selected</button>
-                    <button href="#" class="primary_btn" id="delete_all_complete_duplicate"
+                    <button href="#" class="button" id="delete_all_complete_duplicate"
                       style="background:black; color: white;">Delete All</button>
                   </div>
                   <div class="table-responsive table-bordered ">

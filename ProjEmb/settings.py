@@ -173,24 +173,7 @@ DEFAULT_FROM_EMAIL = 'proememails@gmail.com'
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
-CELERY_BEAT_SCHEDULE = {
-    "runs-campaign-for-every-thiry-minutes": {
-        "task": "marketing.tasks.run_all_campaigns",
-        "schedule": crontab(minute=30, hour='*')
-    },
-    "runs-campaign-for-every-five-minutes": {
-        "task": "marketing.tasks.list_all_bounces_unsubscribes",
-        "schedule": crontab(minute='*/5')
-    },
-    "runs-scheduled-campaigns-for-every-one-hour": {
-        "task": "marketing.tasks.send_scheduled_campaigns",
-        "schedule": crontab(hour='*/1')
-    },
-    "runs-scheduled-emails-for-accounts-every-one-minute": {
-        "task": "accounts.tasks.send_scheduled_emails",
-        "schedule": crontab(minute='*/1')
-    }
-}
+# os.environ.get('REDIS_URL')
 
 MAIL_SENDER = 'GOOGLE'
 INACTIVE_MAIL_SENDER = 'MANDRILL'
@@ -306,15 +289,6 @@ CACHES = {
     }
 }
 
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://127.0.0.1:6379",
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-#         }
-#     }
-# }
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

@@ -523,7 +523,7 @@ CURRENCY_CODES = (
     ('TZS', _('TZS, Shilling')),
     ('UAH', _('UAH, Hryvnia')),
     ('UGX', _('UGX, Shilling')),
-    ('USD', _('$, Dollar')),
+    ('USD', _('USD, Dollar')),
     ('UYU', _('UYU, Peso')),
     ('UZS', _('UZS, Som')),
     ('VEF', _('VEF, Bolivar')),

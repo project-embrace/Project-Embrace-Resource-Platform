@@ -13,6 +13,7 @@
   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.typekit.net/smg7one.css">
+  <link rel="shortcut icon" type="image/png" href="{% static 'pe_invert.jpg' %}"/>
   {% block date_picker %}
   <link rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" />
@@ -48,7 +49,12 @@
     {% block header %}
     <header>
       <nav class="navbar navbar-expand-lg" style="color:white;" >
-        <div class="dropdown">
+        <h1 class="navbar-brand">Relationship Management</h1>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+        <!-- <div class="dropdown">
 
             {% if request.user.is_superuser or request.user.role == 'ADMIN' %}
             <a class="dropdown-toggle navbar-brand" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
@@ -64,7 +70,7 @@
             {% elif request.user.has_sales_access and not request.user.has_marketing_access %}
             <a class="navbar-brand" href="{% url 'common:home' %}" role="button" id="dropdownMenuLink" data-toggle=""
             aria-haspopup="true" aria-expanded="false" style="color:white;">
-            Django CRM
+            Relationship Management
             </a>
             {% elif not request.user.has_sales_access and request.user.has_marketing_access %}
             <a class="navbar-brand" href="{% url 'marketing:dashboard' %}" role="button" id="dropdownMenuLink" data-toggle=""
@@ -81,7 +87,7 @@
             Django CRM
           </a> -->
 
-          <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
+          <!-- <div class="dropdown-menu mt-2" aria-labelledby="dropdownMenuLink">
             {% if user.is_superuser or user.role == 'ADMIN' %}
             <a class="dropdown-item" href="/">Outreach</a>
             <a class="dropdown-item" href="{% url 'marketing:dashboard' %}">Marketing</a>
@@ -99,8 +105,8 @@
             {% endif %}
             <!-- <a class="dropdown-item" href="/">Sales</a>
             <a class="dropdown-item" href="{% url 'marketing:dashboard' %}">Marketing</a> -->
-          </div>
-        </div>
+          <!-- </div>
+        </div> -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fas fa-bars"></i>
@@ -191,8 +197,8 @@
       }
       // console.log(marketing_word.substring(0,7) === 'contact');
       else if (marketing_word.substring(0, 7) === "contact") {
-        $("#contact").css({ 'border-bottom': '3px solid #099CBE,' });
-        $(".contact_class").css('border-bottom', '3px solid #099CBE');
+        $("#contact").css({ 'border-bottom': '3px solid #000000,' });
+        $(".contact_class").css('border-bottom', '3px solid #000000');
         marketing_word = window.location.pathname.split('/')[2]
         // console.log(marketing_word)
         // console.log(marketing_word == 'contact-list')

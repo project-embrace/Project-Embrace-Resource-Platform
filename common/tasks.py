@@ -24,7 +24,6 @@ def send_email_to_new_user(user_email, created_by, domain='demo.django-crm.io', 
     if user_obj:
         context = {}
         context["user_email"] = user_email
-        context["created_by"] = created_by
         context["url"] = protocol + '://' + domain
         context["uid"] = urlsafe_base64_encode(force_bytes(user_obj.pk)),
         context["token"] = account_activation_token.make_token(user_obj)

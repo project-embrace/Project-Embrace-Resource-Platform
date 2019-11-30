@@ -166,10 +166,7 @@ a{
   line-height: 1.5rem;
   bordeR: none;
   cursor: pointer;
-  &:hover{
-    background: darken($login_btn_bg, 10%);
-    color: #fff;
-  }
+  &:hover{opacity: .8}
   @media(min-width:$large){
     font-size:1rem;
     svg{
@@ -1671,18 +1668,54 @@ pre{
   background-color: #000;
   border-color: #ffc107;
   color: #fff!important;
+  .btn-danger:hover {opacity: .8}
+  @media(min-width:$large){
+    font-size:1rem;
+    svg{
+      position: relative;
+      top: 0px;
+    }
+  }
+  svg{
+    display: inline-block;
+    margin-right: 5px;
+  }
 }
 
 .btn-success{
   color: #fff!important;
   background-color: #be1e2d;
   border-color: #099cbe;
+  .btn-success:hover {opacity: .8}
+  @media(min-width:$large){
+    font-size:1rem;
+    svg{
+      position: relative;
+      top: 0px;
+    }
+  }
+  svg{
+    display: inline-block;
+    margin-right: 5px;
+  }
 }
 
 .btn-info{
     color: #fff!important;
     background: #28a745;
     border-color: #35a745;
+    .btn-info:hover {opacity: .8}
+    @media(min-width:$large){
+      font-size:1rem;
+      svg{
+        position: relative;
+        top: 0px;
+      }
+    }
+    svg{
+      display: inline-block;
+      margin-right: 5px;
+    }
 }
 // span{
 //   color: #fff!important;
@@ -1714,16 +1747,6 @@ position: relative; padding-bottom: 75%; height: 0; overflow: hidden;
 position: absolute; top:0; left: 0; width: 100%; height: 100%;
 }
 
-.button {
-  background-color:#BE1E2D;
-  border-radius: 3px;
-  color: white;
-  padding: 5px 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-}
-.button:hover {opacity: .8!important;}
  a {
    color:black !important;
   }
@@ -1746,11 +1769,33 @@ a:hover {
   padding: 5px 20px;
   margin:0px auto !important;
   min-width: 50vh !important;
+  @media(min-width:$large){
+    font-size:1rem;
+    svg{
+      position: relative;
+      top: 0px;
+    }
+  }
+  svg{
+    display: inline-block;
+    margin-right: 5px;
+  }
 }
 #button{
     border-radius: 3px;
     color:#FFFFFF;
     background-color:#BE1E2D;
+    @media(min-width:$large){
+      font-size:1rem;
+      svg{
+        position: relative;
+        top: 0px;
+      }
+    }
+    svg{
+      display: inline-block;
+      margin-right: 5px;
+    }
 }
 
 .button {
@@ -1761,6 +1806,17 @@ a:hover {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
+  @media(min-width:$large){
+    font-size:1rem;
+    svg{
+      position: relative;
+      top: 0px;
+    }
+  }
+  svg{
+    display: inline-block;
+    margin-right: 5px;
+  }
 }
 
 
@@ -1800,23 +1856,23 @@ footer{
     color:#000!important;
   }
 }
+
 .dropdown-item:hover{
   color:$nav_white!important;
   background-color:#000!important;
 }
 
 .page-link{
+  color:$nav_white!important;
   background-color:#BE1E2D!important;
   outline-color:#000!important;
+  &:hover {opacity: .8!important;}
+  .active{
+    color:$nav_white!important;
+    background-color:#BE1E2D!important;
+    outline-color:#000!important;
+  }
 }
-.page-link:active{
-  background-color:#000!important;
-  outline-color:#000!important;
-}
-
-// .page-item:active{
-//   outline-color:#000!important;
-// }
 
 .dropdown-menu {
   .dropdown-menu-right {
@@ -1845,3 +1901,39 @@ footer{
    }
   }
  }
+
+ .pwd-reset-done{
+   color:#BE1E2D!important;
+   &.pwd-reset-done:hover{
+     text-decoration: underline;
+     color:#BE1E2D!important;
+   }
+ }
+
+.table{
+  tbody{
+    td{
+      a{
+        background-color:#BE1E2D;
+        border-radius: 3px;
+        color: white !important;
+        padding: 2.5px 10px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        &:hover {opacity: .8!important;}
+        @media(min-width:$large){
+          font-size:1rem;
+          svg{
+            position: relative;
+            top: 0px;
+          }
+        }
+        svg{
+          display: inline-block;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

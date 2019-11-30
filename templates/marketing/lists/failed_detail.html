@@ -12,9 +12,9 @@
             <div class="card-title text-right">
               <span class="float-left">{{ contact_list.name }} -  Failed: {{ failed_contacts_list|length }}</span>
               <!-- {% if contact_list.contacts.all|length > 0 %}
-                <a href="{% url 'marketing:contact_list_detail' contact_list.id %}" class="primary_btn">Contacts</a>
+                <a href="{% url 'marketing:contact_list_detail' contact_list.id %}" class="button">Contacts</a>
               {% endif %} -->
-              <a href="{% url 'marketing:failed_contact_list_download_delete' contact_list.id %}" class="primary_btn">Download & Delete</a>
+              <a href="{% url 'marketing:failed_contact_list_download_delete' contact_list.id %}" class="button">Download & Delete</a>
                 <!-- <div class="" style="margin-top: 2.5em;"></div> -->
             </div>
             <div class="table-responsive table-bordered ">

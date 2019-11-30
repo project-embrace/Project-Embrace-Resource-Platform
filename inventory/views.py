@@ -185,7 +185,7 @@ class DonorCreateView(CreateView):
     model=Donor
 
 class DonorUpdateView(UpdateView):
-    fields = ('name','email')
+    fields = ('name','email','sent_a_receipt')
     model = Donor
 
 class DonorDeleteView(DeleteView):
@@ -598,25 +598,26 @@ class ReceiptView(ListView):
                     x_donor_id=x_donor.iloc[0]['id'].copy()
                     x_donor_status=x_donor.iloc[0]['sent_a_receipt'].copy()
                     if x_donor_status == False:
-                        # Updates the database record noting a receipt has been sent to the donor
-                        #update_donor_field = Donor.objects.get(id=x_donor_id)
-                        #update_donor_field.sent_a_receipt = True
-                        #update_donor_field.save()
+                         # Updates the database record noting a receipt has been sent to the donor
+                         #update_donor_field = Donor.objects.get(id=x_donor_id)
+                         #update_donor_field.sent_a_receipt = True
+                         #update_donor_field.save()
+                    #
+                    #     # Gathers email for usage below
+                    #     donor_email = 'connerkinkade@mac.com'
+                    #     #x_donor[['email']]
+                    #
+                    #     # Gathers device data points related to the donor
+                         device_match = Q(**{'donor_id': donor})
+                         devices_qs = Device.objects.filter(device_match)
+                         devices = read_frame(devices_qs)
+                         donor_name = devices.iloc[0]['donor']
+                         donor_group = pd.DataFrame(devices.groupby('type').size())
 
-                        # Gathers email for usage below
-                        donor_email = 'connerkinkade@mac.com'
-                        #x_donor[['email']]
+                         donor_group = donor_group.reset_index()
+                         donor_group = donor_group.rename(columns={'type':'Type of Device',0:'Number of Devices'})
 
-                        # Gathers device data points related to the donor
-                        device_match = Q(**{'donor_id': donor})
-                        devices_qs = Device.objects.filter(device_match)
-                        devices = read_frame(devices_qs)
-                        donor_name = devices.iloc[0]['donor']
-                        donor_group = pd.DataFrame(devices.groupby('type').size())
-
-                        donor_group = donor_group.reset_index()
-                        donor_group = donor_group.rename(columns={'type':'Type of Device',0:'Number of Devices'})
-                        html_template = """\
+                         html_template = """\
                                     <html>
                                     <head></head>
                                     <body>
@@ -644,32 +645,28 @@ class ReceiptView(ListView):
                                     </html>
                                     """.format(donor_name,donor_name,donor_group.to_html(index=False).replace('border="1"','border="0"'))
 
-                        port = 465
-                        sender = 'proememails@gmail.com'
-                        password = 'meohvgatpjcdrnyt'
+                         port = 465
+                         sender = 'proememails@gmail.com'
+                         password = 'meohvgatpjcdrnyt'
 
-                        recipients = ['ckinkadedarling@gmail.com']
-                        message = MIMEMultipart()
-                        message["Subject"] = "Project Embrace Donation Receipt EXAMPLE"
-                        message["From"] = sender
-                        message["To"] = ", ".join(recipients)
-                        message_guts = html_template
-                        guts1 = MIMEText(message_guts, "html")
-                        message.attach(guts1)
+                         recipients = ['ckinkadedarling@gmail.com']
+                         message = MIMEMultipart()
+                         message["Subject"] = "Project Embrace Donation Receipt EXAMPLE"
+                         message["From"] = sender
+                         message["To"] = ", ".join(recipients)
+                         message_guts = html_template
+                         guts1 = MIMEText(message_guts, "html")
+                         message.attach(guts1)
 
-                        try:
+                         try:
                             server = smtplib.SMTP_SSL("smtp.gmail.com", port)
                             server.ehlo()
                             server.login(sender,password)
                             server.send_message(message)
                             server.close()
                             print('Email Sent!')
-                        except:
+                         except:
                             print('Everything is all fucked!')
-                    else: # no data submitted
-                        no_donors = 'Some donors already received a receipt.'
-                        context = {'alternate_output':no_donors}
-                        return render(request, 'inventory/receipts.html', context)
 
                 updated_field = 'Donors were sent a receipt'
                 context = {'output':updated_field}

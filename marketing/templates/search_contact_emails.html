@@ -9,7 +9,7 @@
   <div class="row marl">
     <div class="col-lg-12 text-right">
       <span class="d-inline">
-        <a href="{% url 'marketing:contact_list_new' %}" class="primary_btn">Add New Contact List</a>
+        <a href="{% url 'marketing:contact_list_new' %}" class="button">Add New Contact List</a>
       </span>
     </div>
   </div>
@@ -113,11 +113,11 @@
                     <span class="total_count float-left">Contacts - {% if show_pageitems %}
                       {% show_pageitems %}{% else %}{{contacts|length}}{% endif %}</span>
                     <span class="filter_toggle ">
-                      <a href="#" class="primary_btn"><i class="fas fa-filter"></i></a>
+                      <a href="#" class="button"><i class="fas fa-filter"></i></a>
                     </span>
-                    <!-- <button href="#" class="primary_btn" id="delete_all" style="background:black; color: white;">Delete
+                    <!-- <button href="#" class="button" id="delete_all" style="background:black; color: white;">Delete
                       Selected</button>
-                    <button href="#" class="primary_btn" id="delete_all_complete"
+                    <button href="#" class="button" id="delete_all_complete"
                       style="background:black; color: white;">Delete All</button> -->
                   </div>
                   <div class="table-responsive table-bordered ">
@@ -192,11 +192,11 @@
                   <div class="panel-heading-list card-title text-right">
                     <span class="total_count float-left">Bounced Contacts - {{bounced_contacts|length}}</span>
                     <span class="filter_toggle ">
-                      <a href="#" class="primary_btn"><i class="fas fa-filter"></i></a>
+                      <a href="#" class="button"><i class="fas fa-filter"></i></a>
                     </span>
-                    <!-- <button href="#" class="primary_btn" id="delete_all_bounced"
+                    <!-- <button href="#" class="button" id="delete_all_bounced"
                       style="background:black; color: white;">Delete Selected</button>
-                    <button href="#" class="primary_btn" id="delete_all_bounced_complete"
+                    <button href="#" class="button" id="delete_all_bounced_complete"
                       style="background:black; color: white;">Delete All</button> -->
                   </div>
                   <div class="table-responsive table-bordered ">
@@ -270,11 +270,11 @@
                   <div class="panel-heading-list card-title text-right">
                     <span class="total_count float-left">Failed Contacts - {{failed_contacts|length}}</span>
                     <span class="filter_toggle ">
-                      <a href="#" class="primary_btn"><i class="fas fa-filter"></i></a>
+                      <a href="#" class="button"><i class="fas fa-filter"></i></a>
                     </span>
-                    <!-- <button href="#" class="primary_btn" id="delete_all_bounced"
+                    <!-- <button href="#" class="button" id="delete_all_bounced"
                       style="background:black; color: white;">Delete Selected</button>
-                    <button href="#" class="primary_btn" id="delete_all_bounced_complete"
+                    <button href="#" class="button" id="delete_all_bounced_complete"
                       style="background:black; color: white;">Delete All</button> -->
                   </div>
                   <div class="table-responsive table-bordered ">
