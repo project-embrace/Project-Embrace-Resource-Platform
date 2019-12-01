@@ -7,7 +7,6 @@
   <div class="col-md-7">
     <div class="row marl search-row">
       <form id="filter-form" method="get">
-        {% csrf_token %}
         <div class="form-group col-md-8 col-sm-8">
           <div class="input-group">
             <input placeholder="Search Calls" type="text" class="form-control text-filter"
@@ -272,7 +271,6 @@
       </div>
       <!-- CREATE CALL MODEL -->
       <form id="model-form" method="post">
-        {% csrf_token %}
         <div class="modal fade" id="call-create-model" role="dialog" data-keyboard="false"
           data-backdrop="static">
           <div class="modal-dialog modal-lg">

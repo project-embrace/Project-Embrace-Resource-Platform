@@ -8,9 +8,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG_STATUS', True)
+DEBUG = os.getenv('DEBUG_STATUS', False)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['pe-resource-platform.herokuapp.com']
 # Application definition
 LOGIN_URL = '/login/'
 
@@ -179,7 +179,6 @@ DEFAULT_FROM_EMAIL = 'proememails@gmail.com'
 # For Production
 CELERY_BROKER_URL = os.environ['REDIS_URL']
 CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
-
 
 MAIL_SENDER = 'GOOGLE'
 INACTIVE_MAIL_SENDER = 'MANDRILL'
