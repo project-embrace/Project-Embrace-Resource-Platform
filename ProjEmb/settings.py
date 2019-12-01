@@ -171,12 +171,15 @@ COMPRESS_OFFLINE_CONTEXT = {
 
 DEFAULT_FROM_EMAIL = 'proememails@gmail.com'
 
-# celery Tasks
-# redis_url = os.getenv('REDISTOGO_URL', 'redis://localhost:6379')
-CELERY_BROKER_URL = os.environ['REDIS_URL']
-CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+# Celery
+# For Development and local Redis server
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
-# os.environ.get('REDIS_URL')
+# For Production
+# CELERY_BROKER_URL = os.environ['REDIS_URL']
+# CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+
 
 MAIL_SENDER = 'GOOGLE'
 INACTIVE_MAIL_SENDER = 'MANDRILL'
