@@ -145,11 +145,12 @@ AUTH_USER_MODEL = 'common.User'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 # STATICFILES_DIRS = (BASE_DIR + '/static',)
 COMPRESS_ROOT = BASE_DIR + '/static/'
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # AWS was not utilized due to costs. If you would like to utilize media files and profile pictures you will need to
 # implement AWS file storage and route the application to the AWS AWS_BUCKET_NAME
