@@ -56,9 +56,9 @@
                     Sales and Marketing
                     {% else %}
                     {% if user_obj.has_sales_access and user_obj.has_marketing_access %}
-                    Sales and Marketing
+                    Outreach
                     {% elif user_obj.has_sales_access and not user_obj.has_marketing_access %}
-                    Sales
+                    Outreach
                     {% elif not user_obj.has_sales_access and user_obj.has_marketing_access %}
                     Marketing
                     {% else %}
