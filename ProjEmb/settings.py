@@ -2,6 +2,10 @@ import os
 import django_heroku
 import redis
 from celery.schedules import crontab
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
+STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # DISCLAIMER: If you are to locally develop this codebase follow these instructions:
 # 1. Set debug = True
@@ -9,11 +13,6 @@ from celery.schedules import crontab
 # 3. Don't set compress_offline = True
 # 4. run python manage.py collectstatic if you altered static files
 # @@@@--- This is essential for the production site. ---@@@
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
-STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG_STATUS', False)
@@ -123,7 +122,8 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 django_heroku.settings(locals())
 
-COMPRESS_OFFLINE = False # don't turn this to True it breaks the front end
+# don't turn this to True it breaks the front end
+COMPRESS_OFFLINE = False
 
 # SESSION_EXPIRE_SECONDS = 600  # 600 seconds = 10 minutes
 # SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
@@ -144,7 +144,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
+# STATICFILES_DIRS = (BASE_DIR + '/static',)
 COMPRESS_ROOT = BASE_DIR + '/static/'
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
 # AWS was not utilized due to costs. If you would like to utilize media files and profile pictures you will need to
 # implement AWS file storage and route the application to the AWS AWS_BUCKET_NAME
 # elif STORAGE_TYPE == 's3-storage':
@@ -183,11 +187,6 @@ COMPRESS_ROOT = BASE_DIR + '/static/'
 #     AWS_ENABLED = True
 #     AWS_S3_SECURE_URLS = True
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-
-COMPRESS_ROOT = BASE_DIR + '/static/'
-
 COMPRESS_OFFLINE_CONTEXT = {
     'STATIC_URL': 'STATIC_URL',
 }
@@ -219,12 +218,12 @@ DEFAULT_FROM_EMAIL = 'proememails@gmail.com'
 
 # Celery
 # For Development and local Redis server
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 # For Production
-# CELERY_BROKER_URL = os.environ['REDIS_URL']
-# CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+CELERY_BROKER_URL = os.environ['REDIS_URL']
+CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 # Load the local settings file if it exists
 if os.path.isfile('ProjEmb/local_settings.py'):
