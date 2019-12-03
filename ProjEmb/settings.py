@@ -121,7 +121,7 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 django_heroku.settings(locals())
 
-COMPRESS_OFFLINE = True # don't turn this to True it breaks the front end
+COMPRESS_OFFLINE = False # don't turn this to True it breaks the front end
 
 # SESSION_EXPIRE_SECONDS = 600  # 600 seconds = 10 minutes
 # SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
