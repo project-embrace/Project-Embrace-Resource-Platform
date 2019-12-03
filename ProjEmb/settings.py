@@ -2,6 +2,13 @@ import os
 import django_heroku
 import redis
 from celery.schedules import crontab
+
+# DISCLAIMER: If you are to locally develop this codebase follow these instructions:
+# 1. Set debug = True
+# 2. Set celery_broker and celery_result to the development options,
+# 3. Don't set compress_offline = True
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')

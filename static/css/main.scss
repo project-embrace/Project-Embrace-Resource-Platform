@@ -1909,6 +1909,11 @@ footer{
  }
 
 .table{
+  thead{
+    @media(min-width: $mob_min) and (max-width: $smob_max){
+      font-size:6px;
+    }
+  }
   tbody{
     td{
       @media(min-width: $mob_min) and (max-width: $smob_max){
