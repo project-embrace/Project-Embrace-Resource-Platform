@@ -1801,6 +1801,7 @@ a:hover {
   text-align: center;
   text-decoration: none;
   font-size: 16px;
+  white-space: normal;
   @media(min-width:$large){
     font-size:1rem;
     svg{
@@ -1945,5 +1946,11 @@ footer{
         }
       }
     }
+  }
+}
+
+.pe_pag{
+  @media(min-width: $mob_min) and (max-width: $smob_max){
+    font-size:8px;
   }
 }

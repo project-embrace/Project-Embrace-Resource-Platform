@@ -6,11 +6,13 @@
 {% block body_block %}
 <h1>Donors</h1>
 <hr>
-<table>
-  <tr>
-    <td><a class="button" href="{% url 'inventory:donor_create'%}">Create Donor</a></td>
-  </tr>
-</table>
+<div class="row marl">
+  <div class="col-lg-12 text-right">
+    <span class="d-inline">
+      <a class='button' href="{% url 'inventory:donor_create'%}">Create Donor</a>
+    </span>
+  </div>
+</div>
 {% if filter %}
 <div class="filter_row list_filter_row row marl">
   <div class="col-md-12">
@@ -51,6 +53,9 @@
 </div>
 </div>
   {% render_table table 'inventory/table.html' %}
+
+<hr>
+<br>
 {% endblock %}
 
 {% block js_block %}
