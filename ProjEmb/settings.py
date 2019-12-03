@@ -19,6 +19,15 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG_STATUS', False)
 
+# Celery
+# For Development and local Redis server
+# CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+# For Production
+CELERY_BROKER_URL = os.environ['REDIS_URL']
+CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+
 ALLOWED_HOSTS = ['pe-resource-platform.herokuapp.com']
 # Application definition
 LOGIN_URL = '/login/'
@@ -63,6 +72,7 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django_session_timeout.middleware.SessionTimeoutMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -70,7 +80,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'ProjEmb.urls'
@@ -145,11 +154,12 @@ AUTH_USER_MODEL = 'common.User'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 # STATICFILES_DIRS = (BASE_DIR + '/static',)
 COMPRESS_ROOT = BASE_DIR + '/static/'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # AWS was not utilized due to costs. If you would like to utilize media files and profile pictures you will need to
 # implement AWS file storage and route the application to the AWS AWS_BUCKET_NAME
@@ -218,14 +228,6 @@ COMPRESS_OFFLINE_CONTEXT = {
 
 DEFAULT_FROM_EMAIL = 'proememails@gmail.com'
 
-# Celery
-# For Development and local Redis server
-# CELERY_BROKER_URL = 'redis://localhost:6379'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-
-# For Production
-CELERY_BROKER_URL = os.environ['REDIS_URL']
-CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 # Load the local settings file if it exists
 if os.path.isfile('ProjEmb/local_settings.py'):
