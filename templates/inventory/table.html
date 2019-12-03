@@ -2,8 +2,8 @@
 {% load i18n %}
 {% load bootstrap4 %}
 {% load staticfiles %}
+<div class="table-container table-responsive">
 {% block table-wrapper %}
-<div class="table-container">
   {% block table %}
       <table {% render_attrs table.attrs class="table" %}>
           {% block table.thead %}
@@ -95,5 +95,5 @@
         </nav>
         {% endif %}
     {% endblock pagination %}
-</div>
 {% endblock table-wrapper %}
+</div>

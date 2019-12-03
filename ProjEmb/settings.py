@@ -127,54 +127,54 @@ EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 
 AUTH_USER_MODEL = 'common.User'
 
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
+
+# STORAGE_TYPE = os.getenv('STORAGE_TYPE', 'normal')
+
+# if STORAGE_TYPE == 'normal':
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
-
-STORAGE_TYPE = os.getenv('STORAGE_TYPE', 'normal')
-
-if STORAGE_TYPE == 'normal':
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    MEDIA_URL = '/media/'
-
-    STATIC_URL = '/static/'
-    STATICFILES_DIRS = (BASE_DIR + '/static',)
-    COMPRESS_ROOT = BASE_DIR + '/static/'
+# STATICFILES_DIRS = (BASE_DIR + '/static',)
+COMPRESS_ROOT = BASE_DIR + '/static/'
 # AWS was not utilized due to costs. If you would like to utilize media files and profile pictures you will need to
 # implement AWS file storage and route the application to the AWS AWS_BUCKET_NAME
-elif STORAGE_TYPE == 's3-storage':
-
-    AWS_STORAGE_BUCKET_NAME = AWS_BUCKET_NAME = os.getenv('AWSBUCKETNAME', '')
-    AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', '')
-    AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', '')
-    S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.amazonaws.com'
-
-    AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',
-    }
-
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    DEFAULT_S3_PATH = "media"
-    STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    STATIC_S3_PATH = "static"
-    COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-    COMPRESS_CSS_FILTERS = [
-        'compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.CSSMinFilter']
-    COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.JSMinFilter']
-    COMPRESS_REBUILD_TIMEOUT = 5400
-
-    MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
-    MEDIA_URL = '//%s/%s/' % (S3_DOMAIN, DEFAULT_S3_PATH)
-    STATIC_ROOT = "/%s/" % STATIC_S3_PATH
-    STATIC_URL = 'https://%s/' % (S3_DOMAIN)
-    ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-
-    CORS_ORIGIN_ALLOW_ALL = True
-
-    AWS_IS_GZIPPED = True
-    AWS_ENABLED = True
-    AWS_S3_SECURE_URLS = True
+# elif STORAGE_TYPE == 's3-storage':
+#
+#     AWS_STORAGE_BUCKET_NAME = AWS_BUCKET_NAME = os.getenv('AWSBUCKETNAME', '')
+#     AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', '')
+#     AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', '')
+#     S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.amazonaws.com'
+#
+#     AWS_S3_OBJECT_PARAMETERS = {
+#         'CacheControl': 'max-age=86400',
+#     }
+#
+#     STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#
+#     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#     DEFAULT_S3_PATH = "media"
+#     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#     STATIC_S3_PATH = "static"
+#     COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#
+#     COMPRESS_CSS_FILTERS = [
+#         'compressor.filters.css_default.CssAbsoluteFilter', 'compressor.filters.cssmin.CSSMinFilter']
+#     COMPRESS_JS_FILTERS = ['compressor.filters.jsmin.JSMinFilter']
+#     COMPRESS_REBUILD_TIMEOUT = 5400
+#
+#     MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
+#     MEDIA_URL = '//%s/%s/' % (S3_DOMAIN, DEFAULT_S3_PATH)
+#     STATIC_ROOT = "/%s/" % STATIC_S3_PATH
+#     STATIC_URL = 'https://%s/' % (S3_DOMAIN)
+#     ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+#
+#     CORS_ORIGIN_ALLOW_ALL = True
+#
+#     AWS_IS_GZIPPED = True
+#     AWS_ENABLED = True
+#     AWS_S3_SECURE_URLS = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
@@ -212,12 +212,12 @@ DEFAULT_FROM_EMAIL = 'proememails@gmail.com'
 
 # Celery
 # For Development and local Redis server
-# CELERY_BROKER_URL = 'redis://localhost:6379'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 # For Production
-CELERY_BROKER_URL = os.environ['REDIS_URL']
-CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+# CELERY_BROKER_URL = os.environ['REDIS_URL']
+# CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 # Load the local settings file if it exists
 if os.path.isfile('ProjEmb/local_settings.py'):

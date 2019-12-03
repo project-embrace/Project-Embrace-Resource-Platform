@@ -10,12 +10,13 @@
 </h1>
 <hr>
 <p><a class='button' href="{% url 'inventory:donation_house_list'%}">Back To List</a></p>
-<div class="row marl justify-content-center">
-  <form action="" method="POST" class = 'form form-row align-items-center' >
+
+  <form action="" method="POST">
     {% csrf_token %}
     {% bootstrap_form form %}
-    {% bootstrap_button "Submit" button_class='formButton' %}
+    {% bootstrap_button "Submit" button_class='sideBarButton' %}
   </form>
   <br>
-</div>
+  <hr>
+  <br>
 {% endblock %}
