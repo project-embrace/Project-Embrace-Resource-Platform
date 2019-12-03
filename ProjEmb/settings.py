@@ -5,6 +5,7 @@ from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
+STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # DISCLAIMER: If you are to locally develop this codebase follow these instructions:
 # 1. Set debug = True
@@ -20,14 +21,15 @@ DEBUG = os.getenv('DEBUG_STATUS', False)
 
 # Celery
 # For Development and local Redis server
-# CELERY_BROKER_URL = 'redis://localhost:6379'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 # For Production
-CELERY_BROKER_URL = os.environ['REDIS_URL']
-CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+# CELERY_BROKER_URL = os.environ['REDIS_URL']
+# CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
-ALLOWED_HOSTS = ['pe-resource-platform.herokuapp.com','localhost']
+
+ALLOWED_HOSTS = ['pe-resource-platform.herokuapp.com/']
 # Application definition
 LOGIN_URL = '/login/'
 
@@ -133,7 +135,7 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 django_heroku.settings(locals())
 
 # Don't set to True, it throws 500 errors. From research, it is something to do with Heroku.
-COMPRESS_OFFLINE = False
+COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', True)
 
 # SESSION_EXPIRE_SECONDS = 600  # 600 seconds = 10 minutes
 # SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
@@ -152,19 +154,11 @@ AUTH_USER_MODEL = 'common.User'
 # if STORAGE_TYPE == 'normal':
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 # STATICFILES_DIRS = (BASE_DIR + '/static',)
 COMPRESS_ROOT = BASE_DIR + '/static/'
-
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #this is not used
-# Add static folder to STATIC_DIRS
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 # AWS was not utilized due to costs. If you would like to utilize media files and profile pictures you will need to
 # implement AWS file storage and route the application to the AWS AWS_BUCKET_NAME
@@ -267,10 +261,10 @@ except ImportError:
 # GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'qYkKQy42MOWVuITtyO14Hnd2')
 # ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', True)
 
-# # Was unable to make this work with Heroku, but these are the tokens required. Check googleAPI for credentials.
-# GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', 'SECRETSECRET')
-# GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'SECRETSECRET')
-# ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', False)
+# Was unable to make this work with Heroku, but these are the tokens required. Check googleAPI for credentials.
+GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', 'SECRETSECRET')
+GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'SECRETSECRET')
+ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', False)
 
 
 # Items for marketing which are not currently being utilized.
@@ -351,35 +345,35 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 
 # Uncomment this to diagnose issues in a non-debug environment
 # Be prepared, this system has a fuckload of logging.
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'formatters': {
-#         'verbose': {
-#             'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-#             'datefmt' : "%d/%b/%Y %H:%M:%S"
-#         },
-#         'simple': {
-#             'format': '%(levelname)s %(message)s'
-#         },
-#     },
-#     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': 'debugging.log',
-#             'formatter': 'verbose'
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers':['file'],
-#             'propagate': True,
-#             'level':'DEBUG',
-#         },
-#         'MYAPP': {
-#             'handlers': ['file'],
-#             'level': 'DEBUG',
-#         },
-#     }
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': 'mysite.log',
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['file'],
+            'propagate': True,
+            'level':'DEBUG',
+        },
+        'MYAPP': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+        },
+    }
+}

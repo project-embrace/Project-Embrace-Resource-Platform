@@ -24,7 +24,7 @@ urlpatterns = [
          name="add_attachment"),
     path('attachment/remove/', DeleteAttachmentsView.as_view(),
          name="remove_attachment"),
-    path('create-mail', create_mail, name="create_mail"),
+    path('create-mail/', create_mail, name="create_mail"),
     path('get_contacts_for_account/', get_contacts_for_account,
          name="get_contacts_for_account"),
     path('get_email_data_for_account/', get_email_data_for_account,
