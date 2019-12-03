@@ -7,7 +7,8 @@ from celery.schedules import crontab
 # 1. Set debug = True
 # 2. Set celery_broker and celery_result to the development options,
 # 3. Don't set compress_offline = True
-
+# 4. run python manage.py collectstatic if you altered static files
+# @@@@--- This is essential for the production site. ---@@@
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
