@@ -1,5 +1,4 @@
 pip==19.3.1
-python==3.6.9
 pandas==0.25.1
 pygal==2.4.0
 django_pandas==0.6.1
