@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'simple_pagination',
     'bootstrap3',
     'bootstrap4',
-    'crispy_forms',
     "django_filters",
     "django_tables2",
     'compressor',
@@ -58,7 +57,6 @@ INSTALLED_APPS = [
     'teams',
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -123,7 +121,7 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 django_heroku.settings(locals())
 
-COMPRESS_OFFLINE = False # don't turn this to True it breaks the front end
+COMPRESS_OFFLINE = True # don't turn this to True it breaks the front end
 
 # SESSION_EXPIRE_SECONDS = 600  # 600 seconds = 10 minutes
 # SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
@@ -144,7 +142,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
-# STATICFILES_DIRS = (BASE_DIR + '/static',)
 COMPRESS_ROOT = BASE_DIR + '/static/'
 # AWS was not utilized due to costs. If you would like to utilize media files and profile pictures you will need to
 # implement AWS file storage and route the application to the AWS AWS_BUCKET_NAME
