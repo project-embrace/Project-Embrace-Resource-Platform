@@ -45,12 +45,11 @@ class CampaignTable(tables.Table):
 class DonorTable(tables.Table):
     id = tables.Column(linkify=True)
     name = tables.Column(linkify=True)
-    donation_house = tables.Column(linkify=True)
     class Meta:
         model = Donor
         template_name = "inventory/table.html"
         exclude = ('id',)
-        fields = ('name','email','donation_date','sent_a_receipt','donation_house')
+        fields = ('name','email','donation_date','sent_a_receipt')
         linkify = ('name','donation_house')
 
 class DonoHouseTable(tables.Table):

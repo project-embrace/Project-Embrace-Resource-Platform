@@ -12,7 +12,6 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 # 2. Set celery_broker and celery_result to the development options,
 # 3. Don't set compress_offline = True or you'll regret it in production
 # 4. run python manage.py collectstatic if you altered static files
-# 5. run python manage.py compress --force
 # 6. Push to Heroku
 # @@@@--- This is essential for the production site. ---@@@
 
@@ -24,7 +23,7 @@ DEBUG = os.getenv('DEBUG_STATUS', False)
 # CELERY_BROKER_URL = 'redis://localhost:6379'
 # CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
-# For Production
+# # For Production
 CELERY_BROKER_URL = os.environ['REDIS_URL']
 CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
