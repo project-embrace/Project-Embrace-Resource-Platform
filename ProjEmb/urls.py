@@ -42,10 +42,7 @@ urlpatterns = [
     path('tasks/', include('tasks.urls', namespace="tasks")),
     path('teams/', include('teams.urls', namespace="teams")),
 
-]
-
-if settings.DEBUG==False:
-    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 handler404 = handler404
