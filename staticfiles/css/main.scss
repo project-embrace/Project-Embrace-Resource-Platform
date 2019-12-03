@@ -1749,7 +1749,7 @@ position: relative; padding-bottom: 75%; height: 0; overflow: hidden;
     font-size:17px;
   }
   @media(min-width: $mob_min) and (max-width: $smob_max){
-    padding-top: 50px;
+    font-size:5px;
   }
 }
  a {
@@ -1783,7 +1783,7 @@ a:hover {
     }
   }
   @media(min-width: $mob_min) and (max-width: $smob_max){
-    padding-top: 50px;
+    font-size:6px;
   }
   svg{
     display: inline-block;
@@ -1791,25 +1791,7 @@ a:hover {
   }
 
 }
-#button{
-    border-radius: 3px;
-    color:#FFFFFF;
-    background-color:#BE1E2D;
-    @media(min-width:$large){
-      font-size:1rem;
-      svg{
-        position: relative;
-        top: 0px;
-      }
-    }
-    @media(min-width: $mob_min) and (max-width: $smob_max){
-      padding-top: 50px;
-    }
-    svg{
-      display: inline-block;
-      margin-right: 5px;
-    }
-}
+
 
 .button {
   background-color:#BE1E2D;
@@ -1827,7 +1809,7 @@ a:hover {
     }
   }
   @media(min-width: $mob_min) and (max-width: $smob_max){
-    padding-top: 50px;
+    font-size:10px;
   }
   svg{
     display: inline-block;
@@ -1929,6 +1911,9 @@ footer{
 .table{
   tbody{
     td{
+      @media(min-width: $mob_min) and (max-width: $smob_max){
+        font-size:6px;
+      }
       a{
         background-color:#BE1E2D;
         border-radius: 3px;
@@ -1946,7 +1931,7 @@ footer{
           }
         }
         @media(min-width: $mob_min) and (max-width: $smob_max){
-          padding-top: 50px;
+          font-size:6px;
 
         }
         svg{

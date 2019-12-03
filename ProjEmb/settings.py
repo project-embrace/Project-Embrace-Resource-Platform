@@ -212,12 +212,12 @@ DEFAULT_FROM_EMAIL = 'proememails@gmail.com'
 
 # Celery
 # For Development and local Redis server
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 # For Production
-# CELERY_BROKER_URL = os.environ['REDIS_URL']
-# CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+CELERY_BROKER_URL = os.environ['REDIS_URL']
+CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 # Load the local settings file if it exists
 if os.path.isfile('ProjEmb/local_settings.py'):
