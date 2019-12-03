@@ -5,7 +5,6 @@ from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
-STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # DISCLAIMER: If you are to locally develop this codebase follow these instructions:
 # 1. Set debug = True
@@ -28,7 +27,7 @@ DEBUG = os.getenv('DEBUG_STATUS', False)
 CELERY_BROKER_URL = os.environ['REDIS_URL']
 CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
-ALLOWED_HOSTS = ['pe-resource-platform.herokuapp.com']
+ALLOWED_HOSTS = ['pe-resource-platform.herokuapp.com','localhost']
 # Application definition
 LOGIN_URL = '/login/'
 
@@ -153,11 +152,17 @@ AUTH_USER_MODEL = 'common.User'
 # if STORAGE_TYPE == 'normal':
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 # STATICFILES_DIRS = (BASE_DIR + '/static',)
 COMPRESS_ROOT = BASE_DIR + '/static/'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #this is not used
+# Add static folder to STATIC_DIRS
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -262,10 +267,10 @@ except ImportError:
 # GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'qYkKQy42MOWVuITtyO14Hnd2')
 # ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', True)
 
-# Was unable to make this work with Heroku, but these are the tokens required. Check googleAPI for credentials.
-GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', 'SECRETSECRET')
-GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'SECRETSECRET')
-ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', False)
+# # Was unable to make this work with Heroku, but these are the tokens required. Check googleAPI for credentials.
+# GP_CLIENT_ID = os.getenv('GP_CLIENT_ID', 'SECRETSECRET')
+# GP_CLIENT_SECRET = os.getenv('GP_CLIENT_SECRET', 'SECRETSECRET')
+# ENABLE_GOOGLE_LOGIN = os.getenv('ENABLE_GOOGLE_LOGIN', False)
 
 
 # Items for marketing which are not currently being utilized.
