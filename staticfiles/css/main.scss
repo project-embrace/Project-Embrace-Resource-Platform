@@ -1792,16 +1792,22 @@ a:hover {
 
 }
 
-
 .button {
   background-color:#BE1E2D;
   border-radius: 3px;
   color: white !important;
-  padding: 5px 20px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  white-space: normal;
+  border:none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  letter-spacing: initial;
+  display: inline-block;
+  border-radius: 3px;
+  padding: 2px 10px;
+  line-height: 1.5rem;
+  bordeR: none;
+  cursor: pointer;
+  &:hover{opacity: .8}
   @media(min-width:$large){
     font-size:1rem;
     svg{
@@ -1809,6 +1815,11 @@ a:hover {
       top: 0px;
     }
   }
+  svg{
+    display: inline-block;
+    margin-right: 5px;
+  }
+
   @media(min-width: $mob_min) and (max-width: $smob_max){
     font-size:10px;
   }

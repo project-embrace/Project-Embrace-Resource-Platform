@@ -150,7 +150,7 @@ AUTH_USER_MODEL = 'common.User'
 # STORAGE_TYPE = os.getenv('STORAGE_TYPE', 'normal')
 
 # if STORAGE_TYPE == 'normal':
-MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
