@@ -133,7 +133,9 @@ DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 django_heroku.settings(locals())
 
-# Don't set to True, it throws 500 errors. From research, it is something to do with Heroku.
+# Don't set to True, it throws 500 errors in production.
+# From research, it is something to do with Heroku and/or the compress functions from Django-CRM.
+COMPRESS_OFFLINE = False
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', True)
 
 # SESSION_EXPIRE_SECONDS = 600  # 600 seconds = 10 minutes
@@ -155,6 +157,8 @@ MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
+# STATICFILES_DIRS =[STATIC_DIR,]
+
 # STATICFILES_DIRS = (BASE_DIR + '/static',)
 COMPRESS_ROOT = BASE_DIR + '/static/'
 # The following configuration is key for Heroku.
