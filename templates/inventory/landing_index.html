@@ -4,23 +4,18 @@
 {% if user.is_authenticated %}
 <h1 style='font-weight: bold;'>Project Embrace Resource Platform</h1>
 <hr>
-<p>Hi all!
+<p>
   <br>
   <br>
-   You are now seeing the new landing page for our organization. This page will direct you to materials related to mulitple departments.
+   You are now seeing the new landing page for your organization. This page will direct you to materials related to mulitple departments.
 </p>
-<div class="table-container table-responsive">
-{% block table-wrapper %}
-<div class="responsiveCal">
-<center><iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FDenver&amp;src=aGVsbG9AcHJvamVjdGVtYnJhY2Uub3Jn&amp;src=cHJvamVjdGVtYnJhY2Uub3JnX2Z0NGpjcGRja3JjaHBoOGlzNGJsZDRkdHUwQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;src=cHJvamVjdGVtYnJhY2Uub3JnX21sZmlvYXRhZGVwZ3B2OTlsM3R1MXQzODg4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=cHJvamVjdGVtYnJhY2Uub3JnXzFvOGw5cThlNGtxc2JicjIyOWw0Mmh1OGUwQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=cHJvamVjdGVtYnJhY2Uub3JnX3M5NzA1MnVwM3I4cmtpc3JtMjdzc3Q1ZzJrQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=cHJvamVjdGVtYnJhY2Uub3JnXzVvb2ZodTJzMmJwbmUzOGhtZDNmMTZubnE4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=cHJvamVjdGVtYnJhY2Uub3JnXzl2aGtyM2tqdnZ2ZHRmOGQxNG02cTQyZ2ZrQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=cHJvamVjdGVtYnJhY2Uub3JnX2NnZDJxcXBiNDRoaHFiNDI0OGczdmFpamc4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&amp;src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;color=%23039BE5&amp;color=%230B8043&amp;color=%23E4C441&amp;color=%23000000&amp;color=%2333B679&amp;color=%23D50000&amp;color=%239e356b&amp;color=%23E67C73&amp;color=%230524bc&amp;color=%230B8043" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no">
-</iframe><center>
-</div>
-{% endblock table-wrapper %}
+
 <hr>
 <br>
-</div>
+
 {% else %}
-      <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b> </p>
+      <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b>, or
+        <a href="/"><b>login.</b></a></p>
       <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
 {% endif %}
 {% endblock %}

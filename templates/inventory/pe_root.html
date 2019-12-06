@@ -49,6 +49,7 @@
   </style>
   {% block extralinks %} {% endblock %}
 </head>
+{% if user.is_authenticated %}
 <body class="main_body_bg_color">
   <div class="wrapper">
     <a class='row justify-content-center'href="{% url 'inventory:landing_index' %}"><img src="{% static "/pe_logo3.jpg"%}" alt="Aw Fuck"></a>
@@ -105,6 +106,12 @@
     </div>
   </div>
   <br>
+  {% else %}
+        <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b>, or
+          <a href="/"><b id='pe_red'>login.</b></a></p>
+        <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+  {% endif %}
+
   <footer>
     <br>
     <center><h4><a href="{% url 'inventory:landing_index' %}">Project Embrace Resource Platform</a></h4></center>

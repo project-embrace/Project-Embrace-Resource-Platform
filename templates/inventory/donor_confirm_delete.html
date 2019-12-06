@@ -1,5 +1,6 @@
 {% extends 'inventory/operations.html'%}
 {% block body_block %}
+{% if user.is_authenticated %}
   <h1>Delete {{donor.name}}?</h1>
   <hr>
   <form method="post">
@@ -7,4 +8,9 @@
     <input type="submit" class="button" value="Delete">
     <a class='button'href="{% url 'inventory:donor_detail' pk=donor.pk %}">Cancel</a>
   </form>
+  {% else %}
+        <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b>, or
+          <a href="/"><b id='pe_red'>login.</b></a></p>
+        <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+  {% endif %}
 {% endblock %}

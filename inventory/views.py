@@ -599,15 +599,15 @@ class ReceiptView(ListView):
                     x_donor_status=x_donor.iloc[0]['sent_a_receipt'].copy()
                     if x_donor_status == False:
                          # Updates the database record noting a receipt has been sent to the donor
-                         #update_donor_field = Donor.objects.get(id=x_donor_id)
-                         #update_donor_field.sent_a_receipt = True
-                         #update_donor_field.save()
-                    #
-                    #     # Gathers email for usage below
-                    #     donor_email = 'connerkinkade@mac.com'
-                    #     #x_donor[['email']]
-                    #
-                    #     # Gathers device data points related to the donor
+                         update_donor_field = Donor.objects.get(id=x_donor_id)
+                         update_donor_field.sent_a_receipt = True
+                         update_donor_field.save()
+
+                        # Gathers email for usage below
+                         donor_email = x_donor[['email']]
+
+
+                        # Gathers device data points related to the donor
                          device_match = Q(**{'donor_id': donor})
                          devices_qs = Device.objects.filter(device_match)
                          devices = read_frame(devices_qs)
@@ -649,9 +649,9 @@ class ReceiptView(ListView):
                          sender = 'proememails@gmail.com'
                          password = 'meohvgatpjcdrnyt'
 
-                         recipients = ['ckinkadedarling@gmail.com']
+                         recipients = ['proememails@gmail.com',donor_email]
                          message = MIMEMultipart()
-                         message["Subject"] = "Project Embrace Donation Receipt EXAMPLE"
+                         message["Subject"] = "Project Embrace Donation Receipt"
                          message["From"] = sender
                          message["To"] = ", ".join(recipients)
                          message_guts = html_template

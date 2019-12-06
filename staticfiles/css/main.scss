@@ -1829,6 +1829,13 @@ a:hover {
   }
 }
 
+.auth_ref{
+color:#000;
+cursor: pointer;
+&:hover{
+  color:$pe_red
+}
+}
 
 
 #progress_bar{

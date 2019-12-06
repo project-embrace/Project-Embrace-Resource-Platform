@@ -1,6 +1,6 @@
 {% extends 'inventory/finance.html' %}
 {% block content %}
-
+{% if user.is_authenticated %}
   <h1>Equipment Value Details</h1>
   <hr>
   <div class="row marl">
@@ -20,6 +20,12 @@
   <p>Source: {{equipment_detail.source}}</p>
   <p>Device Type: {{equipment_detail.device_type}}</p>
   <p>Value: {{equipment_detail.source_value}}</p>
+  {% else %}
+        <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b>, or
+          <a href="/"><b id='pe_red'>login.</b></a></p>
+        <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+  {% endif %}
+
   <hr>
   <br>
 {% endblock %}

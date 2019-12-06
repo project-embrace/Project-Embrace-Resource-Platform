@@ -1,6 +1,7 @@
 {% extends 'inventory/operations.html'%}
 {% load bootstrap4 %}
 {% block body_block %}
+{% if user.is_authenticated %}
 <h1>
   {% if not form.instance.pk %}
   Create Campaign
@@ -18,5 +19,10 @@
   <br>
   <hr>
   <br>
+  {% else %}
+        <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b>, or
+          <a href="/"><b id='pe_red'>login.</b></a></p>
+        <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+  {% endif %}
 
 {% endblock %}

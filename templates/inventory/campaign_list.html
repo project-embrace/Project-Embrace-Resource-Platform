@@ -3,6 +3,7 @@
 {% load django_tables2 %}
 {% load bootstrap3 %}
 {% block body_block %}
+{% if user.is_authenticated %}
 <h1>Campaigns</h1>
 <hr>
 <div class="row marl">
@@ -12,7 +13,7 @@
     </span>
   </div>
 </div>
-{% if filter %}
+{% if filter_one %}
 <div class="filter_row list_filter_row row marl">
   <div class="col-md-12">
     <div class="card">
@@ -55,6 +56,12 @@
 
 <hr>
 <br>
+{% else %}
+      <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b>, or
+        <a href="/"><b id='pe_red'>login.</b></a></p>
+      <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+{% endif %}
+
 {% endblock %}
 
 {% block js_block %}

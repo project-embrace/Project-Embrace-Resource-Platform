@@ -4,6 +4,7 @@
 {% load bootstrap4 %}
 {% load crispy_forms_tags %}
 {% block content %}
+{% if user.is_authenticated %}
 <h1 style='font-weight: bold;'>Equipment Values</h1>
 <hr>
 <div class="row marl">
@@ -53,6 +54,12 @@
 </div>
 </div>
   {% render_table table 'inventory/table.html' %}
+  {% else %}
+        <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b>, or
+          <a href="/"><b id='pe_red'>login.</b></a></p>
+        <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+  {% endif %}
+
 {% endblock %}
 
 {% block js_block %}

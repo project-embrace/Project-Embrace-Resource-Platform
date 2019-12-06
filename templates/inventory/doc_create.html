@@ -13,6 +13,7 @@
 </nav>
 {% endblock breadcrumb %}
 {% block content %}
+{% if user.is_authenticated %}
 <form id="add_form" method="POST" enctype="multipart/form-data" action="" novalidate>
   {% csrf_token %}
   <div class="overview_form_block row marl justify-content-center">
@@ -129,7 +130,14 @@
   </div>
 </div>
 
+{% else %}
+      <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b>, or
+        <a href="/"><b id='pe_red'>login.</b></a></p>
+      <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+{% endif %}
 {% endblock content %}
+
+
 {% block js_block %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 <script src="https://malsup.github.io/jquery.form.js"></script>

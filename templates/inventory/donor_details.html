@@ -1,6 +1,6 @@
 {% extends 'inventory/operations.html' %}
 {% block body_block %}
-
+{% if user.is_authenticated %}
   <h1>Donor Details</h1>
   <hr>
   <table>
@@ -20,5 +20,10 @@
 
   <h4 style="color:#000;">{{ donor_detail.name }} donated {{ donor_detail.devices.count}} devices!</h4>
   <hr>
+  {% else %}
+        <center><p>If you do not have access to this page, contact the administator at <b id='pe_red'>hello@projectembrace.org</b>, or
+          <a href="/"><b id='pe_red'>login.</b></a></p>
+        <p><a id='pe_red' href='https://www.projectembrace.org'><b>projectembrace.org</b></a></p></center>
+  {% endif %}
 
 {% endblock %}
