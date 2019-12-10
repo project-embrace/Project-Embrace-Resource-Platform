@@ -4,8 +4,6 @@ import redis
 from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
-STATIC_DIR = os.path.join(BASE_DIR,'static')
 
 # DISCLAIMER: If you are to locally develop this codebase follow these instructions:
 # 1. Set debug = True
@@ -16,14 +14,14 @@ STATIC_DIR = os.path.join(BASE_DIR,'static')
 # @@@@--- This is essential for the production site. ---@@@
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG_STATUS', False)
+DEBUG = os.getenv('DEBUG_STATUS', True)
 
 # Celery
 # For Development and local Redis server
 # CELERY_BROKER_URL = 'redis://localhost:6379'
 # CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
-# # For Production
+# For Production
 CELERY_BROKER_URL = os.environ['REDIS_URL']
 CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
@@ -72,14 +70,15 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django_session_timeout.middleware.SessionTimeoutMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'ProjEmb.urls'
@@ -127,40 +126,30 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Sets date format for models
 DATE_INPUT_FORMATS = ['%d-%m-%Y']
 
 django_heroku.settings(locals())
 
-# Don't set to True, it throws 500 errors in production.
-# From research, it is something to do with Heroku and/or the compress functions from Django-CRM.
-COMPRESS_OFFLINE = False
-COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', True)
-
-# SESSION_EXPIRE_SECONDS = 600  # 600 seconds = 10 minutes
-# SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
-
 # BEGIN DJANGO-CRM Settings ----------------------------------------------------------------
-
 
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 
 AUTH_USER_MODEL = 'common.User'
 
-
-# STORAGE_TYPE = os.getenv('STORAGE_TYPE', 'normal')
-
-# if STORAGE_TYPE == 'normal':
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-
+STORAGE_TYPE = os.getenv('STORAGE_TYPE', 'normal')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "staticfiles"), ]
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
-# STATICFILES_DIRS =[STATIC_DIR,]
 
-# STATICFILES_DIRS = (BASE_DIR + '/static',)
-COMPRESS_ROOT = BASE_DIR + '/static/'
+if STORAGE_TYPE == 'normal':
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/'
+
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = (BASE_DIR + '/static/',)
+    COMPRESS_ROOT = BASE_DIR + '/static/'
+
 # The following configuration is key for Heroku.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
@@ -201,6 +190,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 #     AWS_IS_GZIPPED = True
 #     AWS_ENABLED = True
 #     AWS_S3_SECURE_URLS = True
+
+
+COMPRESS_ROOT = BASE_DIR + '/static/'
+
+COMPRESS_ENABLED = True
 
 COMPRESS_OFFLINE_CONTEXT = {
     'STATIC_URL': 'STATIC_URL',

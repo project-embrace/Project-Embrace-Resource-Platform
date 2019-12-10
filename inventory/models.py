@@ -120,6 +120,7 @@ class Recipient(models.Model):
 
 class Device(models.Model):
     import datetime
+    # Device Values
     cane = 'cane'
     quad_cane = 'cane, quad'
     crutch_adult = 'crutch, adult'
@@ -153,7 +154,7 @@ class Device(models.Model):
     sling='sling'
     glasses='glasses'
     splint='splint'
-    wrist_splint='splint'
+    wrist_splint='splint, wrist'
     wrap='wrap'
     bed='bed'
 
@@ -197,9 +198,35 @@ class Device(models.Model):
         (showerchair_ta,'shower chair, tub-attachable'),
         (commode,'commode'),
         (splint,'splint'),
-        (wrist_splint,'wrist splint'),
+        (wrist_splint,'wrist, splint'),
         (miscellaneous,'miscellaneous'),
         )
+
+    # Storage Unit Values
+
+    storg_1='109'
+    storg_2='115'
+    storg_dono = 'Donated Item'
+
+    storg_quad_1 = 'Q1'
+    storg_quad_2 = 'Q2'
+    storg_quad_3 = 'Q3'
+    storg_quad_4 = 'Q4'
+    storg_quad_dono = 'Donated Item'
+
+    STORAGE_UNIT_OPTIONS =(
+    (storg_1,'109'),
+    (storg_2,'115'),
+    (storg_dono,'Donated Item')
+    )
+
+    STORAGE_UNIT_QUADRANT_OPTIONS =(
+    (storg_quad_1,'Q1'),
+    (storg_quad_2,'Q2'),
+    (storg_quad_3,'Q3'),
+    (storg_quad_4,'Q4'),
+    (storg_quad_dono,'Donated Item')
+    )
     type=models.CharField(max_length=47,choices=sorted(DEVICE_OPTIONS),blank=False)
     condition=models.CharField(max_length=10,choices=DEVICE_CONDITIONS,blank=False)
     donor=models.ForeignKey(Donor,
@@ -213,10 +240,8 @@ class Device(models.Model):
                               on_delete=models.CASCADE)
     donated_to_recipient=models.BooleanField(default=False)
     processed=models.BooleanField(default=False)
-    storage_unit = models.IntegerField(blank=False,validators=[
-                            MaxValueValidator(9999),
-                            MinValueValidator(1)])
-    storage_unit_quadrant=models.CharField(max_length=6,blank=False)
+    storage_unit = models.CharField(blank=False,choices=sorted(STORAGE_UNIT_OPTIONS),max_length=3)
+    storage_unit_quadrant=models.CharField(max_length=13,choices=sorted(STORAGE_UNIT_QUADRANT_OPTIONS),blank=False)
     unique_information=models.TextField(default='None')
     date_donated_to_project_embrace=models.DateField(("Date"), default=datetime.date.today)
     date_donated_to_recipient=models.DateField(("Date Donated to Recipient (YYYY-MM-DD)"),
