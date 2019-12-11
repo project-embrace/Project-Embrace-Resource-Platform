@@ -622,10 +622,11 @@ def download_document(request, pk):
     # doc_obj = Document.objects.filter(id=pk).last()
     doc_obj = Document.objects.get(id=pk)
     if doc_obj:
-        if not request.user.role == 'ADMIN':
-            if (not request.user == doc_obj.created_by and
-                    request.user not in doc_obj.shared_to.all()):
-                raise PermissionDenied
+        # Utilize this section if you want to make documents become less accessible.
+        # if not request.user.role == 'ADMIN':
+        #     if (not request.user == doc_obj.created_by and
+        #             request.user not in doc_obj.shared_to.all()):
+        #         raise PermissionDenied
         if settings.STORAGE_TYPE == "normal":
             # print('no no no no')
             path = doc_obj.document_file.path
@@ -640,19 +641,21 @@ def download_document(request, pk):
         else:
             file_path = doc_obj.document_file
             file_name = doc_obj.title
-            # print(file_path)
-            # print(file_name)
-            BUCKET_NAME = "django-crm-demo"
+            BUCKET_NAME = "pe-resource-media"
             KEY = str(file_path)
             s3 = boto3.resource('s3')
+            # s3 = boto3.client('s3')
             try:
                 s3.Bucket(BUCKET_NAME).download_file(KEY, file_name)
                 # print('got it')
                 with open(file_name, 'rb') as fh:
+                    file_type = str(file_path).rpartition('.')[-1] # gathers file type
+                    file_type = '.'+file_type
+                    full_file_name = file_name+file_type
                     response = HttpResponse(
-                        fh.read(), content_type="application/vnd.ms-excel")
+                        fh.read(), content_type='application/force-download')
                     response['Content-Disposition'] = 'inline; filename=' + \
-                        os.path.basename(file_name)
+                        os.path.basename(full_file_name)
                 os.remove(file_name)
                 return response
             except botocore.exceptions.ClientError as e:
@@ -683,16 +686,20 @@ def download_attachment(request, pk): # pragma: no cover
             file_name = attachment_obj.file_name
             # print(file_path)
             # print(file_name)
-            BUCKET_NAME = "django-crm-demo"
+            BUCKET_NAME = "pe-resource-media"
             KEY = str(file_path)
             s3 = boto3.resource('s3')
             try:
                 s3.Bucket(BUCKET_NAME).download_file(KEY, file_name)
+                # print('got it')
                 with open(file_name, 'rb') as fh:
+                    file_type = str(file_path).rpartition('.')[-1] # gathers file type
+                    file_type = '.'+file_type
+                    full_file_name = file_name+file_type
                     response = HttpResponse(
-                        fh.read(), content_type="application/vnd.ms-excel")
+                        fh.read(), content_type='application/force-download')
                     response['Content-Disposition'] = 'inline; filename=' + \
-                        os.path.basename(file_name)
+                        os.path.basename(full_file_name)
                 os.remove(file_name)
                 return response
             except botocore.exceptions.ClientError as e:

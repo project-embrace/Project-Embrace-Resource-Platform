@@ -1839,7 +1839,8 @@ cursor: pointer;
 
 
 #progress_bar{
-  background-color:#BE1E2D !important;
+  // background-color:#BE1E2D !important;
+  progress::-webkit-progress-value { background-color: #BE1E2D !important; }
 }
 
 h1{

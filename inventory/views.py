@@ -4,6 +4,8 @@ from django.utils.decorators import method_decorator
 from django.db.models import Q
 import json
 import os
+import boto3
+import botocore
 from django.conf import settings
 from django.urls import reverse_lazy
 from django.views.generic import (View,TemplateView,ListView,
@@ -920,17 +922,21 @@ def download_document(request, pk):
             file_name = doc_obj.title
             # print(file_path)
             # print(file_name)
-            BUCKET_NAME = "django-crm-demo"
+            BUCKET_NAME = "pe-resource-media"
             KEY = str(file_path)
             s3 = boto3.resource('s3')
             try:
                 s3.Bucket(BUCKET_NAME).download_file(KEY, file_name)
                 # print('got it')
                 with open(file_name, 'rb') as fh:
+                    file_type = str(file_path).rpartition('.')[-1] # gathers file type
+                    # print(file_type)
+                    file_type = '.'+file_type
+                    full_file_name = file_name+file_type
                     response = HttpResponse(
-                        fh.read(), content_type="application/vnd.ms-excel")
+                        fh.read(), content_type='application/force-download')
                     response['Content-Disposition'] = 'inline; filename=' + \
-                        os.path.basename(file_name)
+                        os.path.basename(full_file_name)
                 os.remove(file_name)
                 return response
             except botocore.exceptions.ClientError as e:
@@ -1159,17 +1165,20 @@ def FinDownloadDocument(request, pk):
             file_name = doc_obj.title
             # print(file_path)
             # print(file_name)
-            BUCKET_NAME = "django-crm-demo"
+            BUCKET_NAME = "pe-resource-media"
             KEY = str(file_path)
             s3 = boto3.resource('s3')
             try:
                 s3.Bucket(BUCKET_NAME).download_file(KEY, file_name)
                 # print('got it')
                 with open(file_name, 'rb') as fh:
+                    file_type = str(file_path).rpartition('.')[-1] # gathers file type
+                    file_type = '.'+file_type
+                    full_file_name = file_name+file_type
                     response = HttpResponse(
-                        fh.read(), content_type="application/vnd.ms-excel")
+                        fh.read(), content_type='application/force-download')
                     response['Content-Disposition'] = 'inline; filename=' + \
-                        os.path.basename(file_name)
+                        os.path.basename(full_file_name)
                 os.remove(file_name)
                 return response
             except botocore.exceptions.ClientError as e:
