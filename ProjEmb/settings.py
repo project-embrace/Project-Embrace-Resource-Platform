@@ -5,7 +5,7 @@ from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # DISCLAIMER: If you are to locally develop this codebase follow these instructions:
-# 1. Set debug = True
+# 1. Set debug = os.getenv('DEBUG_STATUS', True )
 # 2. Set celery_broker and celery_result to the development options,
 # 3. Don't set compress_offline = True or you'll regret it in production
 # 4. run python manage.py collectstatic if you altered static files
@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # @@@@--- This is essential for the production site. ---@@@
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG_STATUS', False)
+DEBUG = os.getenv('DEBUG_STATUS', True)
 
 # Celery
 # For Development and local Redis server
@@ -139,10 +139,7 @@ AUTH_USER_MODEL = 'common.User'
 # The following configuration is key for Heroku.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-
 STORAGE_TYPE = os.getenv('STORAGE_TYPE', 's3-storage') # Either normal or s3-storage
-
-
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 STATIC_URL = '/static/'
@@ -162,16 +159,18 @@ elif STORAGE_TYPE == 's3-storage':
     AWS_STORAGE_BUCKET_NAME = AWS_BUCKET_NAME = os.getenv('AWSBUCKETNAME', 'pe-resource-media')
     AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', 'AKIAJ6ZC2CSF46HPUCGQ')
     AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', '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')
-    S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.amazonaws.com'
+    S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.us-east-2.amazonaws.com' # us-east-ohio - us-east-2
 
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400',
     }
 
+
     # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    DEFAULT_S3_PATH = "media"
+    # DEFAULT_FILE_STORAGE = 'custom_storage.MediaStorage'
+    DEFAULT_S3_PATH = 'media'
     # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     # STATIC_S3_PATH = "static"
     # COMPRESS_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
@@ -182,7 +181,7 @@ elif STORAGE_TYPE == 's3-storage':
     # COMPRESS_REBUILD_TIMEOUT = 5400
 
     MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
-    MEDIA_URL = '//%s/%s/' % (S3_DOMAIN, DEFAULT_S3_PATH)
+    MEDIA_URL = '//%s/' % (S3_DOMAIN)
     # STATIC_ROOT = "/%s/" % STATIC_S3_PATH
     # STATIC_URL = 'https://%s/' % (S3_DOMAIN)
     # ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
