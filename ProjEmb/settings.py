@@ -1,6 +1,7 @@
 import os
 import django_heroku
 import redis
+
 from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -156,12 +157,6 @@ if STORAGE_TYPE == 'normal':
 # implement AWS file storage and route the application to the AWS AWS_BUCKET_NAME
 elif STORAGE_TYPE == 's3-storage':
 
-    from boto.s3.connection import S3Connection
-    s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
-    
-    AWS_STORAGE_BUCKET_NAME = AWS_BUCKET_NAME = os.getenv('AWSBUCKETNAME', 'pe-resource-media')
-    AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID', 'AKIAJ6ZC2CSF46HPUCGQ')
-    AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY', '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')
     S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.us-east-2.amazonaws.com' # us-east-ohio - us-east-2
 
     AWS_S3_OBJECT_PARAMETERS = {
