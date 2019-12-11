@@ -1,7 +1,6 @@
 import os
 import django_heroku
 import redis
-
 from celery.schedules import crontab
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +23,6 @@ DEBUG = os.getenv('DEBUG_STATUS', True)
 # For Production
 CELERY_BROKER_URL = os.environ['REDIS_URL']
 CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
-
 
 
 ALLOWED_HOSTS = ['https://pe-resource-platform.herokuapp.com/']
@@ -159,17 +157,18 @@ if STORAGE_TYPE == 'normal':
 elif STORAGE_TYPE == 's3-storage':
 
     AWS_STORAGE_BUCKET_NAME = AWS_BUCKET_NAME = os.getenv('AWSBUCKETNAME', 'pe-resource-media')
-    S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.us-east-2.amazonaws.com' # us-east-ohio - us-east-2
+    AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+    AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY_ID')
+    S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.amazonaws.com' # us-east-ohio
 
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400',
     }
 
-
     # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-    # DEFAULT_FILE_STORAGE = 'custom_storage.MediaStorage'
+
     DEFAULT_S3_PATH = 'media'
     # STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     # STATIC_S3_PATH = "static"
@@ -181,7 +180,7 @@ elif STORAGE_TYPE == 's3-storage':
     # COMPRESS_REBUILD_TIMEOUT = 5400
 
     MEDIA_ROOT = '/%s/' % DEFAULT_S3_PATH
-    MEDIA_URL = '//%s/' % (S3_DOMAIN)
+    MEDIA_URL = '//%s/%s/' % (S3_DOMAIN, DEFAULT_S3_PATH)
     # STATIC_ROOT = "/%s/" % STATIC_S3_PATH
     # STATIC_URL = 'https://%s/' % (S3_DOMAIN)
     # ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
