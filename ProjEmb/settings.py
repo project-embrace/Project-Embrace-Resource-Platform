@@ -26,6 +26,7 @@ CELERY_BROKER_URL = os.environ['REDIS_URL']
 CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 
+
 ALLOWED_HOSTS = ['https://pe-resource-platform.herokuapp.com/']
 # Application definition
 LOGIN_URL = '/login/'
