@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # @@@@--- This is essential for the production site. ---@@@
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG_STATUS', False)
+DEBUG = os.getenv('DEBUG_STATUS', True)
 
 # Celery
 # For Development and local Redis server
