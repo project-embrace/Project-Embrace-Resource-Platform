@@ -159,7 +159,7 @@ elif STORAGE_TYPE == 's3-storage':
     AWS_STORAGE_BUCKET_NAME = AWS_BUCKET_NAME = os.getenv('AWSBUCKETNAME', 'pe-resource-media')
     AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.environ.get('AKIAI5CFRK4IEWBOSMWQ')
     AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.environ.get('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')
-    S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.amazonaws.com' # us-east-ohio
+    S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.amazonaws.com'
 
     AWS_S3_OBJECT_PARAMETERS = {
         'CacheControl': 'max-age=86400',
