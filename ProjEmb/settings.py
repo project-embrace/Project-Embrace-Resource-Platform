@@ -156,9 +156,9 @@ if STORAGE_TYPE == 'normal':
 # implement AWS file storage and route the application to the AWS AWS_BUCKET_NAME
 elif STORAGE_TYPE == 's3-storage':
 
-    AWS_STORAGE_BUCKET_NAME = AWS_BUCKET_NAME = os.getenv('AWSBUCKETNAME', 'pe-resource-media')
-    AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-    AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY_ID')
+    AWS_STORAGE_BUCKET_NAME = AWS_BUCKET_NAME = os.getenv('AWSBUCKETNAME', 'pe-resource-media-stor')
+    AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
+    AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.amazonaws.com' # us-east-ohio
 
     AWS_S3_OBJECT_PARAMETERS = {
