@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # @@@@--- This is essential for the production site. ---@@@
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG_STATUS', True)
+DEBUG = os.getenv('DEBUG_STATUS', False)
 
 # Celery
 # For Development and local Redis server
@@ -157,8 +157,8 @@ if STORAGE_TYPE == 'normal':
 elif STORAGE_TYPE == 's3-storage':
 
     AWS_STORAGE_BUCKET_NAME = AWS_BUCKET_NAME = os.getenv('AWSBUCKETNAME', 'pe-resource-media')
-    AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY')
-    AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+    AM_ACCESS_KEY = AWS_ACCESS_KEY_ID = os.environ.get('AKIAI5CFRK4IEWBOSMWQ')
+    AM_PASS_KEY = AWS_SECRET_ACCESS_KEY = os.environ.get('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')
     S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.amazonaws.com' # us-east-ohio
 
     AWS_S3_OBJECT_PARAMETERS = {
