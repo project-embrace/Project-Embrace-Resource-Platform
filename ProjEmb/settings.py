@@ -17,12 +17,12 @@ DEBUG = os.getenv('DEBUG_STATUS', False)
 
 # Celery
 # For Development and local Redis server
-# CELERY_BROKER_URL = 'redis://localhost:6379'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 # For Production
-CELERY_BROKER_URL = os.environ['REDIS_URL']
-CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+# CELERY_BROKER_URL = os.environ['REDIS_URL']
+# CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 
 ALLOWED_HOSTS = ['https://pe-resource-platform.herokuapp.com/']
@@ -163,7 +163,7 @@ elif STORAGE_TYPE == 's3-storage':
     S3_DOMAIN = AWS_S3_CUSTOM_DOMAIN = str(AWS_BUCKET_NAME) + '.s3.amazonaws.com'
 
     AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',
+        'CacheControl': 'max-age=31536000',
     }
 
     # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
