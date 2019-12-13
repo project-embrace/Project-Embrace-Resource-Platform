@@ -6,8 +6,8 @@ SECRET_KEY = '&5=4*=-bdbv%m!942+)pz2_t#$*zh%58rbdhe4=5tbtu-n!g0n'
 
 # Email Server Settings
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = os.getenv('proememails@gmail.com', '')
-EMAIL_HOST_PASSWORD = os.getenv('meohvgatpjcdrnyt', '')
+EMAIL_HOST_USER = os.getenv('GMAIL_USER', 'proememails@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('GMAIL_PASS', 'bgxgjxtsxryrtavl')
 EMAIL_PORT = 465
 EMAIL_USE_TLS = True
 
