@@ -17,12 +17,12 @@ DEBUG = os.getenv('DEBUG_STATUS', False)
 
 # Celery
 # For Development and local Redis server
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 # For Production
-# CELERY_BROKER_URL = os.environ['REDIS_URL']
-# CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+CELERY_BROKER_URL = os.environ['REDIS_URL']
+CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 
 ALLOWED_HOSTS = ['https://pe-resource-platform.herokuapp.com/']
