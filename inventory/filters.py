@@ -1,12 +1,20 @@
-from django_filters import FilterSet
+from django_filters import FilterSet,NumberFilter,DateRangeFilter,DateFilter
 
 from .models import Device,Donor,Campaign,StorageArea,DonationHouse,EquipmentValue
 
 
 class DeviceFilter(FilterSet):
+    device_date__gt = DateFilter(field_name='date_donated_to_project_embrace', lookup_expr='gt')
+    device_date__lt = DateFilter(field_name='date_donated_to_project_embrace', lookup_expr='lt')
     class Meta:
         model = Device
-        fields = {"type": ["exact"], "condition": ["exact"], "id": ["contains"],'campaign':['exact'],'processed':['exact'],'date_donated_to_project_embrace':['exact']}
+        fields = {"type": ["exact"],
+                  "condition": ["exact"],
+                  "id": ["contains"],
+                  'campaign':['exact'],
+                  'processed':['exact'],
+                  'device_date__gt':['contains'],
+                  'device_date__lt':['contains']}
 
 
 class DonorFilter(FilterSet):
