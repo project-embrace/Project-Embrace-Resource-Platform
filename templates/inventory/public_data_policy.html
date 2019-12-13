@@ -2,7 +2,7 @@
 {% load bootstrap4%}
 {% block body_block %}
 <h1>Project Embrace Data Policy</h1>
-
+<hr>
 <h5>What are you collecting?</h5>
 <li><p>We collect anonymous surveys from the recipients about the quality of life before and after they receive a donation. We don’t collect names, addresses, medical conditions, or any sort of information that could identify a specific person. </p></li>
 <br>
@@ -20,8 +20,8 @@
 
 <h4 style='color:#BE1E2D;'>Data Collection User Agreement</h4>
 <li><p>By completing the forms provided by Project Embrace, you are agreeing to Project Embrace’s User Agreement and Data Collection Policy.</p></li>
-
-{% bootstrap_button "Go Back" button_type="link" button_class="button" href="inventory:public_dash" %}
+<a class='button' href="{% url 'inventory:public_dash_inventory' %} ">Go Back</a>
 <br>
+<hr>
 <br>
 {% endblock %}
