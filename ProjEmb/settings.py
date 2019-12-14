@@ -17,12 +17,12 @@ DEBUG = os.getenv('DEBUG_STATUS', False)
 
 # Celery
 # For Development and local Redis server
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 # For Production
-# CELERY_BROKER_URL = os.environ['REDIS_URL']
-# CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
+CELERY_BROKER_URL = os.environ['REDIS_URL']
+CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 
 
 ALLOWED_HOSTS = ['https://pe-resource-platform.herokuapp.com/']
@@ -225,7 +225,12 @@ COMPRESS_OFFLINE_CONTEXT = {
 }
 
 DEFAULT_FROM_EMAIL = 'proememails@gmail.com'
-
+# Email Server Settings
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = os.getenv('GMAIL_USER', 'proememails@gmail.com')
+EMAIL_HOST_PASSWORD = os.getenv('GMAIL_PASS', 'bgxgjxtsxryrtavl')
+EMAIL_PORT = 465
+EMAIL_USE_TLS = True
 
 # Load the local settings file if it exists
 if os.path.isfile('ProjEmb/local_settings.py'):
@@ -370,5 +375,5 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 10
 #             'level': 'DEBUG',
 #         },
 #     }
-
+#
 # }
